@@ -73,7 +73,7 @@ Jak pokazują obliczenia przeprowadzone w sekcji~\ref{section:microcontroller_li
 
 Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG jest odpowiednio droga, wykorzystuje jednak znacznie wyższe częstotliwości} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
-Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
+Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także wymienić kwarc generujący częstotliwość dla tych elementów. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
 \begin{equation}
  f = \frac{1}{i} = \frac{1}{1~\mu\textrm{s}} = 1~\textrm{MHz}
 \end{equation}
@@ -98,4 +98,16 @@ Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequenc
  \includegraphics[width=45em]{gfx/diagramy/diagram_sekwencji_sprzetu}
  \caption{Diagram sekwencji oprogramowania mikrokontrolera}
  \label{fig:firmware_sequence_diagram}
+\end{figure}
+
+\section{Oprogramowanie dla komputera}
+\subsection{Trilaterator}
+Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera.
+
+Aplikację prezentuje rysunek \ref{fig:trilaterator}.
+
+\begin{figure}
+ \includegraphics[width=\textwidth]{gfx/trilaterator}
+ \caption{Trilaterator. Aplikacja dokonująca trilateracji}
+ \label{fig:trilaterator}
 \end{figure}

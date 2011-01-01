@@ -77,6 +77,7 @@ Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed
 Ważnym\graffito{na pewno ważnym?} spostrzeżeniem jest dostrzeżenie, że aby wszystkie trzy sfery posiadały punkt\graffito{tutaj są pewne ograniczenia - jeśli zwiększymy promien jednej ze sfer, to możemy nie dostać punktu wspólnego dla wszystkich trzech sfer}, w którym będą się stykać, stykiem każdej pary sfer musi być okrąg\graffito{okrąg - w odróżnieniu od punktu lub braku styku}.
 
 \paragraph{Trilateracja}
+\label{par:trilateration}
 Metoda wyznaczenia trójwymiarowej pozycji znając odległości od trzech punktów o znanych współrzędnych nazywana jest \textit{trilateracją}\graffito{dodać info skąd to wiadomo}.
 
 Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, jeden na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$}. Przyjmując takie rozmieszczenie, jakie zaprezentowane jest na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
@@ -194,10 +195,10 @@ Jak jednak pamiętamy z opisu, jeden z tych punktów, ,,tylny'' odrzucamy, w zwi
 Reasumując, jeśli przyjąć rozmieszczenie odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w skonstruowanym systemie jest prawdziwe} będzie miał następujące współrzędne:
 
 \begin{eqnarray}
- x & = & \frac{r_1^2 - r_2^2 + a^2}{2a} \\
- y & = & \frac{-2bx + b^2 + c^2 + r_1^2 - r_3^2}{2c} \\
+ x & = & \frac{r_1^2 - r_2^2 + a^2}{2a} \label{eq:trilateration_final_x}\\
+ y & = & \frac{-2bx + b^2 + c^2 + r_1^2 - r_3^2}{2c} \label{eq:trilateration_final_y}\\
    & = & \frac{-b\frac{r_1^2 - r_2^2 + a^2}{a} + b^2 + c^2 + r_1^2 - r_3^2}{2c} \nonumber \\
- z & = & \sqrt{r_1^2 - x^2 - y^2} \\
+ z & = & \sqrt{r_1^2 - x^2 - y^2} \label{eq:trilateration_final_z}\\
    & = & \sqrt{r_1^2 - \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 - \left(\frac{b\frac{r_1^2 - r_2^2 + a^2}{-a} + b^2 + c^2 + r_1^2 - r_3^2}{2c}\right)^2} \nonumber
 \end{eqnarray}
 
