@@ -166,7 +166,7 @@ Pole \texttt{F} wraz z polem \texttt{M$_\textrm{\texttt{id}}$} służy do synchr
 \caption{Metoda synchronizacji danych}
 \label{alg:sync}
 \begin{algorithmic}[1]
-  \REQUIRE $n \geq 0 \vee x \neq 0$
+  \REQUIRE \texttt{dane} \ppauza tablica dynamiczna, do której końca dopisywane są przychodzące dane
   \WHILE{\texttt{dane.count() $\geq$ 8}}
     \WHILE{\texttt{dane.count() $\geq$ 8 \&\& (dane[0] != M$_\textrm{\texttt{id}}$ \textbar{}\textbar{} dane[7] != 0x77})}
       \STATE usuń(\texttt{dane[0]})
