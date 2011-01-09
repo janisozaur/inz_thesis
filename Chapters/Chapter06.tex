@@ -42,3 +42,19 @@ Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje p
  \caption[Wykres pozycji i odległości jednego z markerów]{Wykres pozycji i odległości od czujników jednego z~markerów w~stałej pozycji}
  \label{fig:charter_shaky}
 \end{figure}
+
+% niezawodność
+\graffito{coś trzeba napisać o niezawodności}
+
+% kompatybilność z oprogramowaniem
+Program wykorzystuje do komunikacji z komputerem protokół \textsmaller{RS232}. Jest to standard komunikacji szeregowej niegdyś bardzo często dostępny w komputerach, jednak dziś odpowiednie złącza i interfejsy dostępne są za sprawą stosunkowo niedrogich adapterów wpinanych do portu \textsmaller{USB}.
+
+Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
+
+Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{bps \ppauza baud per second} błąd wynosi zaledwie 0.2\%.
+
+Moje doświadczenie z mikrokontrolerami pokazuje, że wartość ta jest dostatecznie mała, aby można było założyć, że trasmisja jest dokładna.
+
+Wykorzystany do komunikacji interfejs oraz zaproponowany protokół\graffito{opisać protokół} jest bardzo prosty, co pozwala na dodanie obsługi systemu do dowolnego programu pragnącego skorzystać z tej możliwości znikomym nakładem pracy.
+
+Stanowiłoby to duży atut systemu w przypadku jego popularyzacji.
