@@ -1,0 +1,44 @@
+\myChapter{Testy}\label{ch:tests}
+%************************************************
+
+\section{Cele}
+
+Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i Symulacji Komputerowych}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać systemu, jak np.:
+\begin{itemize}
+ \item medycyna \ppauza manipulacja trójwymiarowymi obrazami skanów pacjentów,
+ \item cyfrowe modelarstwo \ppauza szybkie prototypowanie modeli,
+ \item tworzenie filmów \ppauza przechwytywanie ruchu.
+\end{itemize}
+
+Głównym atutem systemu w tych polach jest naturalny sposób manipulacji i~interakcji z komputerem ze względu na pobieranie dodatkowo \ppauza w odróżnieniu od standardowego zostawu klawiatura + myszka \ppauza trzeciego wymiaru.
+
+\section{Metody}
+Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi będą różnić się, w zależności od planowanego wykorzystania, jednak można zauważyć, że należy dążyć do optymalizacji cech takich jak:
+\begin{itemize}
+ \item dokładność,
+ \item stabilność,
+ \item niezawodność,
+ \item prostota użytkowania,
+ \item kompatybliność z oprogramowaniem,
+ \item szybkość.
+\end{itemize}
+
+
+\section{Wyniki}
+% dokladnosc
+Dokładność systemu została już określona w sekcji \ref{section:precision}, pozwolę więc sobie jedynie przytoczyć obliczone parametry.
+
+Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z faktem, że można natknąć się na ograniczenia mikrokontrolera} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
+
+Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0.34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit} i \ref{eq:sound_limit}}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8.5mm, a zatem ograniczenie całego systemu wynosi 8.5mm.
+
+Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
+
+% stabilnosc
+Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje pewną niestabilność, która objawia się drganiem odtworzonej pozycji markera. Widać to dobrze na rysunku \ref{fig:charter_shaky}, którego górna część pokazuje odtworzoną pozycję w trzech wymiarach. Wszystkie dane, a w szczególności wartość $Y$, wykazują kilkucentymetrowe drgania pomimo stabilnego umocowania zarówno układu jak i markera.
+
+\begin{figure}
+ \includegraphics[width=\textwidth]{gfx/charter_shaky.png}
+ \caption{Wykres pozycji i odległości od czujników jednego z~markerów w~stałej pozycji}
+ \label{fig:charter_shaky}
+\end{figure}
