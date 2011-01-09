@@ -111,3 +111,29 @@ Aplikację prezentuje rysunek \ref{fig:trilaterator}.
  \caption{Trilaterator. Aplikacja dokonująca trilateracji}
  \label{fig:trilaterator}
 \end{figure}
+
+\subsection{Charter}
+Kolejna aplikacja prezentująca możliwości systemu służy do rysowania wykresów w czasie rzeczywistym na podstawie danych pobranych z mikrokontrolera. Dla porównania dostępne są dwa rodzaje wykresów jednocześnie:
+\begin{itemize}
+ \item odległość od odbiornika \ppauza pokazuje odległość wybranego markera od każdego z odbiorników,
+ \item położenie \ppauza dokonuje w locie trilateracji dla bieżącej próbki i rysuje wykres położenia wybranego markera w trzech wymiarach.
+\end{itemize}
+
+Odległość od odbiorników podawana jest jako wartość licznika odczytana z mikrokontrolera. Aby dokonać konwersji na centymetry, należy (w oparciu o równanie \ref{eq:microcontroller_limit}) przeliczyć:
+\begin{equation}
+ d = \frac{x * 0.34\textrm{mm}}{10}
+\end{equation}
+gdzie:
+\begin{description}
+ \item[$d$] \ppauza~wyznaczona odległość w centymetrach,
+ \item[$x$] \ppauza~odległość odczytana z wykresu.
+\end{description}
+
+Program dokonuje transformacji układu współrzędnych, aby w efekcie uzyskać układ pokazany na rysunku \ref{fig:coordinate_system}\graffito{Jest to taki sam układ, jak wykorzystywany w bibliotece \textsc{OpenGL}}
+
+\begin{figure}
+ \includegraphics[width=\textwidth]{gfx/uklad_render.png}
+ \caption[Model systemu i przyjęty układ współrzędnych]{Model systemu wraz z przyjętym układem współrzędnych. Układ ma swój początek w odbiorniku oznaczonym kolorem żółtym}
+ \label{fig:coordinate_system}
+\end{figure}
+
