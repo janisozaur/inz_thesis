@@ -139,3 +139,38 @@ Jest to taki sam układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co zna
  \label{fig:coordinate_system}
 \end{figure}
 
+\section{Protokół}
+Mikrokontroler komunikuje się z komputerem za pomocą standardu \textsmaller{RS232}, do obsługi którego wykorzystuje moduł \textsmaller{USART}\graffito{do indeksu i jeszcze raz wystepuje}. Aby uzgodnić dane pomiędzy komputerem a mikrokontrolerem, zaprojektowałem protokół, zgodnie z którym następuje przekazanie danych.
+
+Protokół taki powinien zawierać możliwie mało nadmiarowych danych, umożliwiać synchronizację bez względu na moment włączenia nadajnika (mikrokontrolera) względem odbiornika (komputera) oraz zawierać wszystkie potrzebne informacje do odtworzenia położenia wszystkich obsługiwanych markerów.
+
+Ramkę zaprojektowanego protokołu prezentuje rysunek \ref{fig:protocol}.
+
+\begin{figure}
+ \includegraphics[width=\textwidth]{gfx/diagramy/protokol}
+ \caption{Protokół komunikacji mikrokontrolera z komputerem}
+ \label{fig:protocol}
+\end{figure}
+
+Każda ramka składa się z ośmiu bajtów, do których należą:
+\begin{itemize}
+ \item \texttt{M$_\textrm{\texttt{id}}$} \ppauza $id$ markera,
+ \item \texttt{O$_n$} \ppauza wartość zmiennej \texttt{ovfCounter} w chwili wygaszenia pinu odbiornika $n$,
+ \item \texttt{T$_n$} \ppauza wartość rejestru \texttt{TCNT0} w chwili wygaszenia pinu odbiornika $n$,
+ \item \texttt{F} \ppauza zawsze \texttt{0xFF}.
+\end{itemize}
+
+Pole \texttt{F} wraz z polem \texttt{M$_\textrm{\texttt{id}}$} służy do synchronizacji danych odbieranych przez komputer. Metodę synchronizacji prezentuje algorytm \ref{alg:sync}.
+
+\begin{algorithm}
+\caption{Metoda synchronizacji danych}
+\label{alg:sync}
+\begin{algorithmic}[1]
+  \REQUIRE $n \geq 0 \vee x \neq 0$
+  \WHILE{\texttt{dane.count() $\geq$ 8}}
+    \WHILE{\texttt{dane.count() $\geq$ 8 \&\& (dane[0] != M$_\textrm{\texttt{id}}$ \textbar{}\textbar{} dane[7] != 0x77})}
+      \STATE usuń(\texttt{dane[0]})
+    \ENDWHILE
+  \ENDWHILE
+\end{algorithmic}
+\end{algorithm}
