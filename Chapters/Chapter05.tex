@@ -19,7 +19,7 @@ Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasow
 
 Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązałoby się jednak z mankamentem wspomnianym powyżej.
 
-\subsection{Dokładność}
+\subsection{Dokładność}\label{section:precision}
 \subsubsection{Ograniczenia mikrokontrolera}
 \label{section:microcontroller_limit}
 
@@ -77,7 +77,7 @@ Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odb
 \begin{equation}
  f = \frac{1}{i} = \frac{1}{1~\mu\textrm{s}} = 1~\textrm{MHz}
 \end{equation}
-gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}.
+gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}.
 
 \subsection{Algorytm}
 Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:\graffito{metoda wyznaczania }

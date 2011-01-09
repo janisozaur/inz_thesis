@@ -192,7 +192,7 @@ Jak jednak pamiętamy z opisu, jeden z tych punktów, ,,tylny'' odrzucamy, w zwi
  z = \sqrt{r_1^2 - x^2 - y^2}
 \end{equation}
 
-Reasumując, jeśli przyjąć rozmieszczenie odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w skonstruowanym systemie jest prawdziwe} będzie miał następujące współrzędne:
+Reasumując, jeśli przyjąć rozmieszczenie odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w skonstruowanym systemie jest prawdziwe} będzie miał następujące współrzędne:\graffito{dodać info o lokalności układu i konieczności jego odtworzenia}
 
 \begin{eqnarray}
  x & = & \frac{r_1^2 - r_2^2 + a^2}{2a} \label{eq:trilateration_final_x}\\
@@ -201,10 +201,6 @@ Reasumując, jeśli przyjąć rozmieszczenie odbiorników takie jak na rysunku~\
  z & = & \sqrt{r_1^2 - x^2 - y^2} \label{eq:trilateration_final_z}\\
    & = & \sqrt{r_1^2 - \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 - \left(\frac{b\frac{r_1^2 - r_2^2 + a^2}{-a} + b^2 + c^2 + r_1^2 - r_3^2}{2c}\right)^2} \nonumber
 \end{eqnarray}
-
-
-
-W celu pomiaru różnicy czasów zdecydowałem się wykorzystać ośmiobitowy timer/counter dostępny w używanym mikrokontrolerze.\graffito{to musi iść gdzieś indziej}
 
 \section{Oprogramowanie}
 \subsection{Wykresy}
