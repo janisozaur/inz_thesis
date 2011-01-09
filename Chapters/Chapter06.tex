@@ -26,6 +26,7 @@ Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi
 
 \section{Wyniki}
 % dokladnosc
+\paragraph{Dokładność}
 Dokładność systemu została już określona w sekcji \ref{section:precision}, pozwolę więc sobie jedynie przytoczyć obliczone parametry.
 
 Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z faktem, że można natknąć się na ograniczenia mikrokontrolera} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
@@ -35,6 +36,7 @@ Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0.34
 Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
 
 % stabilnosc
+\paragraph{Stabilność}
 Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje pewną niestabilność, która objawia się drganiem odtworzonej pozycji markera. Widać to dobrze na rysunku \ref{fig:charter_shaky}, którego górna część pokazuje odtworzoną pozycję w trzech wymiarach. Wszystkie dane, a w szczególności wartość $Y$, wykazują kilkucentymetrowe drgania pomimo stabilnego umocowania zarówno układu jak i markera.
 
 \begin{figure}
@@ -46,7 +48,27 @@ Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje p
 % niezawodność
 \graffito{coś trzeba napisać o niezawodności}
 
+% prostota użytkowania
+\paragraph{Prostota użytkowania}
+Starałem się zaprojektować system w taki sposób, aby korzystanie z niego było możliwie proste, jednak wymogi systemu powodują, że korzystanie z niego nie jest tak proste, jak ma to miejsce w przypadku systemów ,,konkurencyjnych''\graffito{Wiimote, Sixaxis, Kinect...}.
+
+Aby móc w pełni wykorzystać oprogramowanie, a~w~szczególności program \textsmaller{Viewer}\graffito{ponazywać programy}, wymagane jest dokonanie kalibracji. Nie jest to czynność trudna, lecz wymóg wykonania jej każdorazowo po uruchomieniu może zniechęcać użytkowników.
+
+Kalibracja ma na celu ustawienie wewnętrznych parametrów programu, które będą pozwalały na dokładniejsze odwzorowanie ruchów użytkownika. Na wykorzystywane parametry składają się długość ręki, pozycja ramienia i rotacja ramienia.
+
+W zależności od trybu kalibracji wymagane jest pobranie dwóch lub trzech punktów kontrolnych; w tym celu należy:
+\begin{enumerate}
+ \item jeśli została już dokonana kalibracja od uruchomienia programu, należy ją zresetować za pomocą stosownego przycisku,
+ \item ustawić rękę (marker) w ustalonej pozycji względem ciała,
+ \item nacisnąć przycisk informujący program o ustawieniu markera,
+ \item powtórzyć czynność dla pozostałych punktów kontrolnych,
+ \item gdy zostaną pobrane wszystkie punkty kontrolne, należy nacisnąć przycisk wyzwalający kalibrację, co spowoduje ustawienie trybu skalibrowanego.
+\end{enumerate}
+
+Wykonanie tej procedury spowoduje przekształcanie układu współrzędnych urządzenia na układ współrzędnych związany z użytkownikiem.
+
 % kompatybilność z oprogramowaniem
+\paragraph{Kompatybilność z oprogramowaniem}
 Program wykorzystuje do komunikacji z komputerem protokół \textsmaller{RS232}. Jest to standard komunikacji szeregowej niegdyś bardzo często dostępny w komputerach, jednak dziś odpowiednie złącza i interfejsy dostępne są za sprawą stosunkowo niedrogich adapterów wpinanych do portu \textsmaller{USB}.
 
 Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
@@ -58,3 +80,13 @@ Moje doświadczenie z mikrokontrolerami pokazuje, że wartość ta jest dostatec
 Wykorzystany do komunikacji interfejs oraz zaproponowany protokół\graffito{opisać protokół} jest bardzo prosty, co pozwala na dodanie obsługi systemu do dowolnego programu pragnącego skorzystać z tej możliwości znikomym nakładem pracy.
 
 Stanowiłoby to duży atut systemu w przypadku jego popularyzacji.
+
+\paragraph{Szybkość}
+Niestety, szybkość układu pozostawia wiele do życzenia.
+
+Istnieje kilka czynników, które można podejrzewać o spowalnianie działania. Rozpatrzmy po kolei każdy z nich.
+
+\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych} \ppauza aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójskładnikowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2.40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2.13GHz} oscyluje w granicach kilku procent.
+
+Przyjmuję więc, że praca ta wykonywana jest na tyle szybko, żeby nie spowalniała działania całego systemu\graffito{dodać testy wydajności - ilość pełnych transformacji układu na sekundę}.
+
