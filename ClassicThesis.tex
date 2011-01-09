@@ -92,7 +92,7 @@
 % subfig nochapters beramono eulermath parts minionpro pdfspacing 
 % listings dottedtoc
 \usepackage[eulerchapternumbers,drafting,listings,pdfspacing,
-            subfig,beramono,eulermath,parts]{classicthesis}
+            subfig,beramono,eulermath,dottedtoc]{classicthesis}
 %*******************************************************            
 %\usepackage[section,below]{placeins} <--- not everybody wants this
 %\usepackage[all]{hypcap} <--- does not work with MiKTeX 2.6
@@ -158,6 +158,11 @@
     pdfcreator={pdfLaTeX},%
     pdfproducer={LaTeX with hyperref and classicthesis}%
 }
+
+
+%\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 %********************************************************************
 % Hyphenation
 %*******************************************************
@@ -169,6 +174,7 @@
 \frenchspacing
 \raggedbottom
 \selectlanguage{polish} % american ngerman
+%\renewcommand{\lstlistlistingname}{Spis algorytmów}
 %\renewcommand*{\bibname}{new name}
 %\setbibpreamble{}
 \pagenumbering{roman}
