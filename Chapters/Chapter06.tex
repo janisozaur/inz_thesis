@@ -10,7 +10,7 @@ Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzoneg
  \item tworzenie filmów \ppauza przechwytywanie ruchu.
 \end{itemize}
 
-Głównym atutem systemu w tych polach jest naturalny sposób manipulacji i~interakcji z komputerem ze względu na pobieranie dodatkowo \ppauza w odróżnieniu od standardowego zostawu klawiatura + myszka \ppauza trzeciego wymiaru.
+Głównym atutem systemu w tych dziedzinach jest naturalny sposób manipulacji i~interakcji z komputerem ze względu na pobieranie dodatkowo \ppauza w odróżnieniu od standardowego zostawu klawiatura + myszka \ppauza trzeciego wymiaru.
 
 \section{Metody}
 Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi będą różnić się, w zależności od planowanego wykorzystania, jednak można zauważyć, że należy dążyć do optymalizacji cech takich jak:
@@ -86,7 +86,11 @@ Niestety, szybkość układu pozostawia wiele do życzenia.
 
 Istnieje kilka czynników, które można podejrzewać o spowalnianie działania. Rozpatrzmy po kolei każdy z nich.
 
-\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych} \ppauza aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójskładnikowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2.40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2.13GHz} oscyluje w granicach kilku procent.
+\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych} \ppauza aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2.40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2.13GHz} jest znikome.
 
-Przyjmuję więc, że praca ta wykonywana jest na tyle szybko, żeby nie spowalniała działania całego systemu\graffito{dodać testy wydajności - ilość pełnych transformacji układu na sekundę}.
+Przeprowadzone testy pokazują, że wspomniany powyżej laptop wykonuje 100000 pełnych cykli takich obliczeń w przeciągu 448ms, co oznacza, że jeden cykl obliczeń zajmuje niecałe 5\textmu s.\graffito{dodać na koniec podsumowanie ograniczeń i wybrać to realne}
+
+% Przyjmuję więc, że praca ta wykonywana jest na tyle szybko, żeby nie spowalniała działania całego systemu\graffito{dodać testy wydajności - ilość pełnych transformacji układu na sekundę}.
+
+\textsl{Szybkość transmisji danych}
 
