@@ -1,8 +1,12 @@
 \myChapter{Implementacja}\label{ch:implementation}
 %************************************************
 
+Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylko i wyłącznie z takich właśnie narzędzi.
+
 \section{Oprogramowanie mikrokontrolera}
 W pracy wykorzystany został układ \textsmaller{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \spacedallcaps{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
+
+Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsmaller{AVR-GCC} oraz bibliotekę \textsmaller{AVR-LIBC}. Do programowania wykorzystałem program \textsmaller{avrdude}
 
 \subsection{Wymagania}
 Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbką zajmie się komputer. Wymagania, jakie są stawiane to przede wszystkim:

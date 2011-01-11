@@ -11,7 +11,7 @@ Sprzęt, abstrahując od szczegółowego sposobu realizacji, składa się z dwó
 
 \subsection{Działanie}
 \subsubsection{Po krótce}
-Działanie mikrokontrolera sprowadza się do ciągłego, aktywnego prowadzenia pomiarów opóźnień czasów propagacji sygnału ultradźwiękowego pomiędzy markerami, a odbiornikami. Pozyskane w ten sposób dane przekazywane są za pomocą wyznaczonego protokołu do komputera, gdzie następuje ich dalsza obróbka.
+Działanie mikrokontrolera sprowadza się do ciągłego, aktywnego prowadzenia pomiarów opóźnień czasów propagacji sygnału ultradźwiękowego pomiędzy markerami, a odbiornikami. Pozyskane w ten sposób dane przekazywane są za pomocą wyznaczonego \index{protokół}protokołu do komputera, gdzie następuje ich dalsza obróbka.
 
 Uproszczony schemat układu prezentuje rysunek~\ref{fig:device_scheme}.
 
@@ -37,7 +37,7 @@ gdzie:\graffito{dodać informację nt. kalibracji - zmiana protokołu na obsług
  \item[$t$] \ppauza~czas od wysłania sygnału do jego dotarcia do odbiornika. 
 \end{description}
 
-Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protkół}protokołu, tylko i wyłącznie odczyty z licznika dla każdego z odbiorników.
+Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protokół}protokołu, tylko i wyłącznie odczyty z licznika dla każdego z odbiorników.
 
 \paragraph{Przetwarzanie danych}
 Aby dane były do czegoś użyteczne, wymagane jest ich przetworzenie. Przetwarzanie danych tej postaci może odbywać się różnorakimi metodami, np.:

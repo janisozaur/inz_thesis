@@ -1,0 +1,9 @@
+$ dmesg | tail -n 4
+[26312.882388] usb 1-8.1.4: new full speed USB device using ehci_hcd and address 9
+[26313.163748] usb 1-8.1.4: configuration #1 chosen from 1 choice
+[26313.579905] input: Sony PLAYSTATION(R)3 Controller as /devices/pci0000:00/0000:00:0b.1/usb1/1-8/1-8.1/1-8.1.4/1-8.1.4:1.0/input/input8
+[26313.580527] sony 0003:054C:0268.0005: input,hiddev97,hidraw4: USB HID v1.11 Joystick [Sony PLAYSTATION(R)3 Controller] on usb-0000:00:0b.1-8.1.4/input0
+$ sudo dd if=/dev/hidraw4 of=/dev/null bs=50 count=5000
+5000+0 records in
+5000+0 records out
+250000 bytes (250 kB) copied, 49.9946 s, 5.0 kB/s

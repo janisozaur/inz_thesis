@@ -123,6 +123,7 @@ Należy zauważyć, że opisane wcześniej parametry tyczą się tylko pojedyncz
 Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za pomocą stworzonego systemu, moja ręka ma przeciętnie długość 68cm} i wykorzystując przekstałcony wzór \ref{eq:sound_distance} uzyskujemy:
 \begin{equation}
  t = \frac{x}{v} = \frac{70\textrm{cm}}{340\frac{\textrm{m}}{\textrm{s}}} = 0,7\textrm{m} \cdot \frac{1}{340}\frac{s}{m} \approx 0,002\textrm{s} = 2\textrm{ms}
+ \label{eq:reporting_speed}
 \end{equation}
 
 Aby zagwarantować dotarcie sygnału markera do każdego z odbiorników, stworzone oprogramowanie nadaje go dopóty, dopóki nie zostanie odebrane potwierdzenie dotarcia z każdego z odbiorników. W powiązaniu z faktem, że nie można rozpocząć nadawania z innego markera, póki ,,kanał'' nie jest wolny, oznacza to, że sygnał z markera nadawany jest przynajmniej tak długo, jak długo zajmuje mu dotarcie do ostatniego z odbiorników.
@@ -176,17 +177,55 @@ Opierając się na wspomnianych powyżej testach widać, że czynnikiem powoduj�
 
 \paragraph{Porównanie z innymi systemami}
 Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\textsl{Wiimote} oraz \index{Sony!Sixaxis}\textsl{Sixaxis} postanowiłem przeprowadzić porównanie tych urządzeń z moim rozwiązaniem.
+\newline
+
+\textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z 25.04.2007\citep{Br10}}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
+
+Należy najpierw zbadać, do jaki plik został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje poniższy listing:
+
+\lstinputlisting[title=Badanie prędkości kontrolera Sixaxis]{testy/sixaxis.txt}
+
+W celu zbadania prędkości pojawiania się danych wykorzystałem program \texttt{dd} z argumentami:
+\begin{description}
+ \item[\texttt{if=/dev/hidraw4}] określa plik wejściowy, jest on odczytany z wyjścia programu \texttt{dmesg},
+ \item[\texttt{of=/dev/null}] określa plik wyjściowy; przekierowując dane do pliku \texttt{/dev/null} upewniam się, że nie wystąpi ograniczenie prędkości operacją zapisu na dysku,
+ \item[\texttt{bs=50}] określa rozmiar bloku danych, dzięki temu ustawiony jest bufor będący w stanie przyjąć cały pakiet danych, przez co unikane jest opóźnienie związane z alokacją pamięci,
+ \item[\texttt{count=5000}] informuje program o ilości bloków, jakie mają zostać pobrane; ustaliłem dużą wartość w celu wyeliminowania opóźnień, jakie mogłyby wyniknąć w związku z inicjacją i zakończeniem transmisji.
+\end{description}
+
+Jak widać, w ciągu prawie dokładnie 50s przetransmitowanych zostało dokładnie 250000 bajtów. Wynika stąd, że prędkość raportowania wynosi
+\begin{equation}
+ \frac{250000\textrm{b}}{50\textrm{s}} : 50\frac{\textrm{b}}{\textrm{raport}} = 100\textrm{Hz}
+\end{equation}
+
+Analizując strukturę raportu, łatwo rozpoznać przyporządkowanie danych do przycisków i policzyć ilość przycisków ,,analogowych''\graffito{Przyciskami analogowymi zwykło nazywać się przyciski, które raportują jak bardzo są naciśnięte}.
+\newline
+
+\index{Nintendo!Wiimote}\textsl{Wiimote}. W celu zbadania tego kontrolera wykorzystałem otwartoźródłową bibliotekę \texttt{CWiid}\citep{CWiid}. Zmodyfikowałem źródło jednego z programów, aby raportował czas przyjścia raportu, a następnie w oparciu o informacje o rozmiarach raportów (\citep{Wiibrew}) wybrałem raport, którego rozmiar wynosi dokładnie 18 bajtów, po czym obliczyłem ile raportów przyszło w danym okresie czasu.
+
+Wyniki tego testu pokazuje poniższy listing:
+
+\lstinputlisting[title=Badanie prędkości kontrolera Wiimote]{testy/wiimote.txt}
+
+Do pliku \texttt{log} zapisane zostały czasy w formacie \textit{sekundy.nanosekundy}\graffito{W systemach Linux czas reprezentowany jest jako ilość sekund od 1970-01-01T00:00:00Z (ISO 8601)}. W każdej linii pliku zapisana jest dokładnie jedna próbka, dlatego też ilość pobranych próbek wynosi 2500, co pokazuje program \texttt{wc} z argumentem \texttt{-l}. Różnicę pomiędzy rozpoczęciem, a zakończeniem rejestrowania danych prezentuje wynik działania programu \texttt{bc}. Wynika stąd, że prędkość raportowania wynosi
+\begin{equation}
+ \frac{2500}{25,45\textrm{s}} \approx 100\textrm{Hz}
+\end{equation}
+
+Porównanie tych i pozostałych parametrów kontrolerów prezentuje tabela \ref{tab:comparison}.
+
 
 % http://texblog.net/latex-archive/layout/centering-figure-table/
-\begin{table}
+\begin{table}[b]
   \myfloatalign
 \noindent\makebox[\textwidth]{%
+\index{Bluetooth} \index{USB} \index{RS232}
 \begin{tabularx}{1.5\textwidth}{XXXX} \toprule
     & \emph{Sixaxis} & \emph{Wiimote} & \emph{Nietoperz} \\
     Ilość przycisków & 17 & 11 & 0 \\
     Ilość przycisków ,,analogowych'' & 12 (nie licząc gałek) & 0 & 0 \\
-    Komunikacja & \index{Bluetooth}Bluetooth, \index{USB}USB & Bluetooth & \index{RS232}RS232 \\
-    Prędkość raportowania & ponad 600Hz & do 100Hz & do 25Hz \\
+    Komunikacja & Bluetooth, USB & Bluetooth & RS232 \\
+    Prędkość raportowania & 100Hz & do 100Hz & poniżej 25Hz \\
     Wielkość raportu statusu & 50 bajtów & do 18 bajtów & 16 bajtów \\
     Możliwość dołączania rozszerzeń & \texttimes & \checkmark & \texttimes \\
     Detekcja ruchów & \index{akceleromter}akcelerometr (3D), \index{żyroskop}żyroskop (1D) & akcelerometr (3D) & ultradźwięki \\
@@ -195,6 +234,3 @@ Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\te
   \caption{Zestawienie funkcjonalności kontrolerów gier}
   \label{tab:comparison}
 \end{table}
-
-\textsl{Sixaxis}
-
