@@ -2,16 +2,38 @@
 \myChapter{Cel, założenia i zakres pracy}\label{ch:cele}
 %*****************************************
 \section{Cel}
-Celem pracy jest zademonstrowanie systemu śledzenia ruchów, który obsługuje sześć stopni swobody.
+Celem pracy jest zademonstrowanie i ewaluacja systemu śledzenia ruchów, który obsługuje sześć stopni swobody.
 
 \section{Założenia}
 W ostatnich latach popularność systemów śledzenia ruchu znacznie wzrosła głównie za sprawą konsol oraz dodatków do nich. Praca ta ma na celu zbadanie możliwości wykorzystania systemu śledzenia ruchu opartego o ultradźwięki; system taki nie został jeszcze wykorzystany w żadnej znaczącej konsoli.
 
-\section{Zakres}
+Zadaniem systemu jest śledzenie i raportowanie pozycji dwóch markerów w celu wykorzystania tych danych do obsługi komutera, a~w~szczególności aplikacji wykorzystujących grafikę trójwymiarową.
 
-W wyniku wykonania pracy stworzone zostało oprogramowanie, które wykorzystuje dostarczony sprzęt w celu śledzenia ruchów użytkownika.
+\subsection{Stopnie swobody}
+\index{stopień swobody}
+Mianem stopnia swobody określamy ilość niezależnych\graffito{Niezależnych \ppauza niemożliwych do uzyskania za pomocą złożenia innnych ruchów} ruchów, jakie może wykonać pewne ciało sztywne.
+
+O pewnym ciele mówimy, że jest \textsl{swobodne}, jeśli nie istnieją ograniczenia, które uniemożliwiałyby mu wykonanie \textsl{dowolnych} ruchów w~inercjalnym układzie współrzędnych pod wpływem zewnętrznych sił.
+
+Ciało sztywne swobodne posiada sześć stopni swobody:
+\begin{itemize}
+ \item translacja \ppauza trzy stopnie swobody określają pozycję ciała w trzech wymiarach,
+ \item rotacja \ppauza trzy stopnie swobody pozwalają na dowolny obrót ciała względem każdej z osi.
+\end{itemize}
+
+W oparciu o charakterystykę \index{marker}markera, która pozwala na śledzenie tylko i wyłącznie jego pozycji, przyjmuję, że marker zachowuje się podobnie jak nieważki i swobodny punkt materialny. Oznacza to, że posiada on trzy stopnie swobody związane z translacją.
+
+\subsection{Marker}
+Marker jest małym urządzeniem, które użytkownik powinien przyczepić do swojego ciała w taki sposób, aby zmiana pozycji danej części ciała skutkowała zawsze takim samym przemieszczeniem markera. Dzięki temu założeniu można przyjąć, że pozycja markera odpowiada, z pewną dokładnością, pozycji śledzonej części ciała.
+
+Możliwe jest także przyczepienie markera do obiektu innego niż ciało użytkownika, jednak możliwość śledzenia na komputerze własnych ruchów przemawia do odbiorcy znacznie trafniej, dlatego też skoncentrowałem się na zademonstrowaniu efektów mojej pracy w taki właśnie sposób.
+
+\section{Zakres}
+W wyniku wykonania pracy stworzyłem oprogramowanie, które wykorzystuje dostarczony sprzęt w celu demonstracji metody śledzenia ruchów użytkownika. Sześć stopni swobody osiągnięto poprzez śledzenie dwóch markerów, z których każdy posiada trzy niezależne stopnie swobody.
 
 Oprogramowanie działa zarówno na mikrokontrolerze \textsmaller{AVR Atmega8}, będącym jedynym programowalnym elementem części sprzętowej, jak i komputerze.
+
+Zbadałem także możliwości wykorzystania systemu do interakcji z komputerem. Swoje wnioski poparłem przeprowadzonymi testami innych kontrolerów.
 
 % Ei choro aeterno antiopam mea, labitur bonorum pri no 
 % \cauthor{dueck:trio} \citep{dueck:trio}. His no decore
