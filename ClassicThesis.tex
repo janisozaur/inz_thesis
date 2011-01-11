@@ -87,8 +87,17 @@
 %*******************************************************
 % Packages with options that might require adjustments
 %*******************************************************
-\usepackage[american,polish]{babel}           
-\usepackage[square,numbers]{natbib} 
+\usepackage[english,polish]{babel}           
+\usepackage[square,numbers]{natbib}
+
+% save and then undefine the conflicting command
+% we need \makeatletter because \@undefined uses the special @ character.
+\makeatletter
+\let\amslll\lll
+\let\lll\@undefined
+\makeatother
+
+\usepackage{amssymb}
 \usepackage[fleqn]{amsmath} % math environments and more by the AMS
 %*******************************************************
 \usepackage{classicthesis-ldpkg}
