@@ -50,9 +50,9 @@ Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje p
 
 % prostota użytkowania
 \paragraph{Prostota użytkowania}
-Starałem się zaprojektować system w taki sposób, aby korzystanie z niego było możliwie proste, jednak wymogi systemu powodują, że korzystanie z niego nie jest tak proste, jak ma to miejsce w przypadku systemów ,,konkurencyjnych''\graffito{Wiimote, Sixaxis, Kinect...}.
+Starałem się zaprojektować system w taki sposób, aby korzystanie z niego było możliwie proste, jednak wymogi systemu powodują, że korzystanie z niego nie jest tak proste, jak ma to miejsce w przypadku systemów ,,konkurencyjnych'' \graffito{Wiimote, Sixaxis, Kinect...}.
 
-Aby móc w pełni wykorzystać oprogramowanie, a~w~szczególności program \textsmaller{Viewer}\graffito{ponazywać programy}, wymagane jest dokonanie kalibracji. Nie jest to czynność trudna, lecz wymóg wykonania jej każdorazowo po uruchomieniu może zniechęcać użytkowników.
+Aby móc w pełni wykorzystać oprogramowanie, a~w~szczególności program \textsmaller{Viewer}\graffito{ponazywać programy}, wymagane jest dokonanie \index{kalibracja}kalibracji. Nie jest to czynność trudna, lecz wymóg wykonania jej każdorazowo po uruchomieniu może zniechęcać użytkowników.
 
 Kalibracja ma na celu ustawienie wewnętrznych parametrów programu, które będą pozwalały na dokładniejsze odwzorowanie ruchów użytkownika. Na wykorzystywane parametry składają się długość ręki, pozycja ramienia i rotacja ramienia.
 
@@ -69,11 +69,11 @@ Wykonanie tej procedury spowoduje przekształcanie układu współrzędnych urz�
 
 % kompatybilność z oprogramowaniem
 \paragraph{Kompatybilność z oprogramowaniem}
-Program wykorzystuje do komunikacji z komputerem protokół \textsmaller{RS232}. Jest to standard komunikacji szeregowej niegdyś bardzo często dostępny w komputerach, jednak dziś odpowiednie złącza i interfejsy dostępne są za sprawą stosunkowo niedrogich adapterów wpinanych do portu \textsmaller{USB}.
+Program wykorzystuje do komunikacji z komputerem protokół \index{RS232}\textsmaller{RS232}. Jest to standard komunikacji szeregowej niegdyś bardzo często dostępny w komputerach, jednak dziś odpowiednie złącza i interfejsy dostępne są za sprawą stosunkowo niedrogich adapterów wpinanych do portu \index{USB}\textsmaller{USB}.
 
-Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
+Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \index{USART}\textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
 
-Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{bps \ppauza baud per second; symbole na sekundę; w przypadku RS232 1 symbol to 1 bit} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}\graffito{dopisać tłumaczenie dlaczego tak jest}
+Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{\index{bps}bps \ppauza baud per second; symbole na sekundę; w przypadku RS232 1 symbol to 1 bit} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}\graffito{dopisać tłumaczenie dlaczego tak jest}
 
 Moje doświadczenie z mikrokontrolerami pokazuje, że wartość ta jest dostatecznie mała, aby można było założyć, że trasmisja jest dokładna.
 
@@ -101,14 +101,14 @@ W związku z błędami omówionymi w sekcji \ref{sec:usart_error}, możliwe są 
  \item 38400bps
 \end{itemize}
 
-Czas przesłania jednego raportu\graffito{opisać czym jest raport} obliczamy wzorem:
+Czas przesłania jednego raportu obliczamy wzorem:
 \begin{equation}
  t = \frac{c \cdot r}{s} \cdot 1000
 \end{equation}
 gdzie:
 \begin{description}
  \item[$t$] \ppauza~czas potrzebny na przesłanie raportu liczony w milisekundach,
- \item[$c$] \ppauza~ilość bitów w ramce, dla wykorzystanego trybu standardu RS232 jest to wartość stała $c = 10$,
+ \item[$c$] \ppauza~ilość bitów w ramce, dla wykorzystanego trybu standardu \index{RS232}RS232 jest to wartość stała $c = 10$,
  \item[$r$] \ppauza~ilość bajtów w raporcie, dla zaprojektowanego protokołu jest to wartość stała $r = 8$,
  \item[$s$] \ppauza~wybrana szybkość.
 \end{description}
@@ -144,7 +144,7 @@ Rezultaty tego badania przedstawia rysunek \ref{fig:logic_analyzer}. Przedstawio
  \label{fig:logic_analyzer}
 \end{figure}
 
-Porównując długość okresu, w którym nadawany jest sygnał (linia \texttt{Trigger} w stanie niskim) z długością okresu, kiedy odbiornik sygnalizuje odbieranie sygnału (linia odbiornika w stanie niskim), można dostrzec, że nie są one równe. Założyłem, że dźwięk odbił się od pobliskich elementów i dobiegł do odbiornika zanim nastąpił zanik sygnału bezpośredniego.
+Porównując długość okresu, w którym nadawany jest sygnał (linia \texttt{Trigger} w stanie niskim) z długością okresu, kiedy odbiornik sygnalizuje odbieranie sygnału (linia odbiornika w stanie niskim), można dostrzec, że nie są one równe. Założyłem, że dźwięk \index{odbicia sygnału}odbił się od pobliskich elementów i dobiegł do odbiornika zanim nastąpił zanik sygnału bezpośredniego.
 
 Na wykresie widać ponadto, że występuje ponowne wygaszenie linii po kilku milisekundach od zakończenia odbierania sygnału. W tym przypadku również zakładałem, że jest to sygnał odbity, który dobiegł do odbiornika.
 
@@ -175,7 +175,7 @@ Z tego też powodu uznałem to za rozwiązanie gorsze, gdyż gracz, który jest 
 Opierając się na wspomnianych powyżej testach widać, że czynnikiem powodującym największe opóźnienia jest dokładnie ten sam, który najtrudniej wyeliminować, czyli odbicia dźwięku. W związku z wprowadzonymi obejściami problemów, wydajność systemu ograniczona jest do najwyżej 25Hz\graffito{Pełen status nadawany jest co minimum 40ms}.
 
 \paragraph{Porównanie z innymi systemami}
-Ze względu na możliwość dostępu do kontrolerów \textsl{Wiimote} oraz \textsl{Sixaxis} postanowiłem przeprowadzić porównanie tych urządzeń z moim rozwiązaniem.
+Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\textsl{Wiimote} oraz \index{Sony!Sixaxis}\textsl{Sixaxis} postanowiłem przeprowadzić porównanie tych urządzeń z moim rozwiązaniem.
 
 % http://texblog.net/latex-archive/layout/centering-figure-table/
 \begin{table}
@@ -185,15 +185,15 @@ Ze względu na możliwość dostępu do kontrolerów \textsl{Wiimote} oraz \text
     & \emph{Sixaxis} & \emph{Wiimote} & \emph{Nietoperz} \\
     Ilość przycisków & 17 & 11 & 0 \\
     Ilość przycisków ,,analogowych'' & 12 (nie licząc gałek) & 0 & 0 \\
-    Komunikacja & Bluetooth, USB & Bluetooth & RS232 \\
+    Komunikacja & \index{Bluetooth}Bluetooth, \index{USB}USB & Bluetooth & \index{RS232}RS232 \\
     Prędkość raportowania & ponad 600Hz & do 100Hz & do 25Hz \\
     Wielkość raportu statusu & 50 bajtów & do 18 bajtów & 16 bajtów \\
     Możliwość dołączania rozszerzeń & \texttimes & \checkmark & \texttimes \\
-    Detekcja ruchów & akcelerometr (3D), żyroskop (1D) & akcelerometr (3D) & ultradźwięki \\
+    Detekcja ruchów & \index{akceleromter}akcelerometr (3D), \index{żyroskop}żyroskop (1D) & akcelerometr (3D) & ultradźwięki \\
     Dodatkowe funkcjonalności & zdalne uruchamianie konsoli, 4 diody, 2 gałki analogowe & zdalne uruchamianie konsoli, głośnik, kamera IR, 4 diody & 8 diod
   \end{tabularx}}
-  \caption{Zestawienie funkcjonalności kontrolerów gier
-  \label{tab:comparison}}
+  \caption{Zestawienie funkcjonalności kontrolerów gier}
+  \label{tab:comparison}
 \end{table}
 
 \textsl{Sixaxis}

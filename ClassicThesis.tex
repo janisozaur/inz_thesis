@@ -90,6 +90,24 @@
 \usepackage[english,polish]{babel}           
 \usepackage[square,numbers]{natbib}
 
+\usepackage{multicol}
+
+\let\orgtheindex\theindex
+\let\orgendtheindex\endtheindex
+\def\theindex{%
+\def\twocolumn{\begin{multicols}{2}}%
+\def\onecolumn{}%
+\clearpage
+\orgtheindex
+}
+\def\endtheindex{%
+\end{multicols}%
+\orgendtheindex
+}
+
+
+\usepackage{makeidx}
+\makeindex
 % save and then undefine the conflicting command
 % we need \makeatletter because \@undefined uses the special @ character.
 \makeatletter

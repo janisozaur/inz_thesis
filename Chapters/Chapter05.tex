@@ -13,7 +13,7 @@ Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbk�
  \item prostota \ppauza ze względu na niewielkie możliwości mikrokontrolera \ppauza w porównaniu do komputerów \ppauza trzeba zoptymalizować wszelkie używane struktury i unikać wykonywania pracy, którą spokojnie może zająć się komputer.
 \end{itemize}
 
-Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie timerów urządzenia \ppauza stara się o dokładność danych, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
+Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie \index{timer}timerów urządzenia \ppauza stara się o dokładność danych, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
 
 Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów wymagane są przynajmniej dwa takty zegara do wykonania na nich operacji. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0} oraz licznika przepełnień \texttt{ovfCounter}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} \ppauza w jednym takcie zegara.
 
@@ -25,7 +25,7 @@ Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie 
 
 Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:\graffito{znając częstotliwość wykorzystanego sygnału dźwiękowego należy poznać jego okres $T$ i porównać z danymi z wyliczeń mikrokontrolera w celu określenia co jest ogranicznikiem}
 \begin{enumerate}
- \item prescaler\graffito{prescaler - do glosariusza} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
+ \item \index{prescaler}prescaler\graffito{prescaler - wytłumaczyć} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
     \begin{equation}
       i = \frac{1}{F_{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
       \label{eq:sampling_frequency}
@@ -40,12 +40,12 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
 
 Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoli to na wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
-Ponieważ timer ma tylko 8 bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
+Ponieważ \index{timer}timer ma tylko 8 bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
  340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
 \end{equation}
 
-Rozdzielczość można dalej zwiększyć zmniejszając dzielnik prescalera \graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} oraz zwiększając częstotliwość pracy mikrokontrolera.
+Rozdzielczość można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera \graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} oraz zwiększając częstotliwość pracy mikrokontrolera.
 
 \subsubsection{Ograniczenia markerów}
 \label{section:sound_limit}
@@ -141,11 +141,12 @@ Jest to taki sam układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co zna
 
 \section{Protokół}
 \label{sec:protocol}
-Mikrokontroler komunikuje się z komputerem za pomocą standardu \textsmaller{RS232}, do obsługi którego wykorzystuje moduł \textsmaller{USART}\graffito{do indeksu i jeszcze raz wystepuje}. Aby uzgodnić dane pomiędzy komputerem a mikrokontrolerem, zaprojektowałem protokół, zgodnie z którym następuje przekazanie danych.
+\index{protokół}
+Mikrokontroler komunikuje się z komputerem za pomocą standardu \index{RS232}\textsmaller{RS232}, do obsługi którego wykorzystuje moduł \index{USART}\textsmaller{USART}. Aby uzgodnić dane pomiędzy komputerem a mikrokontrolerem, zaprojektowałem protokół, zgodnie z którym następuje przekazanie danych.
 
 Protokół taki powinien zawierać możliwie mało nadmiarowych danych, umożliwiać synchronizację bez względu na moment włączenia nadajnika (mikrokontrolera) względem odbiornika (komputera) oraz zawierać wszystkie potrzebne informacje do odtworzenia położenia wszystkich obsługiwanych markerów.
 
-Mianem \emph{raportu} \graffito{do indeksu} będziemy nazywać jeden pełen zestaw danych, jakie przesyła do komputera mikrokontroler.
+Mianem \index{raport}\emph{raportu} będziemy nazywać jeden pełen zestaw danych, jakie przesyła do komputera mikrokontroler.
 
 Raport w zaprojektowanym protokole prezentuje rysunek \ref{fig:protocol}.
 
@@ -163,7 +164,7 @@ Każda ramka składa się z ośmiu bajtów, do których należą:
  \item \texttt{F} \ppauza zawsze \texttt{0xFF}.
 \end{itemize}
 
-Pole \texttt{F} wraz z polem \texttt{M$_\textrm{\texttt{id}}$} służy do synchronizacji danych odbieranych przez komputer. Metodę synchronizacji prezentuje algorytm \ref{alg:sync}.
+Pole \texttt{F} wraz z polem \texttt{M$_\textrm{\texttt{id}}$} służy do synchronizacji danych odbieranych przez komputer. Metodę \index{synchronizacja}synchronizacji prezentuje algorytm \ref{alg:sync}.
 
 \begin{algorithm}
 \caption{Metoda synchronizacji danych}
@@ -178,7 +179,7 @@ Pole \texttt{F} wraz z polem \texttt{M$_\textrm{\texttt{id}}$} służy do synchr
 \end{algorithmic}
 \end{algorithm}
 
-Należy zauważyć, że poza samymi danym protokołu, pomiędzy kompterem, a mikrokontrolerem przekazywane są również dane kontrolne standardu RS232:
+Należy zauważyć, że poza samymi danym protokołu, pomiędzy kompterem, a mikrokontrolerem przekazywane są również dane kontrolne standardu \index{RS232}RS232:
 \begin{itemize}
   \item bity startu,
   \item bity stopu.
