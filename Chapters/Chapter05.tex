@@ -19,9 +19,9 @@ Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbk�
 
 Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie \index{timer}timerów urządzenia \ppauza stara się o dokładność danych, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
 
-Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów wymagane są przynajmniej dwa takty zegara do wykonania na nich operacji. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0} oraz licznika przepełnień \texttt{ovfCounter}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} \ppauza w jednym takcie zegara.
+Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów znacznie wzrasta ilość taktów zegara, podczas których dane te są przetwarzane. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0} oraz licznika przepełnień \texttt{ovfCounter}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} \ppauza w jednym takcie zegara.
 
-Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązałoby się jednak z mankamentem wspomnianym powyżej.
+Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązałoby się jednak z mankamentem wspomnianym powyżej, zaś dokłądność osiągana przez oprogramowanie wykorzystujące timer o wielkości ośmiu bitów, jaka została opisana w sekcji \ref{section:microcontroller_limit}, jest wystarczająca do bardzo dokładnego śledzenia pozycji.
 
 \subsection{Dokładność}\label{section:precision}
 \paragraph{Ograniczenia mikrokontrolera}
@@ -44,7 +44,7 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
 
 Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoli to na wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
-Ponieważ \index{timer}timer ma tylko 8 bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
+Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
  340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
 \end{equation}
@@ -86,7 +86,8 @@ gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_f
 \subsection{Algorytm}
 Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:\graffito{metoda wyznaczania }
 \begin{enumerate}
- \item resetowany i uruchamiany jest wewnętrzny licznik urządzenia, ma to na celu zwiększenie dokładności odczytywanych danych,
+ \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
+ \item uruchamiany jest wewnętrzny licznik urządzenia,
  \item wysyłany jest sygnał, który aktywuje jeden z dwóch markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
  \item następuje aktywne oczekiwanie na ,,wygaszenie''\graffito{opisać czym jest wygaszenie} pinów wszystkich odbiorników,\graffito{Czas wygaszenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z danego odbiornika) jest zapamiętywany}
  \item zatrzymywany jest wewnętrzny timer urządzenia,
@@ -104,23 +105,47 @@ Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequenc
  \label{fig:firmware_sequence_diagram}
 \end{figure}
 
+\paragraph{Prescaler}
+W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dzielnik częstotliwości, o programowanym stopniu podziału. Jego działanie polega na zliczaniu taktów zegara; gdy wewnętrzny licznik prescalera osiągnie zaprogramowaną wcześniej wartość, wyzwalane jest przerwanie timera oraz następuje przepełnienie licznika, w związku z czym zliczana wartość ,,przekręca się'' i liczenie rozpoczyna się ponownie od zera.
+
+Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
+
+\paragraph{Przerwania}
+W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w przypadku zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
+
+Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wykorzystanej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
+
+Jednym z wykorzystanych przerwań jest przerwanie wyzwalane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiary ograniczony byłyby do zaledwie 256 możliwości odległości markera od odbiornika.
+
+Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
+
+Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje poniższy listing:
+
+\lstinputlisting[caption=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}, title=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}]{testy/atmega_interrupt.c}
+
 \section{Oprogramowanie dla komputera}
 \subsection{Trilaterator}
 Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera.
 
 Aplikację prezentuje rysunek \ref{fig:trilaterator}.
 
-\begin{figure}
+\begin{figure}[p]
  \includegraphics[width=\textwidth]{gfx/trilaterator.pdf}
  \caption{Trilaterator. Aplikacja dokonująca trilateracji}
  \label{fig:trilaterator}
+\end{figure}
+
+\begin{figure}[p]
+ \includegraphics[width=\textwidth]{gfx/uklad_render.png}
+ \caption[Model systemu i przyjęty układ współrzędnych]{Model systemu wraz z przyjętym układem współrzędnych. Układ ma swój początek w odbiorniku oznaczonym kolorem żółtym}
+ \label{fig:coordinate_system}
 \end{figure}
 
 \subsection{Charter}
 Kolejna aplikacja prezentująca możliwości systemu służy do rysowania wykresów w czasie rzeczywistym na podstawie danych pobranych z mikrokontrolera. Dla porównania dostępne są dwa rodzaje wykresów jednocześnie:
 \begin{itemize}
  \item odległość od odbiornika \ppauza pokazuje odległość wybranego markera od każdego z odbiorników,
- \item położenie \ppauza dokonuje w locie trilateracji dla bieżącej próbki i rysuje wykres położenia wybranego markera w trzech wymiarach.
+ \item położenie \ppauza dokonuje w locie trilateracji dla bieżącej próbki i rysuje wykres położenia wybranego markera w trzech wymiarach, zgodnie z układem odniesienia przedstawionym na rysunku \ref{fig:coordinate_system}.
 \end{itemize}
 
 Odległość od odbiorników podawana jest jako wartość licznika odczytana z mikrokontrolera. Aby dokonać konwersji na centymetry, należy (w oparciu o równanie \ref{eq:microcontroller_limit}) przeliczyć:
@@ -136,12 +161,6 @@ gdzie:
 Program dokonuje transformacji układu współrzędnych, aby w efekcie uzyskać układ pokazany na rysunku \ref{fig:coordinate_system}.
 
 Jest to taki sam układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co znacząco ułatwia pracę, ponieważ nie jest wymagana żadna dodatkowa konwersja układu współrzędnych aby narysować pozycję markera.
-
-\begin{figure}
- \includegraphics[width=\textwidth]{gfx/uklad_render.png}
- \caption[Model systemu i przyjęty układ współrzędnych]{Model systemu wraz z przyjętym układem współrzędnych. Układ ma swój początek w odbiorniku oznaczonym kolorem żółtym}
- \label{fig:coordinate_system}
-\end{figure}
 
 \section{Protokół}
 \label{sec:protocol}
