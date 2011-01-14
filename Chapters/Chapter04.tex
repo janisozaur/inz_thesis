@@ -47,12 +47,10 @@ Aby dane były do czegoś użyteczne, wymagane jest ich przetworzenie. Przetwarz
 
 \paragraph{Odtworzenie pozycji markera}
 \index{marker}
-W celach demonstracyjnych postanowiłem pokazać, jak odtworzyć pozycję markera w trzech wymiarach korzystając tylko z informacji o względnym położeniu odbiorników oraz przekazywanych do komputera danych.
+W celach demonstracyjnych postanowiłem pokazać, jak odtworzyć pozycję markera w trzech wymiarach korzystając tylko z informacji o względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
 \newline
-\newline
-Ponieważ odbiorniki znajdują się w różnych, lecz znanych, położeniach w przestrzeni, odległość markera od każdego z nich może być różna.
 
-Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji odległości od każdego z odbiorników, należy założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
+Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji odległości od każdego z odbiorników, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{gfx/diagramy/schemat_przeciecia_sfer}
@@ -63,7 +61,7 @@ Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dysp
 \paragraph{Rozmieszczenie elementów}
 Rysunek \ref{fig:schema_spheres}\graffito{W rysunku przyjęto widok ,,od przodu'', tzn. zachodzi $z = 0$ dla wszystkich elementów z wyjątkiem punktu $P$} prezentuje rozmieszczenie odbiorników na płycie testowej. Znajdują się one w punktach oznaczonych odpowiednio jako $S_1$, $S_2$ i $S_3$. Punkt $P$ to punkt przecięcia się sfer.
 
-Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, muszą one leżeć w jednej płaszczyźnie. Powoduje to, że będą istniały dokładnie dwa punkty przecięcia wspomnianych powyżej sfer \ppauza lustrzane do siebie względem płaszczyzny, w której znajdują się odbiorniki.\graffito{dodać notatkę w testach o możliwości wyeliminowania tego 'defektu' poprzez dodanie 4-tego odbiornika, niewspółpłaszczyznowego, jednak spowoduje to wzrost kosztów obliczeń}
+Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że będą istniały dokładnie dwa punkty przecięcia wspomnianych powyżej sfer \ppauza lustrzane do siebie względem płaszczyzny, w której znajdują się odbiorniki.\graffito{dodać notatkę w testach o możliwości wyeliminowania tego 'defektu' poprzez dodanie 4-tego odbiornika, niewspółpłaszczyznowego, jednak spowoduje to wzrost kosztów obliczeń}
 
 Należy wziąć pod uwagę fakt, że zarówno marker jak i odbiorniki są urządzeniami ,,kierunkowymi'', umieszczonymi w tulejach, które powodują, że sygnał nie jest wysyłany dookólnie, lecz w pewnym \ppauza z grubsza określonym \ppauza kierunku, zaś amplituda sygnału odbieranego będzie większa, jeśli będzie on wpadał w tuleję, przez co szansa uznania go za poprawny jest znacznie większa.\graffito{sygnał dochodzący z boku może być ze słaby, aby został wyłapany}
 
@@ -71,14 +69,12 @@ Ta cecha układu została wykorzystana poprzez przeznaczenie układu do noszenia
 
 Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed sobą, szczególnie jeśli zamierza coś nimi robić, można spokojnie odrzucić jeden z punktów \ppauza ten który znajduje się ,,z tyłu''.
 
-Ważnym\graffito{na pewno ważnym?} spostrzeżeniem jest dostrzeżenie, że aby wszystkie trzy sfery posiadały punkt\graffito{tutaj są pewne ograniczenia - jeśli zwiększymy promien jednej ze sfer, to możemy nie dostać punktu wspólnego dla wszystkich trzech sfer}, w którym będą się stykać, stykiem każdej pary sfer musi być okrąg\graffito{okrąg - w odróżnieniu od punktu lub braku styku}.
-
 \paragraph{Trilateracja}
 \label{par:trilateration}
 \index{trilateracja}
 Metoda wyznaczenia trójwymiarowej pozycji znając odległości od trzech punktów o znanych współrzędnych nazywana jest \textit{trilateracją}\graffito{dodać info skąd to wiadomo}.
 
-Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, jeden na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$}. Przyjmując takie rozmieszczenie, jakie zaprezentowane jest na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
+Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, drugi na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$}. Przyjmując takie rozmieszczenie, jakie zaprezentowane jest na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
 \begin{center}
  $S_1 (0, 0)$
 
@@ -94,14 +90,12 @@ Problem wyznaczenia położenia markera można uprościć, przyjmując określon
 \end{figure}
 
 Równanie sfery ze środkiem w punkcie o współrzędnych $(x_0, y_0, z_0)$ i promieniu $r$ przyjmuje postać:
-
 \begin{equation}
  r = \sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}
  \label{eq:sphere}
 \end{equation}
 
 Podstawiając do równania \ref{eq:sphere} współrzędne punktów $S_1$, $S_2$ i $S_3$ otrzymujemy następujący układ równań:
-
 \begin{equation}
  \begin{cases}
   r_1 = \sqrt{x^2 + y^2 + z^2} \\
@@ -134,7 +128,6 @@ Następnie odejmijmy je od równania pierwszego z systemu \ref{eq:sphere_system_
 \end{equation}
 
 Z równania \ref{eq:determine_x_1} można łatwo wyznaczyć $x$:
-
 \begin{eqnarray}
  r_1^2 - r_2^2 = 2xa - a^2 & | & + a^2\\
  r_1^2 - r_2^2 + a^2 = 2xa & | & \colon 2a\\
@@ -153,7 +146,6 @@ Podstawiając $x$ z równania \ref{eq:determine_x_2} do pierwszego równania uk�
 W równaniu \ref{eq:intersection_circle} prawa strona jest stała, widać więc, że jest to równanie okręgu.
 
 Rozwińmy teraz równanie trzeciej sfery:
-
 \begin{eqnarray}
  r^2_3 & = & (x - b)^2 + (y - c)^2 + z^2 \label{eq:third_sphere} \\
        & = & x^2 - 2bx + b^2 + y^2 - 2cy + c^2 + z^2 \nonumber
@@ -164,18 +156,16 @@ Podstawiając równanie pierwszej sfery przekształcone do postaci
  y^2 + z^2 = r_1^2 - x^2
 \end{equation*}
 do wzoru \ref{eq:third_sphere} otrzymujemy:
-
 \begin{eqnarray}
 r_3^2 & = & x^2 - 2bx + b^2 - 2cy + c^2 + r_1^2 - x^2 \label{eq:third_sphere_substituted} \\
       & = & -2bx + b^2 - 2cy + c^2 + r_1^2 \nonumber
 \end{eqnarray}
 
 Na podstawie równania \ref{eq:third_sphere_substituted} można wyznaczyć $y$:
-
 \begin{eqnarray}
  r_3^2 = -2bx + b^2 - 2cy + c^2 + r_1^2 & | & +2cy - r_3^2 \\
- 2cy = -2bx + b^2 + c^2 + r_1^2 - r_3^2 & | & \colon 2c \\
- y   = \frac{-2bx + b^2 + c^2 + r_1^2 - r_3^2}{2c} \label{determine_y}
+ 2cy   = -2bx + b^2 + c^2 + r_1^2 - r_3^2 & | & \colon 2c \\
+ y     = \frac{-2bx + b^2 + c^2 + r_1^2 - r_3^2}{2c} & & \label{determine_y}
 \end{eqnarray}
 
 Ponieważ $x$ jest stałe\graffito{stałe i znane?}, jak pokazuje równanie \ref{eq:determine_x_2}, to prawa strona równania \ref{determine_y} również będzie stała.
@@ -191,7 +181,6 @@ Jak jednak pamiętamy z opisu, jeden z tych punktów, ,,tylny'' odrzucamy, w zwi
 \end{equation}
 
 Reasumując, jeśli przyjąć rozmieszczenie \index{odbiornik}odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w skonstruowanym systemie jest prawdziwe} będzie miał następujące współrzędne:\graffito{dodać info o lokalności układu i konieczności jego odtworzenia}
-
 \begin{eqnarray}
  x & = & \frac{r_1^2 - r_2^2 + a^2}{2a} \label{eq:trilateration_final_x}\\
  y & = & \frac{-2bx + b^2 + c^2 + r_1^2 - r_3^2}{2c} \label{eq:trilateration_final_y}\\
