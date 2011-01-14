@@ -24,7 +24,7 @@ Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasow
 Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązałoby się jednak z mankamentem wspomnianym powyżej.
 
 \subsection{Dokładność}\label{section:precision}
-\subsubsection{Ograniczenia mikrokontrolera}
+\paragraph{Ograniczenia mikrokontrolera}
 \label{section:microcontroller_limit}
 
 Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:\graffito{znając częstotliwość wykorzystanego sygnału dźwiękowego należy poznać jego okres $T$ i porównać z danymi z wyliczeń mikrokontrolera w celu określenia co jest ogranicznikiem}
@@ -51,7 +51,7 @@ Ponieważ \index{timer}timer ma tylko 8 bitów, należy spodziewać się, że na
 
 Rozdzielczość można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera \graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} oraz zwiększając częstotliwość pracy mikrokontrolera.
 
-\subsubsection{Ograniczenia markerów}
+\paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
 
 Ze względu na wykorzystanie nadajników i odbiorników ultradźwiękowych używających dźwięku o częstotliwości $F_{d} = 40$ kHz, należy zbadać jakie narzuca to ograniczenia.
@@ -72,8 +72,8 @@ Za zmianę będziemy przyjmować wygaszenie pinu mikrokontrolera, co spowodowane
     \end{equation}
 \end{enumerate}
 
-\subsubsection{Ograniczenia całego systemu}
-Jak pokazują obliczenia przeprowadzone w sekcji~\ref{section:microcontroller_limit} i~\ref{section:sound_limit}, głównym ograniczeniem bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i odbiorników.
+\paragraph{Ograniczenia całego systemu}
+Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i odbiorników.
 
 Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG jest odpowiednio droga, wykorzystuje jednak znacznie wyższe częstotliwości} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
