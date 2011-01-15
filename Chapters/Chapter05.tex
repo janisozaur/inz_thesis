@@ -142,18 +142,36 @@ Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymieniony
 Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i \texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
 
 \section{Oprogramowanie dla komputera}
+W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
+
+\paragraph{Qt}
+Wieloplatformowe środowisko \textsmaller{Qt} składa się z kilku komponentów. W jego skład wchodzą między innymi:
+\begin{description}
+ \item[biblioteka Qt] skompilowane źródła, z których korzysta aplikacja podczas uruchamiania
+\end{description}
+
+
 \subsection{Trilaterator}
-Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera.
+Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części programu.
 
-Aplikację prezentuje rysunek \ref{fig:trilaterator}.
+Aplikację wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator}.
 
-\begin{figure}[p]
+Przykładowe dane oraz poprawność zastosowanej metody pokazuje rysunek \ref{fig:trilateration_sample}.
+
+\begin{figure}
  \includegraphics[width=\textwidth]{gfx/trilaterator.pdf}
  \caption{Trilaterator. Aplikacja dokonująca trilateracji}
  \label{fig:trilaterator}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}
+  \includegraphics[width=\textwidth]{gfx/wizualizacja_3d_4_transparent.png}
+  \caption{Wizualizacja przykładowych danych}
+  \label{fig:trilateration_sample}
+\end{figure}
+
+
+\begin{figure}
  \includegraphics[width=\textwidth]{gfx/uklad_render.png}
  \caption[Model systemu i przyjęty układ współrzędnych]{Model systemu wraz z przyjętym układem współrzędnych. Układ ma swój początek w odbiorniku oznaczonym kolorem żółtym}
  \label{fig:coordinate_system}
