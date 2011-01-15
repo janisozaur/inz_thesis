@@ -119,17 +119,25 @@ Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \text
 
 Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
 
-Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje poniższy listing:
+Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje listing~\ref{lst:interrupt_handler}.
 
-\lstinputlisting[caption=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}, title=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}]{testy/atmega_interrupt.c}
+\begin{listing}
+  \lstinputlisting[language=C]{testy/atmega_interrupt.c}
+  \caption{Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}}
+  \label{lst:interrupt_handler}
+\end{listing}
 
 Oznaczenie zmiennej jako \texttt{volatile} oznajmia kompilatorowi, że wszelkie odczyty i zapisy muszą operować na wartości zmiennej z pamięci. W przypadku braku takiego zapisu kompilator podczas kompilowania kodu źródłowego z włączoną flagą optymalizacji może przyjąć, że procedura zmieniająca wartość zmiennej nie jest nigdzie wywoływana, przez co bezpiecznym jest cache-owanie wartości zmiennej, a w efekcie zignoruje skutki wywołania przerwania.
 
 Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR.
 
-Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje poniższy listing:
+Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje listing~\ref{lst:interrupt_vector}.
 
-\lstinputlisting[caption=Wektor obsługi przerwań, title=Wygenerowany wektor obsługi przerwań]{testy/interrupt_vector.txt}
+\begin{listing}
+  \lstinputlisting{testy/interrupt_vector.txt}
+  \caption[Wektor obsługi przerwań]{Wygenerowany wektor obsługi przerwań}
+  \label{lst:interrupt_vector}
+\end{listing}
 
 Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i \texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
 

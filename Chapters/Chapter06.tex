@@ -181,9 +181,13 @@ Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\te
 
 \textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z 25.04.2007\citep{Br10}}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
 
-Należy najpierw zbadać, do jaki plik został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje poniższy listing:
+Należy najpierw zbadać, do jaki plik został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje listing~\ref{lst:sixaxis}.
 
-\lstinputlisting[caption=Badanie prędkości kontrolera Sixaxis, title=Badanie prędkości kontrolera Sixaxis]{testy/sixaxis.txt}
+\begin{listing}
+  \lstinputlisting{testy/sixaxis.txt}
+  \caption{Badanie prędkości kontrolera Sixaxis}
+  \label{lst:sixaxis}
+\end{listing}
 
 W celu zbadania prędkości pojawiania się danych wykorzystałem program \texttt{dd} z argumentami:
 \begin{description}
@@ -203,9 +207,13 @@ Analizując strukturę raportu, łatwo rozpoznać przyporządkowanie danych do p
 
 \index{Nintendo!Wiimote}\textsl{Wiimote}. W celu zbadania tego kontrolera wykorzystałem otwartoźródłową bibliotekę \texttt{CWiid}\citep{CWiid}. Zmodyfikowałem źródło jednego z programów, aby raportował czas przyjścia raportu, a następnie w oparciu o informacje o rozmiarach raportów (\citep{Wiibrew}) wybrałem raport, którego rozmiar wynosi dokładnie 18 bajtów, po czym obliczyłem ile raportów przyszło w danym okresie czasu.
 
-Wyniki tego testu pokazuje poniższy listing:
+Wyniki tego testu pokazuje listing~\ref{lst:wiimote}.
 
-\lstinputlisting[caption=Badanie prędkości kontrolera Wiimote, title=Badanie prędkości kontrolera Wiimote]{testy/wiimote.txt}
+\begin{listing}
+  \lstinputlisting{testy/wiimote.txt}
+  \caption{Badanie prędkości kontrolera Wiimote}
+  \label{lst:wiimote}
+\end{listing}
 
 Do pliku \texttt{log} zapisane zostały czasy w formacie \textit{sekundy.nanosekundy}\graffito{W systemach Linux czas reprezentowany jest jako ilość sekund od 1970-01-01T00:00:00Z (ISO 8601)}. W każdej linii pliku zapisana jest dokładnie jedna próbka, dlatego też ilość pobranych próbek wynosi 2500, co pokazuje program \texttt{wc} z argumentem \texttt{-l}. Różnicę pomiędzy rozpoczęciem, a zakończeniem rejestrowania danych prezentuje wynik działania programu \texttt{bc}. Wynika stąd, że prędkość raportowania wynosi
 \begin{equation}
