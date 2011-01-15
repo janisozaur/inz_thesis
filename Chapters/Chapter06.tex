@@ -183,7 +183,7 @@ Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\te
 
 Należy najpierw zbadać, do jaki plik został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje poniższy listing:
 
-\lstinputlisting[title=Badanie prędkości kontrolera Sixaxis]{testy/sixaxis.txt}
+\lstinputlisting[caption=Badanie prędkości kontrolera Sixaxis, title=Badanie prędkości kontrolera Sixaxis]{testy/sixaxis.txt}
 
 W celu zbadania prędkości pojawiania się danych wykorzystałem program \texttt{dd} z argumentami:
 \begin{description}
@@ -205,7 +205,7 @@ Analizując strukturę raportu, łatwo rozpoznać przyporządkowanie danych do p
 
 Wyniki tego testu pokazuje poniższy listing:
 
-\lstinputlisting[title=Badanie prędkości kontrolera Wiimote]{testy/wiimote.txt}
+\lstinputlisting[caption=Badanie prędkości kontrolera Wiimote, title=Badanie prędkości kontrolera Wiimote]{testy/wiimote.txt}
 
 Do pliku \texttt{log} zapisane zostały czasy w formacie \textit{sekundy.nanosekundy}\graffito{W systemach Linux czas reprezentowany jest jako ilość sekund od 1970-01-01T00:00:00Z (ISO 8601)}. W każdej linii pliku zapisana jest dokładnie jedna próbka, dlatego też ilość pobranych próbek wynosi 2500, co pokazuje program \texttt{wc} z argumentem \texttt{-l}. Różnicę pomiędzy rozpoczęciem, a zakończeniem rejestrowania danych prezentuje wynik działania programu \texttt{bc}. Wynika stąd, że prędkość raportowania wynosi
 \begin{equation}
