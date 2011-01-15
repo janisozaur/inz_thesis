@@ -6,7 +6,7 @@ Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylk
 \section{Oprogramowanie mikrokontrolera}
 W pracy wykorzystany został układ \textsmaller{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \spacedallcaps{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
 
-Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsmaller{AVR-GCC} oraz bibliotekę \textsmaller{AVR-LIBC}. Do programowania wykorzystałem program \textsmaller{avrdude}
+Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsmaller{avr-gcc} oraz bibliotekę \textsmaller{avr-libc}. Do programowania wykorzystałem program \textsmaller{avrdude}
 
 \subsection{Wymagania}
 Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbką zajmie się komputer. Wymagania, jakie są stawiane to przede wszystkim:
@@ -115,13 +115,23 @@ W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang.
 
 Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wykorzystanej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
 
-Jednym z wykorzystanych przerwań jest przerwanie wyzwalane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiary ograniczony byłyby do zaledwie 256 możliwości odległości markera od odbiornika.
+Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiary ograniczony byłyby do zaledwie 256 możliwości odległości markera od odbiornika.
 
 Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
 
 Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje poniższy listing:
 
 \lstinputlisting[caption=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}, title=Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}]{testy/atmega_interrupt.c}
+
+Oznaczenie zmiennej jako \texttt{volatile} oznajmia kompilatorowi, że wszelkie odczyty i zapisy muszą operować na wartości zmiennej z pamięci. W przypadku braku takiego zapisu kompilator podczas kompilowania kodu źródłowego z włączoną flagą optymalizacji może przyjąć, że procedura zmieniająca wartość zmiennej nie jest nigdzie wywoływana, przez co bezpiecznym jest cache-owanie wartości zmiennej, a w efekcie zignoruje skutki wywołania przerwania.
+
+Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR.
+
+Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje poniższy listing:
+
+\lstinputlisting[caption=Wektor obsługi przerwań, title=Wygenerowany wektor obsługi przerwań]{testy/interrupt_vector.txt}
+
+Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i \texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
 
 \section{Oprogramowanie dla komputera}
 \subsection{Trilaterator}
