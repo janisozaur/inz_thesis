@@ -202,9 +202,52 @@ gdzie:
  \item[$x$] \ppauza~odległość odczytana z wykresu.
 \end{description}
 
+Użytkownik w trakcie działania programu ma możliwość wyboru, którego markera dane powinny być rysowane.
+
 Program dokonuje transformacji układu współrzędnych, aby w efekcie uzyskać układ pokazany na rysunku \ref{fig:coordinate_system}.
 
-Jest to taki sam układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co znacząco ułatwia pracę, ponieważ nie jest wymagana żadna dodatkowa konwersja układu współrzędnych aby narysować pozycję markera.
+Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co znacząco ułatwia pracę, ponieważ nie jest wymagana żadna dodatkowa konwersja układu współrzędnych aby narysować pozycję markera.
+
+\paragraph{Rozszerzanie obsługi o dodatkowe markery}
+Chociaż dostępne aktualna wersja sprzętu zaproejtkowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
+
+Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów\graffito{dodać info o moc}.
+
+Deklarując próbkę jako klasę \verb|Sample|, która dziedziczy z podstawowej klasy środowiska \textsc{Qt}, \verb|QObject|, możliwe jest pozyskanie w czasie działania programu (ang. \textsl{runtime}) dostępu do pewnych danych, które w innym przypadku byłyby niedostępne lub dostęp do nich wymagałby od programisty dużej gimnastyki, a nawet wykorzystania bibliotek trzecich takich jak np. \textsc{Boost}.
+
+Podejście takie wymusiło na mnie jednak dostarczenie publicznych implementacji konstruktora domyślnego, konstruktora kopiującego oraz operatora przypisania:
+\begin{verbatimtab}
+public:
+	Sample(QObject *parent = 0);
+	Sample(const Sample &other);
+	Sample &operator =(const Sample &other);
+\end{verbatimtab}
+gdyż w klasie \verb|QObject| są to metody prywatne, co uniemożliwia wykorzystywane w kodzie programu kopiowanie i tworzenie automatycznych zmiennych tego typu.
+
+Jedną z możliwości środowiska \textsc{Qt} jest zarejestrowanie typu wyliczeniowego \verb|enum| w systemie meta-obiektów poprzez wywołanie makra \verb|Q_ENUMS|:
+\begin{verbatimtab}
+class Sample : public QObject
+{
+	Q_OBJECT;
+	Q_ENUMS(Marker);
+public:
+	enum Marker {Blue = 1, Yellow = 2};
+	(...)
+\end{verbatimtab}
+
+Działanie to pozwala na dostęp do tak zarejestrowanego typu \verb|enum| w działającym programie za pomocą meta-właściwości. Możliwe jest nie tylko poznanie zarejestrowanych w klasie typów, ale także iteracja przez zarówno klucze, jak i właściwości.
+
+Wykorzystanie tej cechy powoduje, że do dodania dodatkowego markera jedyne wymagania, jakich spełnienie musi zapewnić programista to:
+\begin{aenumerate}
+  \item dodanie identyfikatora markera do typu \verb|Sample::Marker|,
+  \item poprawienie kodu wątku obsługującego odczytywanie danych, aby obsłużył zmodyfikowany protokół.\label{item:modify_protocol}
+\end{aenumerate}
+
+Jeśli protokół nie zostanie zmieniony, to punkt \ref{item:modify_protocol} nie jest wymagany.
+
+Jak widać dodanie nowego markera jest zadaniem trywialnym.
+
+Chociaż kosztem łatwości rozszerzalności oprogramowania wymaganych jest kilka wywołań funkcji więcej, to nie ma to znaczącego wpływu na wydajność programu.
 
 \section{Protokół}
 \label{sec:protocol}
