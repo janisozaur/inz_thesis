@@ -158,6 +158,15 @@ Aplikację wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator
 
 Przykładowe dane oraz poprawność zastosowanej metody pokazuje rysunek \ref{fig:trilateration_sample}.
 
+Jak widać, oddalenie odbiorników od siebie na odległość zaledwie kilku centymetrów pozwala badać położenie markera w przestrzeni.
+
+\paragraph{Dokładność obliczeń}
+Należy wziąć pod uwagę fakt, że odległość pomiędzy odbiornikami ma wpływ na wynik obliczeń. Wynika to z operowania przez komputer na danych o skończonej i zmiennej dokładności.
+
+Jeśli marker znajdzie się dostatecznie daleko od odbiorników, może nastąpić spadek precyzji, gdyż dane są reprezentowane w pamięci komputera przez typy zmiennoprzecinkowe i przy małym rozsunięciu odbiorników po wykonaniu działań arytmetycznych, a w szczególności operacji potęgowania i pierwiastkowania, jakie są konieczne do odtworzenia pozycji, utrata precyzji będzie miała znaczący wpływ na wynik obliczeń.
+
+Aby uniknąć tego problemu, odbiorniki \textsl{Nietoperza} rozstawione są na planie trójkąta równobocznego o boku 33cm. Pozwala to na wystarczająco dokładne śledzenie precyzji już za pomocą typu zmiennoprzecinkowego pojedynczej precyzji \verb|float|. Na potrzeby tej demonstracji zdecydowałem się jednak wykorzystać typ dostarczający podwójnej precyzji \verb|double|.
+
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/trilaterator.pdf}
  \caption{Trilaterator. Aplikacja dokonująca trilateracji}
@@ -165,11 +174,10 @@ Przykładowe dane oraz poprawność zastosowanej metody pokazuje rysunek \ref{fi
 \end{figure}
 
 \begin{figure}
-  \includegraphics[width=\textwidth]{gfx/wizualizacja_3d_4_transparent.png}
+  \includegraphics[width=\textwidth]{gfx/wizualizacja_3d.png}
   \caption{Wizualizacja przykładowych danych}
   \label{fig:trilateration_sample}
 \end{figure}
-
 
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/uklad_render.png}
