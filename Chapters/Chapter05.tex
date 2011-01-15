@@ -160,6 +160,16 @@ Przykładowe dane oraz poprawność zastosowanej metody pokazuje rysunek \ref{fi
 
 Jak widać, oddalenie odbiorników od siebie na odległość zaledwie kilku centymetrów pozwala badać położenie markera w przestrzeni.
 
+\paragraph{Struktura programu}
+Przedstawiony program jest celowo bardzo prosty i sprowadza się tylko do obsługi zdarzenia kliknięcia przycisku, tak aby łatwo można było prześledzić działanie metody. Całą istotę działania programu prezentuje listing~\ref{lst:trilateration}.
+
+\begin{listing}
+  \lstinputlisting{testy/trilateration.cpp}
+  \caption{Kod dokonujący trilateracji}
+  \label{lst:trilateration}
+\end{listing}
+
+
 \paragraph{Dokładność obliczeń}
 Należy wziąć pod uwagę fakt, że odległość pomiędzy odbiornikami ma wpływ na wynik obliczeń. Wynika to z operowania przez komputer na danych o skończonej i zmiennej dokładności.
 
@@ -207,6 +217,8 @@ Użytkownik w trakcie działania programu ma możliwość wyboru, którego marke
 Program dokonuje transformacji układu współrzędnych, aby w efekcie uzyskać układ pokazany na rysunku \ref{fig:coordinate_system}.
 
 Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co znacząco ułatwia pracę, ponieważ nie jest wymagana żadna dodatkowa konwersja układu współrzędnych aby narysować pozycję markera.
+
+\paragraph{Struktura programu}
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
 Chociaż dostępne aktualna wersja sprzętu zaproejtkowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
