@@ -122,7 +122,7 @@ Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane j
 Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje listing~\ref{lst:interrupt_handler}.
 
 \begin{listing}
-  \lstinputlisting[language=C]{testy/atmega_interrupt.c}
+  \lstinputlisting[language=C]{listings/atmega_interrupt.c}
   \caption{Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}}
   \label{lst:interrupt_handler}
 \end{listing}
@@ -134,7 +134,7 @@ Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} de
 Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje listing~\ref{lst:interrupt_vector}.
 
 \begin{listing}
-  \lstinputlisting{testy/interrupt_vector.txt}
+  \lstinputlisting{listings/interrupt_vector.txt}
   \caption[Wektor obsługi przerwań]{Wygenerowany wektor obsługi przerwań}
   \label{lst:interrupt_vector}
 \end{listing}
@@ -145,9 +145,73 @@ Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczy
 W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
 
 \paragraph{Qt}
-Wieloplatformowe środowisko \textsmaller{Qt} składa się z kilku komponentów. W jego skład wchodzą między innymi:
+Wieloplatformowe środowisko (ang. \textsl{framework}) \textsmaller{Qt} składa się z kilku komponentów. W jego skład wchodzą między innymi: biblioteka \textsc{Qt}, kompilator \verb|moc| i kompilator \verb|rcc|. Wszystkie te elementy znacznie usprawniają pisanie aplikacji w języku \verb|C++| dostarczając metod, które abstrachują od specyfiki wykorzystywanego systemu operacyjnego.
+
+Pisanie nawet skomplikowanych programów z wykorzystaniem \textsc{Qt} jest proste, łatwe, szybkie i przyjemne. Programista świadomy różnic pomiędzy systemami operacyjnymi i delegujący obsługę parametrów do metod dostarczanych przez klasy bibliotek \textsc{Qt} zyskuje możliwość skompilowania swojego kodu pod platformy \textsc{Linux}, \textsc{Windows} oraz \textsc{Mac OS X} bez konieczności jakichkolwiek zmian.
+
+Szerokie spektrum dostarczanych klas (począwszy od kontenerów danych i metod iteracji, przez obsługę urządzeń wejściowych, przez obsługę sieci, aż po rysowanie i zarządzanie grafikami i wiele, wiele innych\ldots) zapewnia, że do zaimplementowania wielu aplikacji nie będzie wymagane wykorzystanie bibliotek trzecich.
+
+\textsl{Sygnały i sloty}
+Centralną właściwością środowiska \textsc{Qt}, a jednocześnie jedną z najbardziej odróżniających ten framework od innych, jest mechanizm sygnałów i slotów. Jest to zarządzana metoda komunikacji pomiędzy obiektami.
+
+Chociaż na pierwszy rzut oka przypomina ona znane dotychczas metody oparte o wywołania zwrotne (ang. \textsl{callback}) i faktycznie się z nich wywodzi, to jednak różni się od nich w kilku kluczowych aspektach.
+
+Jest to metoda dynamiczna (działająca w runtime). Metoda wywołań zwrotnych wykorzystywana jest głównie do zamodelowania statycznych (tj. znanych już podczas czasu kompilacji - ang. \textsl{compiletime}) powiązań pomiędzy obiektami jak np:
+\begin{verse}
+użytkownik kliknął przycisk \texttimes~\textrightarrow~wywołaj metodę \texttt{close()}
+\end{verse}
+
+W przypadku tym przypisuje się wskaźnik do funkcji do pewnego pola klasy wywołującej, który w momencie zajścia zdarzenia jest wywoływany. Konsekwencją takiego podejścia jest konieczność znania odbiorników w czasie kompilacji, co uniemożliwia np. ładowanie wtyczek w runtime i powiadamiania ich o zdarzeniach w następujący sposób:
+\begin{verse}
+powiadom wszystkie odbiorniki o zajściu zdarzenia $\omega$
+\end{verse}
+
+Zastosowanie w tym miejscu wektorów wskaźników jest jedynie obejściem problemu, a nie jego rozwiązaniem, gdyż nakłada na programistę obowiązek pamiętania o poprawnym przydzielaniu i zwalnianiu pamięci na te elementy, w przypadku aplikacji wielowątkowych szczegółowego analizowania zależności czasowych pomiędzy wywołaniami kodu obiektów, oraz drobiazgowego sprawdzania typów wywołań.
+
+Podejście to wprowadza ponadto nadmiarową i zbędną wiedzę o odbiornikach do nadajnika.
+
+Rozwiązanie dostarczane przez framework \textsc{Qt} jest elegancką metodą pozbycia się wymienionych wad na rzecz udostępnienia programiście prostego w obsłudze, lecz potężnego i skutecznego, mechanizmu dynamicznego wiązania obiektów w pary nadajnik-odbiornik.
+
+Przekazywane sygnały są ,,wątkowo-bezpieczne'' (ang. \textsl{thread-safe}), co pozwala na przetwarzanie sygnału w innym wątku niż ten, który zainicjował jego wysłanie. Aby zrealizować takie podejście, każdy z obiektów dziedziczących po klasie \verb|QObject| powinien należeć do jakiegoś wątku, tak aby był on uwzględniany w pętli zdarzeń (ang. \textsl{event loop}), jaka jest przez ten wątek przetwarzana. Domyślnie każdy nowy obiekt przynależy do wątku rodzica, który go utworzył.
+
+Pociąga to za sobą konsekwencję, że jeżeli obiekt nie przynależy do żadnego wątku, to jego zdarzenia nie będą przetwarzane.
+
+W celu uproszczenia obsługi, środowisko \textsc{Qt} domyślnie wykorzystuje do wszystkich obiektów wątek główny aplikacji i jeśli programista jawnie nie usunie z niego obiektów, to ich sygnały będą przetwarzane właśnie w tym wątku.
+
+Aby zintegrować to rozwiązanie z kodem, postanowiono ,,rozszerzyć'' standard\graffito{,,Rozszerzenie'' to wykorzystywane jest tylko i wyłącznie do środowiskia \textsc{Qt}} języka \verb|C++|. Do istniejących już kwalifikatorów \verb|public|, \verb|private| i \verb|protected| dodano dwa nowe: \verb|signals| i \verb|slots|.
+
+Kwalifikator \verb|signals| definiuje sygnały. Mają one taką samą strukturę, jak zwykłe metody klasy z następującymi wyjątkami:
+\begin{aenumerate}
+  \item definicja sygnału jest tylko i wyłącznie jego deklaracją, oznacza to, że sygnał nie posiada żadnego kodu, jest tylko abstrakcyjnym tworem komunikującem zajście pewnego zdarzenia,
+  \item sygnały nie mogą zwracać wartości \ppauza zwracanym typem musi być \verb|void|, a wszelkie przekazywane dane zawarte są w argumentach,
+  \item sygnały są zawsze publiczne.
+\end{aenumerate}
+
+Deklarację pewnej minimalnej klasy zawierającej sygnały prezentuje listing \ref{lst:signals_declaration}.
+
+\begin{listing}
+  \lstinputlisting{listings/signals_declaration.cpp}
+  \caption{Klasa zawierająca sygnały}
+  \label{lst:signals_declaration}
+\end{listing}
+
+Jak pokazano, aby klasa mogła wykorzystać mechanizm sygnałów (a także slotów), musi ona dziedziczyć z klasy \verb|QObject| i wywoływać makro \verb|Q_OBJECT| w prywatnej części deklaracji.
+
+Kwalifikator \verb|slots|, jak łatwo się domyślić, deklaruje sloty. Poza dodatkową możliwością wywołania slotu, są to tradycyjne metody klasy i tak samo obowiązują je pozostałe kwalifikatory: \verb|public|, \verb|private| i \verb|protected|. W odróżnieniu od sygnałów, sloty wymagają dostarczenia implementacji i mogą zwracać wartości.
+
+Deklarację pewnej minimalnej klasy zawierającej sloty prezentuje listing \ref{lst:slots_declaration}.
+
+\begin{listing}
+  \lstinputlisting{listings/slots_declaration.cpp}
+  \caption{Klasa zawierająca sloty}
+  \label{lst:slots_declaration}
+\end{listing}
+
+Mechanizm slotów i sygnałów jest przeze mnie intensywnie wykorzystywany we wszystkich stworzonych aplikacjach.
+
 \begin{description}
- \item[biblioteka Qt] skompilowane źródła, z których korzysta aplikacja podczas uruchamiania
+ \item[biblioteka Qt] skompilowane źródła, z których korzysta aplikacja podczas działania,
+ \item[kompilator MOC] 
 \end{description}
 
 
@@ -164,7 +228,7 @@ Jak widać, oddalenie odbiorników od siebie na odległość zaledwie kilku cent
 Przedstawiony program jest celowo bardzo prosty i sprowadza się tylko do obsługi zdarzenia kliknięcia przycisku, tak aby łatwo można było prześledzić działanie metody. Całą istotę działania programu prezentuje listing~\ref{lst:trilateration}.
 
 \begin{listing}
-  \lstinputlisting{testy/trilateration.cpp}
+  \lstinputlisting{listings/trilateration.cpp}
   \caption{Kod dokonujący trilateracji}
   \label{lst:trilateration}
 \end{listing}
@@ -174,10 +238,10 @@ Należy wziąć pod uwagę fakt, że odległość pomiędzy odbiornikami ma wpł
 
 Jeśli marker znajdzie się dostatecznie daleko od odbiorników, może nastąpić spadek precyzji, gdyż dane są reprezentowane w pamięci komputera przez typy zmiennoprzecinkowe i przy małym rozsunięciu odbiorników po wykonaniu działań arytmetycznych, a w szczególności operacji potęgowania i pierwiastkowania, jakie są konieczne do odtworzenia pozycji, utrata precyzji będzie miała znaczący wpływ na wynik obliczeń.
 
-Aby uniknąć tego problemu, odbiorniki \textsl{Nietoperza} rozstawione są na planie trójkąta równobocznego o boku 33cm. Pozwala to na wystarczająco dokładne śledzenie precyzji już za pomocą typu zmiennoprzecinkowego pojedynczej precyzji \verb|float|. Na potrzeby tej demonstracji zdecydowałem się jednak wykorzystać typ dostarczający podwójnej precyzji \verb|double|.
+Aby uniknąć tego problemu, odbiorniki \textsl{Nietoperza} rozstawione są na planie trójkąta równobocznego o boku 33cm. Pozwala to na wystarczająco dokładne śledzenie precyzji już za pomocą typu zmiennoprzecinkowego pojedynczej precyzji \verb|float|. Na potrzeby tej demonstracji zdecydowałem się jednak wykorzystać typ \verb|double| dostarczający podwójnej precyzji.
 
 \paragraph{Wieloplatformowość}
-Aplikacja ta prezentuje także zalety wykorzystanego środowiska, które może być kompilowane pod wszystkimi trzema znaczącymi systemami: \textsl{Linux}, \textsl{Windows} i \textsl{Mac OS X}. Do poprawnego skompilowania nie jest wymagana żadna zmiana kodu.
+Aplikacja ta prezentuje także zalety wykorzystanego środowiska, które może być kompilowane pod wszystkimi trzema znaczącymi systemami operacyjnymi: \textsl{Linux}, \textsl{Windows} i \textsl{Mac OS X}. Do poprawnego skompilowania nie jest wymagana żadna zmiana kodu.
 
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/trilaterator_triple.png}
@@ -221,10 +285,10 @@ Program dokonuje transformacji układu współrzędnych, aby w efekcie uzyskać 
 Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{OpenGL}, co znacząco ułatwia pracę, ponieważ nie jest wymagana żadna dodatkowa konwersja układu współrzędnych aby narysować pozycję markera.
 
 \paragraph{Struktura programu}
+Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
-\makeatletter @ \makeatother
-Chociaż dostępne aktualna wersja sprzętu zaproejtkowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
+Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
 
 Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów\graffito{dodać info o moc}.
 
@@ -239,7 +303,7 @@ public:
 \end{verbatimtab}
 gdyż w klasie \verb|QObject| są to metody prywatne, co uniemożliwia wykorzystywane w kodzie programu kopiowanie i tworzenie automatycznych zmiennych tego typu.
 
-Jedną z możliwości środowiska \textsc{Qt} jest zarejestrowanie typu wyliczeniowego \verb|enum| w systemie meta-obiektów poprzez wywołanie makra \verb|Q_ENUMS|:
+Jedną z możliwości środowiska \textsc{Qt} jest zarejestrowanie danego typu wyliczeniowego \verb|enum| w systemie meta-obiektów poprzez wywołanie makra \verb|Q_ENUMS|:
 \begin{verbatimtab}
 class Sample : public QObject
 {
