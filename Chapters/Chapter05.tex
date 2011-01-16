@@ -3,10 +3,12 @@
 
 Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylko i wyłącznie z takich właśnie narzędzi.
 
-\section{Oprogramowanie mikrokontrolera}
-W pracy wykorzystany został układ \textsmaller{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \spacedallcaps{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
+Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}.
 
-Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsmaller{avr-gcc} oraz bibliotekę \textsmaller{avr-libc}. Do programowania wykorzystałem program \textsmaller{avrdude}
+\section{Oprogramowanie mikrokontrolera}
+W pracy wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
+
+Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsc{avr-gcc} oraz bibliotekę \textsc{avr-libc}, oba udostępniane na zasadach wolnej licencji \textsc{Modified Berkley License}. Do programowania wykorzystałem program \textsc{avrdude} (wolna licencja \textsc{GNU GPL 2} i późniejsze).
 
 \subsection{Wymagania}
 Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbką zajmie się komputer. Wymagania, jakie są stawiane to przede wszystkim:
@@ -145,7 +147,7 @@ Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczy
 W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
 
 \paragraph{Qt}
-Wieloplatformowe środowisko (ang. \textsl{framework}) \textsmaller{Qt} składa się z kilku komponentów. W jego skład wchodzą między innymi: biblioteka \textsc{Qt}, kompilator \verb|moc| i kompilator \verb|rcc|. Wszystkie te elementy znacznie usprawniają pisanie aplikacji w języku \verb|C++| dostarczając metod, które abstrachują od specyfiki wykorzystywanego systemu operacyjnego.
+Wieloplatformowe środowisko (ang. \textsl{framework}) \textsmaller{Qt}, licencjonowane wolną licencją \textsc{GNU LGPL 2.1} oraz \textsc{GNU GPL 3.0}, składa się z kilku komponentów. W jego skład wchodzą między innymi: biblioteka \textsc{Qt}, kompilator \verb|moc| i kompilator \verb|rcc|. Wszystkie te elementy znacznie usprawniają pisanie aplikacji w języku \verb|C++| dostarczając metod, które abstrachują od specyfiki wykorzystywanego systemu operacyjnego.
 
 Pisanie nawet skomplikowanych programów z wykorzystaniem \textsc{Qt} jest proste, łatwe, szybkie i przyjemne. Programista świadomy różnic pomiędzy systemami operacyjnymi i delegujący obsługę parametrów do metod dostarczanych przez klasy bibliotek \textsc{Qt} zyskuje możliwość skompilowania swojego kodu pod platformy \textsc{Linux}, \textsc{Windows} oraz \textsc{Mac OS X} bez konieczności jakichkolwiek zmian.
 
@@ -219,11 +221,21 @@ Pozostała charakterystyka tego rozwiązania, taka jak przekazywanie meta-typów
 
 Zadaniem tego narzędzia jest przeparsowanie dostarczonych plików źródłowych pod kątem odszukania wśród nich deklaracji klas dziedziczących z \verb|QObject|, a zatem wykorzystujących rozszerzone możliwości oferowane przez \textsc{Qt} i wygenerowanie kodu zrozumiałego przez wspomniany wyżej ,,zwykły'' kompilator. Kod dostarczony przez programistę, pozbawiony rozszerzeń \textsc{Qt} oraz kod wygenerowany przez narzędzie \texttt{moc} są kompilowane, a następnie łączone ze sobą na etapie linkowania.
 
-\begin{description}
- \item[biblioteka Qt] skompilowane źródła, z których korzysta aplikacja podczas działania,
- \item[kompilator MOC] 
-\end{description}
+\paragraph{QSerialPort}
+Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jako samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z głównych powodów, dla których wybrałem właśnie ją.
 
+Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie.
+
+\paragraph{Qwt}
+Zadaniem tej biblioteki, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa.
+
+\paragraph{Bazaar}
+\textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3}.
+
+Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były wykorzystując te narzędzia i należą do projektu \texttt{janisozaur-inz} dostępnego pod adresem:
+\begin{verse}
+  \url{https://launchpad.net/janisozaur-inz}
+\end{verse}
 
 \subsection{Trilaterator}
 Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części programu.
@@ -297,10 +309,12 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
+Po uruchomieniu programu tworzone są obiekty wykresów i ustawiane ich parametry. Do wykresów nie są jeszcze załączone żadne dane
+
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
 Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
 
-Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów\graffito{dodać info o moc}.
+Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów.
 
 Deklarując próbkę jako klasę \verb|Sample|, która dziedziczy z podstawowej klasy środowiska \textsc{Qt}, \verb|QObject|, możliwe jest pozyskanie w czasie działania programu (ang. \textsl{runtime}) dostępu do pewnych danych, które w innym przypadku byłyby niedostępne lub dostęp do nich wymagałby od programisty dużej gimnastyki, a nawet wykorzystania bibliotek trzecich takich jak np. \textsc{Boost}.
 
