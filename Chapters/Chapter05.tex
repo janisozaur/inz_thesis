@@ -129,7 +129,7 @@ Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjon
 
 Oznaczenie zmiennej jako \texttt{volatile} oznajmia kompilatorowi, że wszelkie odczyty i zapisy muszą operować na wartości zmiennej z pamięci. W przypadku braku takiego zapisu kompilator podczas kompilowania kodu źródłowego z włączoną flagą optymalizacji może przyjąć, że procedura zmieniająca wartość zmiennej nie jest nigdzie wywoływana, przez co bezpiecznym jest cache-owanie wartości zmiennej, a w efekcie zignoruje skutki wywołania przerwania.
 
-Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR.
+Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR \ppauza pozwala np. na zagnieżdżanie przerwań, czyli przerwanie przetwarzania procedury ISR przez inne przerwanie.
 
 Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje listing~\ref{lst:interrupt_vector}.
 
@@ -169,7 +169,6 @@ Przedstawiony program jest celowo bardzo prosty i sprowadza się tylko do obsłu
   \label{lst:trilateration}
 \end{listing}
 
-
 \paragraph{Dokładność obliczeń}
 Należy wziąć pod uwagę fakt, że odległość pomiędzy odbiornikami ma wpływ na wynik obliczeń. Wynika to z operowania przez komputer na danych o skończonej i zmiennej dokładności.
 
@@ -177,8 +176,11 @@ Jeśli marker znajdzie się dostatecznie daleko od odbiorników, może nastąpi�
 
 Aby uniknąć tego problemu, odbiorniki \textsl{Nietoperza} rozstawione są na planie trójkąta równobocznego o boku 33cm. Pozwala to na wystarczająco dokładne śledzenie precyzji już za pomocą typu zmiennoprzecinkowego pojedynczej precyzji \verb|float|. Na potrzeby tej demonstracji zdecydowałem się jednak wykorzystać typ dostarczający podwójnej precyzji \verb|double|.
 
+\paragraph{Wieloplatformowość}
+Aplikacja ta prezentuje także zalety wykorzystanego środowiska, które może być kompilowane pod wszystkimi trzema znaczącymi systemami: \textsl{Linux}, \textsl{Windows} i \textsl{Mac OS X}. Do poprawnego skompilowania nie jest wymagana żadna zmiana kodu.
+
 \begin{figure}
- \includegraphics[width=\textwidth]{gfx/trilaterator.pdf}
+ \includegraphics[width=\textwidth]{gfx/trilaterator_triple.png}
  \caption{Trilaterator. Aplikacja dokonująca trilateracji}
  \label{fig:trilaterator}
 \end{figure}
@@ -221,6 +223,7 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
+\makeatletter @ \makeatother
 Chociaż dostępne aktualna wersja sprzętu zaproejtkowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
 
 Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów\graffito{dodać info o moc}.
