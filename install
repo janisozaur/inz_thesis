@@ -1,0 +1,16 @@
+sudo apt-get install texlive-lang-polish texlive-science xindy texlive-publishers
+
+echo
+echo
+echo \*\*\*
+echo \*\*\*
+echo packages installed
+echo \*\*\*
+echo \*\*\*
+echo read below to set up proper makeindex:
+echo
+echo
+
+echo in kile change \'MakeIndex\' to configuration \'xindy\' with following options:
+echo -L polish -M lang/polish/utf8 \'%S.idx\'
+echo and in \'Advanced\' tab change \'Target extension\' to \'ind\'
