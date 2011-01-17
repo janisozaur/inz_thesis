@@ -309,7 +309,46 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
-Po uruchomieniu programu tworzone są obiekty wykresów i ustawiane ich parametry. Do wykresów nie są jeszcze załączone żadne dane
+Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednie wykresów pozycji markera oraz jego odległości, ustawiane są parametry wykresów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych.
+
+Następuje inicjalizacja pozostałych danych interfejsu użytkownika:
+\begin{itemize}
+  \item domyślny adres portu szeregowego \ppauza jest to jeden z dwóch fragmentów programu, które zależne są od systemu operacyjnego, gdyż ścieżki do tych plików różnią się pomiędzy sytemami,
+  \item wypełniane są dozwolone prędkości komunikacji \ppauza jest to drugi z fragmentów, który zależny jest od systemu,
+  \item następuje iteracja przez identyfikatory markerów, które dodawane są do pola umożliwiającego przełączanie pomiędzy markerami.
+\end{itemize}
+
+Dane pobierane są od \textsl{Nietoperza} przez obiekt klasy \verb|SamplingThread|, która dziedziczy z klasy \verb|QwtSamplingThread|, będącej implementacją dziedziczonej klasy \verb|QThread|. Klasa \verb|QThread| stanowi niezależny od systemu operacyjnego interfejs do wątku, który jest rozszerzony przez \verb|QwtSamplingThread| o implementację metod pozwalających na okresowe odczytywanie danych. Ponadto klasą bazową dla \verb|QThread| jest \verb|QObject|, dzięki czemu sygnały i sloty dostępne są od razu.
+
+Wątek uruchamiany jest po zakończonym sukcesem otwarciu komunikacji z portem szeregowym wykorzystując w tym celu obiekt klasy \verb|QSerialPort|. W przypadku błędu otwarcia portu emitowany jest sygnał \verb|error(QString)|, który propagowany jest aż do paska stanu \verb|QStatusBar| głównego okna aplikacji celem poinformowania użytkownika, a zainicjowane dane są czyszczone, aby nie dopuścić do wycieku pamięci.
+
+Pomyślnie uruchomiony wątek będzie okresowo, z interwałem określonym w konstruktorze domyślnym
+\begin{verbatim}
+explicit SamplingThread(QObject *parent = 0);
+\end{verbatim}
+metodą \verb|setInterval(double)|, sprawdzał nadejście nowych danych.
+
+Klasa \verb|SignalData|, która dziedziczy z klasy \verb|QObject| aby zyskać możliwość wykorzystania slotów i sygnałów, implementuje wzorzec \verb|singleton|, czyli obiektową metodę zapewnienia dostępności jednej i zawsze tej samej instancji. Uzyskałem to poprzez oznaczenie jedynego dostępnego konstruktora kwalifikatorem \verb|private| i zaimplementowałem statyczną metodę zwracającą referencję do statycznej zmiennej tworzonej w tej metodzie:
+\begin{verbatimtab}
+class SignalData : public QObject
+{
+	Q_OBJECT
+	SignalData();
+public:
+	static SignalData &instance();
+\end{verbatimtab}
+
+Instancja ta tworzona jest dopiero podczas pierwszego wywołania metody \verb|instance()| i ,,żyje'' aż do końca działania aplikacji. Konstruktor tej klasy dokonuje iteracji przez dostępne markery i inicjalizuje lokalne bufory danych dla każdego z markerów. Aby uniknąć konieczności deklarowania pola dla każdego z markerów, co wykluczyłoby prezentowaną poniżej metodę rozszerzania o kolejne markery, zastosowałem kontener \verb|QHash|, którego kluczem jest identyfikator markera \verb|Sample::Marker|, zaś wartością tablica \verb|QVector| zawierająca dane próbek. Analogiczne rozwiązanie zaimplementowałem dla wykorzystywanych przez \textsc{QWT} prostokątów otaczających, lecz w tym przypadku wartością kontenera jest klasa \verb|QRectF| opisująca prostokąt za pomocą danych zmiennoprzecinkowych.
+
+Celem tej klasy jest zapewnienie interfejsu do buforowania i rozdysponowywania danych, który abstrachuje od implementacji metody faktycznie pobierającej dane.
+
+Po odczytaniu danych z portu szeregowego dopisywane są one do dynamicznej tablicy będącej polem \verb|SamplingThread|. Dopiero teraz następuje synchronizacja i identyfikacja raportów, zgodnie z algorytmem \ref{alg:sync} (str. \pageref{alg:sync}).
+
+Jeśli udało się zsynchronizować dane, co oznacza, że przybyła przynajmniej jedna próbka, emitowany jest sygnał \verb|dataArrived()|, którego odbiorcą jest metoda \verb|SignalData::fetchSamples()|. Pobiera ona dane z \verb|SamplingThread| i dla każdej nowej próbki dopisuje ją do lokalnego bufora, a także przetwarza aktualizując na tej podstawie prostokąt otaczający.
+
+Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie na potrzeby \textsc{QWT} w metodzie \verb|SignalData::fetchSamples()| ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonuję wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
+
+Z pomocą przychodzi tutaj klasa \verb|QMutexLocker|, która w swoim konstruktorze, przyjmującym jako argument tylko wskaźnik do obiektu \verb|QMutex|, blokuje mutex, zaś destruktor odblokowuje go. Dzięki temu, tworząc automatyczną zmienną na początku każdej metody operującej na krytycznych danych zapewniam, że dostęp do nich jest ekskluzywny, tzn. w dowolnym momencie dane te przetwarzane są przez maksymalnie jeden wątek.
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
 Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
