@@ -29,9 +29,9 @@ Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie 
 \paragraph{Ograniczenia mikrokontrolera}
 \label{section:microcontroller_limit}
 
-Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:\graffito{dodać notkę o protokole}
+Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:
 \begin{enumerate}
- \item \index{prescaler}prescaler\graffito{prescaler - wytłumaczyć} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
+ \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
     \begin{equation}
       i = \frac{1}{F_{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
       \label{eq:sampling_frequency}
@@ -44,14 +44,14 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
     \end{equation}
 \end{enumerate}
 
-Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
+Jak pokazuje równanie~\ref{eq:microcontroller_limit}\graffito{W praktyce należy uwzględnić jeszcze wymagania protokołu \ppauza patrz sekcja \ref{sec:protocol}}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
 Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
  340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
 \end{equation}
 
-Rozdzielczość można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera \graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} oraz zwiększając częstotliwość pracy mikrokontrolera.
+Rozdzielczość\graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera oraz zwiększając częstotliwość pracy mikrokontrolera.
 
 \paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
@@ -86,6 +86,7 @@ Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odb
 gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}.
 
 \subsection{Algorytm}
+\label{sec:uc_algorithm}
 Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:\graffito{metoda wyznaczania }
 \begin{enumerate}
  \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
@@ -108,6 +109,7 @@ Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequenc
 \end{figure}
 
 \paragraph{Prescaler}
+\label{sec:prescaler}
 W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dzielnik częstotliwości, o programowanym stopniu podziału. Jego działanie polega na zliczaniu taktów zegara; gdy wewnętrzny licznik prescalera osiągnie zaprogramowaną wcześniej wartość, wyzwalane jest przerwanie timera oraz następuje przepełnienie licznika, w związku z czym zliczana wartość ,,przekręca się'' i liczenie rozpoczyna się ponownie od zera.
 
 Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
@@ -430,6 +432,17 @@ Rysowana figurka potrafi także, na podstawie długości wektora mającego pocz�
 \newline
 \newline
 \textsl{Kalibracja eksperymentalna} Drugi typ kalibracji, znacznie bardziej złożony od pierwszego w założeniu pozwalać miał na wykorzystanie \textsl{Nietoperza} z dowolnej pozycji. Pozostało to niestety tylko założeniem, gdyż pomimo mnogich testów i rozważań teoretycznych nie udało się doprowadzić tej metody do stanu w pełni sprawnego \ppauza chociaż wielokrotnie wydawało się, że wszystko już działa, to kolejny test pokazywał, że byłem w błędzie.
+
+Do przeprowadzenia tej metody kalibracji wymagany jest jeden punkt więcej niż ma to miejsce przy kalibracji metodą zwykłą. Wynika to z konieczności ponownego ustawienia trójwymiarowego układu współrzędnych, a znając tylko dwa punkty, wiadomo, że są one współliniowe, zaś dookoła prostej możliwy jest dowolny obrót. Trzeci, niewspółliniowy punkt, pozwoli na określenie dokładnej translacji i rotacji.
+
+Odwracając tę transformację, tzn. znajdując takie przekształcenie, które zmieni pozyskany z próbek układ współrzędnych na układ jaki prezentowany jest na rysunku \ref{fig:coordinate_system}, możliwe byłoby dokonywanie normalizacji pozostałych próbek za pomocą tej samej transformacji. Pozwoliłoby to na wykorzystanie metody analogicznej jak w przypadku kalibracji zwykłej.
+
+\paragraph{Struktura programu}
+Program oparty został o istniejące wcześniej źródła programu \textsmaller{Charter}. Głównym współdzielonym fragmentem jest klasa \verb|SignalData| oraz kod wątku dokonującego odbierania danych z portu szeregowego (klasa \verb|SamplingThread|). Nie jest to jednak dokładna kopia, gdyż w tym przypadku nie istnieje potrzeba zapewnienia rozszerzalności o nowe markery (człowiek ma tylko dwie ręce, a dodanie śledzenia innych kończyn wymagałoby dopisania ich faktycznej obsługi \ppauza w odróżnieniu od wykresów, gdzie dane dla każdego z markerów są takiej samej struktury). Ponadto program ten nie wykorzystuje biblioteki \textsc{QWT}, wymagane w związku z tym było dostarczenie własnej implementacji pętli zdarzeń.
+
+Wspomniana pętla zdarzeń, stanowiąca ciało wirtualnej metody \verb|run()|, to prosta pętla \verb|while|, która usypiana jest na zadany interwał, po czym wywołuje funkcję odpytującą port o nowe dane. Aby móc poprawnie zakończyć działanie wątku, w każdej iteracji sprawdzany jest stan zmiennej \verb|mRun|, która określa, czy wątek ma wciąż działać \ppauza ma ona wtedy wartość \verb|true|. Podczas zamykania programu usuwany jest obiekt tego wątku, a jego destruktor wywołuje metodę \verb|stop()|, która zapewnia bezpieczny sposób zwolnienia zasobów i pozamykania otwartych połączeń.
+
+Program umożliwia też przeprowadzenie prostego testu wydajności: procedura przekształcania układu współrzędnych wywoływana jest 100000 razy, a sumaryczny czas, jaki zajęło to działanie wypisywany jest na standardowym wyjściu błędów \verb|stderr|.
 
 \section{Protokół}
 \label{sec:protocol}
