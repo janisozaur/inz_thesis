@@ -311,7 +311,7 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
-Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednie wykresów pozycji markera oraz jego odległości, ustawiane są parametry wykresów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych.
+Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednie wykresów pozycji markera oraz jego odległości, ustawiane są parametry wykresów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych. Wykresy przedstawiają dane pobrane w ciągu ostatnich 10 sekund i wraz z przybywaniem kolejnych danych wykres jest przesuwany aby spełnić wymieniony właśnie warunek.
 
 Następuje inicjalizacja pozostałych danych interfejsu użytkownika:
 \begin{itemize}
@@ -351,6 +351,14 @@ Jeśli udało się zsynchronizować dane, co oznacza, że przybyła przynajmniej
 Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie na potrzeby \textsc{QWT} w metodzie \verb|SignalData::fetchSamples()| ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonuję wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
 
 Z pomocą przychodzi tutaj klasa \verb|QMutexLocker|, która w swoim konstruktorze, przyjmującym jako argument tylko wskaźnik do obiektu \verb|QMutex|, blokuje mutex, zaś destruktor odblokowuje go. Dzięki temu, tworząc automatyczną zmienną na początku każdej metody operującej na krytycznych danych zapewniam, że dostęp do nich jest ekskluzywny, tzn. w dowolnym momencie dane te przetwarzane są przez maksymalnie jeden wątek.
+
+Klasy wykresów są okresowo wzbudzane przez timer, którego interwał z jednej strony zsynchronizowany jest z pojawianiem się nowych próbek, natomiast z drugiej działa odrobinę wolniej, aby oszczędzać czas procesora wymagany na odrysowanie nowych danych. Pomimo tego wykres przesuwany jest płynnie.
+
+Biblioteka \textsc{QWT} pozwala na buforowanie rysowanych wykresów, dzięki czemu wywołanie slotu \verb|replot()| wykresu spowoduje narysowanie tylko nowych punktów, co znacznie oszczędza czas procesora.
+
+W pierwszym podejściu do implementacji przesuwania wykresu wykorzystałem zmianę skali osi X przesuwając wyświetlany fragment zgodnie z nadchodzącymi danymi. Okazało się to problematyczne, gdyż jak wspomina autor wykorzystanej biblioteki (\citep{UweRathmannNewsgroup}), po zmianie osi wymagane jest odrysowanie całego wykresu.
+
+Aby ominąć ten defekt postanowiłem wykorzystać klasę \verb|QwtPlotPanner| która przesuwa widoczny zakres wykresu nie powodując przy tym unieważnienia bufora. Natknąłem się jednak tutaj na problem, gdyż slot dokonujący przesunięcia oznaczony był jako prywatny. Ratunkiem okazała się możliwość podpięcia sygnału do sygnału \ppauza emitując swój sygnał wyzwalałem istniejący sygnał tej klasy do wywołania prywatnej metody, której efektem było przesunięcie widocznego fragmentu wykresu. W efekcie użycie procesora znacznie spadło.
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
 Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
