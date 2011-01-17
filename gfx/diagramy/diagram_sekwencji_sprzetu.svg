@@ -1,0 +1,1594 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="46cm"
+   height="45cm"
+   viewBox="5 6 903 883"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="diagram_sekwencji_sprzetu.svg">
+  <metadata
+     id="metadata1228">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs1226" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="975"
+     id="namedview1224"
+     showgrid="false"
+     inkscape:zoom="0.91886869"
+     inkscape:cx="713.20359"
+     inkscape:cy="1354.1695"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     style="fill:#ffffff"
+     d="m 251,208 a 4,4 0 0 0 -4,4 l 4,0 z"
+     id="path146"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 287,212 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     id="path148"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 247,724 a 4,4 0 0 0 4,4 l 0,-4 z"
+     id="path152"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 283,728 a 4,4 0 0 0 4,-4 l -4,0 z"
+     id="path154"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="251"
+     y1="208"
+     x2="283"
+     y2="208"
+     id="line156" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="251"
+     y1="728"
+     x2="283"
+     y2="728"
+     id="line158" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 251,208 a 4,4 0 0 0 -4,4"
+     id="path160"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 287,212 a 4,4 0 0 0 -4,-4"
+     id="path162"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="247"
+     y1="212"
+     x2="247"
+     y2="724"
+     id="line164" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="287"
+     y1="212"
+     x2="287"
+     y2="724"
+     id="line166" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 247,724 a 4,4 0 0 0 4,4"
+     id="path168"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 283,728 a 4,4 0 0 0 4,-4"
+     id="path170"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif"
+     x="267"
+     y="471.89999"
+     id="text172">
+    <tspan
+       x="267"
+       y="471.89999"
+       id="tspan174" />
+  </text>
+  <path
+     style="fill:#ffffff"
+     d="m 431,228 a 4,4 0 0 0 -4,4 l 4,0 z"
+     id="path284"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 467,232 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     id="path286"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 427,704 a 4,4 0 0 0 4,4 l 0,-4 z"
+     id="path290"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 463,708 a 4,4 0 0 0 4,-4 l -4,0 z"
+     id="path292"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="431"
+     y1="228"
+     x2="463"
+     y2="228"
+     id="line294" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="431"
+     y1="708"
+     x2="463"
+     y2="708"
+     id="line296" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 431,228 a 4,4 0 0 0 -4,4"
+     id="path298"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 467,232 a 4,4 0 0 0 -4,-4"
+     id="path300"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="427"
+     y1="232"
+     x2="427"
+     y2="704"
+     id="line302" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="467"
+     y1="232"
+     x2="467"
+     y2="704"
+     id="line304" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 427,704 a 4,4 0 0 0 4,4"
+     id="path306"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 463,708 a 4,4 0 0 0 4,-4"
+     id="path308"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif"
+     x="447"
+     y="471.89999"
+     id="text310">
+    <tspan
+       x="447"
+       y="471.89999"
+       id="tspan312" />
+  </text>
+  <path
+     style="fill:#ffffff"
+     d="m 571,228 a 4,4 0 0 0 -4,4 l 4,0 z"
+     id="path422"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 607,232 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     id="path424"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 567,704 a 4,4 0 0 0 4,4 l 0,-4 z"
+     id="path428"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 603,708 a 4,4 0 0 0 4,-4 l -4,0 z"
+     id="path430"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="571"
+     y1="228"
+     x2="603"
+     y2="228"
+     id="line432" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="571"
+     y1="708"
+     x2="603"
+     y2="708"
+     id="line434" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 571,228 a 4,4 0 0 0 -4,4"
+     id="path436"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 607,232 a 4,4 0 0 0 -4,-4"
+     id="path438"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="567"
+     y1="232"
+     x2="567"
+     y2="704"
+     id="line440" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="607"
+     y1="232"
+     x2="607"
+     y2="704"
+     id="line442" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 567,704 a 4,4 0 0 0 4,4"
+     id="path444"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 603,708 a 4,4 0 0 0 4,-4"
+     id="path446"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif"
+     x="587"
+     y="471.89999"
+     id="text448">
+    <tspan
+       x="587"
+       y="471.89999"
+       id="tspan450" />
+  </text>
+  <path
+     style="fill:#ffffff"
+     d="m 711,228 a 4,4 0 0 0 -4,4 l 4,0 z"
+     id="path560"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 747,232 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     id="path562"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 707,704 a 4,4 0 0 0 4,4 l 0,-4 z"
+     id="path566"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 743,708 a 4,4 0 0 0 4,-4 l -4,0 z"
+     id="path568"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="711"
+     y1="228"
+     x2="743"
+     y2="228"
+     id="line570" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="711"
+     y1="708"
+     x2="743"
+     y2="708"
+     id="line572" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 711,228 a 4,4 0 0 0 -4,4"
+     id="path574"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 747,232 a 4,4 0 0 0 -4,-4"
+     id="path576"
+     inkscape:connector-curvature="0" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="707"
+     y1="232"
+     x2="707"
+     y2="704"
+     id="line578" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:2"
+     x1="747"
+     y1="232"
+     x2="747"
+     y2="704"
+     id="line580" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 707,704 a 4,4 0 0 0 4,4"
+     id="path582"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:2"
+     d="m 743,708 a 4,4 0 0 0 4,-4"
+     id="path584"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif"
+     x="727"
+     y="471.89999"
+     id="text586">
+    <tspan
+       x="727"
+       y="471.89999"
+       id="tspan588" />
+  </text>
+  <path
+     inkscape:connector-curvature="0"
+     id="path694"
+     d="m 51,148 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path696"
+     d="m 87,152 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path700"
+     d="m 47,884 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path702"
+     d="m 83,888 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line704"
+     y2="148"
+     x2="83"
+     y1="148"
+     x1="51"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line706"
+     y2="888"
+     x2="83"
+     y1="888"
+     x1="51"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path708"
+     d="m 51,148 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path710"
+     d="m 87,152 a 4,4 0 0 0 -4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line712"
+     y2="884"
+     x2="47"
+     y1="152"
+     x1="47"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line714"
+     y2="884"
+     x2="87"
+     y1="152"
+     x1="87"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path716"
+     d="m 47,884 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path718"
+     d="m 83,888 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text720"
+     y="521.90002"
+     x="67"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan722"
+       y="521.90002"
+       x="67" />
+  </text>
+  <rect
+     id="rect726"
+     height="60"
+     width="32"
+     y="208"
+     x="71"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path728"
+     d="m 71,208 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path730"
+     d="m 107,212 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <rect
+     id="rect732"
+     height="52"
+     width="40"
+     y="212"
+     x="67"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path734"
+     d="m 67,264 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path736"
+     d="m 103,268 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line738"
+     y2="208"
+     x2="103"
+     y1="208"
+     x1="71"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line740"
+     y2="268"
+     x2="103"
+     y1="268"
+     x1="71"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path742"
+     d="m 71,208 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path744"
+     d="m 107,212 a 4,4 0 0 0 -4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line746"
+     y2="264"
+     x2="67"
+     y1="212"
+     x1="67"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line748"
+     y2="264"
+     x2="107"
+     y1="212"
+     x1="107"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path750"
+     d="m 67,264 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path752"
+     d="m 103,268 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text754"
+     y="241.89999"
+     x="87"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan756"
+       y="241.89999"
+       x="87" />
+  </text>
+  <g
+     id="g758">
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 128.006,190 A 2,2 0 0 0 126.006,188"
+       id="path760" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="87.9857"
+       y1="188"
+       x2="126.006"
+       y2="188"
+       id="line762" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 126.006,238 A 2,2 0 0 0 128.006,236"
+       id="path764" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="128.006"
+       y1="190"
+       x2="128.006"
+       y2="236"
+       id="line766" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="126.006"
+       y1="238"
+       x2="117.73"
+       y2="238"
+       id="line768" />
+    <polygon
+       style="fill: #000000"
+       points="110.23,238 120.23,233 117.73,238 120.23,243 "
+       id="polygon770" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="110.23,238 120.23,233 117.73,238 120.23,243 "
+       id="polygon772" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="180"
+     id="text774">
+    <tspan
+       x="107"
+       y="180"
+       id="tspan776">Start licznika</tspan>
+  </text>
+  <g
+     id="g778">
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 165.503,288 A 2,2 0 0 0 167.503,286"
+       id="path780" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="88.0051"
+       y1="288"
+       x2="165.503"
+       y2="288"
+       id="line782" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 169.503,268 A 2,2 0 0 0 167.503,270"
+       id="path784" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="167.503"
+       y1="286"
+       x2="167.503"
+       y2="270"
+       id="line786" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="169.503"
+       y1="268"
+       x2="237.264"
+       y2="268"
+       id="line788" />
+    <polygon
+       style="fill: #000000"
+       points="244.764,268 234.764,273 237.264,268 234.764,263 "
+       id="polygon790" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="244.764,268 234.764,273 237.264,268 234.764,263 "
+       id="polygon792" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="304"
+     id="text794">
+    <tspan
+       x="107"
+       y="304"
+       id="tspan796">Wysyła żądanie</tspan>
+    <tspan
+       x="107"
+       y="320"
+       id="tspan798">nadania sygnału</tspan>
+  </text>
+  <g
+     id="g800">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="287,308 287,308 417.264,308 "
+       id="polyline802" />
+    <polygon
+       style="fill: #000000"
+       points="424.764,308 414.764,313 417.264,308 414.764,303 "
+       id="polygon804" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="424.764,308 414.764,313 417.264,308 414.764,303 "
+       id="polygon806" />
+  </g>
+  <g
+     id="g808">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="287,348 287,348 557.264,348 "
+       id="polyline810" />
+    <polygon
+       style="fill: #000000"
+       points="564.764,348 554.764,353 557.264,348 554.764,343 "
+       id="polygon812" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="564.764,348 554.764,353 557.264,348 554.764,343 "
+       id="polygon814" />
+  </g>
+  <g
+     id="g816">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="287,388 287,388 697.264,388 "
+       id="polyline818" />
+    <polygon
+       style="fill: #000000"
+       points="704.764,388 694.764,393 697.264,388 694.764,383 "
+       id="polygon820" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="704.764,388 694.764,393 697.264,388 694.764,383 "
+       id="polygon822" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="307"
+     y="300"
+     id="text824">
+    <tspan
+       x="307"
+       y="300"
+       id="tspan826">Wysyła sygnał</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="307"
+     y="340"
+     id="text828">
+    <tspan
+       x="307"
+       y="340"
+       id="tspan830">Wysyła sygnał</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="307"
+     y="380"
+     id="text832">
+    <tspan
+       x="307"
+       y="380"
+       id="tspan834">Wysyła sygnał</tspan>
+  </text>
+  <g
+     id="g836">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="88.0051,448 88.0051,448 417.264,448 "
+       id="polyline838" />
+    <polygon
+       style="fill: #000000"
+       points="424.764,448 414.764,453 417.264,448 414.764,443 "
+       id="polygon840" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="424.764,448 414.764,453 417.264,448 414.764,443 "
+       id="polygon842" />
+  </g>
+  <g
+     id="g844">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="88.0051,488 88.0051,488 557.264,488 "
+       id="polyline846" />
+    <polygon
+       style="fill: #000000"
+       points="564.764,488 554.764,493 557.264,488 554.764,483 "
+       id="polygon848" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="564.764,488 554.764,493 557.264,488 554.764,483 "
+       id="polygon850" />
+  </g>
+  <g
+     id="g852">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="88.0051,528 88.0051,528 697.264,528 "
+       id="polyline854" />
+    <polygon
+       style="fill: #000000"
+       points="704.764,528 694.764,533 697.264,528 694.764,523 "
+       id="polygon856" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="704.764,528 694.764,533 697.264,528 694.764,523 "
+       id="polygon858" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="440"
+     id="text860">
+    <tspan
+       x="107"
+       y="440"
+       id="tspan862">Aktywuje zliczanie</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="480"
+     id="text864">
+    <tspan
+       x="107"
+       y="480"
+       id="tspan866">Aktywuje zliczanie</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="520"
+     id="text868">
+    <tspan
+       x="107"
+       y="520"
+       id="tspan870">Aktywuje zliczanie</tspan>
+  </text>
+  <g
+     id="g872">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="427,588 427,588 97.7412,588 "
+       id="polyline874" />
+    <polygon
+       style="fill: #000000"
+       points="90.2412,588 100.241,583 97.7412,588 100.241,593 "
+       id="polygon876" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="90.2412,588 100.241,583 97.7412,588 100.241,593 "
+       id="polygon878" />
+  </g>
+  <g
+     id="g880">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="567,628 567,628 97.7412,628 "
+       id="polyline882" />
+    <polygon
+       style="fill: #000000"
+       points="90.2412,628 100.241,623 97.7412,628 100.241,633 "
+       id="polygon884" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="90.2412,628 100.241,623 97.7412,628 100.241,633 "
+       id="polygon886" />
+  </g>
+  <g
+     id="g888">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="707,668 707,668 97.7412,668 "
+       id="polyline890" />
+    <polygon
+       style="fill: #000000"
+       points="90.2412,668 100.241,663 97.7412,668 100.241,673 "
+       id="polygon892" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="90.2412,668 100.241,663 97.7412,668 100.241,673 "
+       id="polygon894" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="580"
+     id="text896">
+    <tspan
+       x="107"
+       y="580"
+       id="tspan898">Zwraca opóźnienie</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="620"
+     id="text900">
+    <tspan
+       x="107"
+       y="620"
+       id="tspan902">Zwraca opóźnienie</tspan>
+  </text>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="660"
+     id="text904">
+    <tspan
+       x="107"
+       y="660"
+       id="tspan906">Zwraca opóźnienie</tspan>
+  </text>
+  <g
+     id="g908">
+    <rect
+       style="fill: #ffffff"
+       x="71"
+       y="748"
+       width="32"
+       height="60"
+       id="rect910" />
+    <path
+       style="fill: #ffffff"
+       d="M 71,748 A 4,4 0 0 0 67,752 L 71,752 z"
+       id="path912" />
+    <path
+       style="fill: #ffffff"
+       d="M 107,752 A 4,4 0 0 0 103,748 L 103,752 z"
+       id="path914" />
+    <rect
+       style="fill: #ffffff"
+       x="67"
+       y="752"
+       width="40"
+       height="52"
+       id="rect916" />
+    <path
+       style="fill: #ffffff"
+       d="M 67,804 A 4,4 0 0 0 71,808 L 71,804 z"
+       id="path918" />
+    <path
+       style="fill: #ffffff"
+       d="M 103,808 A 4,4 0 0 0 107,804 L 103,804 z"
+       id="path920" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       x1="71"
+       y1="748"
+       x2="103"
+       y2="748"
+       id="line922" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       x1="71"
+       y1="808"
+       x2="103"
+       y2="808"
+       id="line924" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       d="M 71,748 A 4,4 0 0 0 67,752"
+       id="path926" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       d="M 107,752 A 4,4 0 0 0 103,748"
+       id="path928" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       x1="67"
+       y1="752"
+       x2="67"
+       y2="804"
+       id="line930" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       x1="107"
+       y1="752"
+       x2="107"
+       y2="804"
+       id="line932" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       d="M 67,804 A 4,4 0 0 0 71,808"
+       id="path934" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       d="M 103,808 A 4,4 0 0 0 107,804"
+       id="path936" />
+    <text
+       style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+       x="87"
+       y="781.9"
+       id="text938">
+      <tspan
+         x="87"
+         y="781.9"
+         id="tspan940" />
+    </text>
+  </g>
+  <g
+     id="g942">
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 128.005,730 A 2,2 0 0 0 126.005,728"
+       id="path944" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="88.0051"
+       y1="728"
+       x2="126.005"
+       y2="728"
+       id="line946" />
+    <path
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       d="M 126.005,778 A 2,2 0 0 0 128.005,776"
+       id="path948" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="128.005"
+       y1="730"
+       x2="128.005"
+       y2="776"
+       id="line950" />
+    <line
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000"
+       x1="126.005"
+       y1="778"
+       x2="117.741"
+       y2="778"
+       id="line952" />
+    <polygon
+       style="fill: #000000"
+       points="110.241,778 120.241,773 117.741,778 120.241,783 "
+       id="polygon954" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="110.241,778 120.241,773 117.741,778 120.241,783 "
+       id="polygon956" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="107"
+     y="724"
+     id="text958">
+    <tspan
+       x="107"
+       y="724"
+       id="tspan960">Zatrzymuje licznik</tspan>
+  </text>
+  <path
+     inkscape:connector-curvature="0"
+     id="path966"
+     d="m 841,828 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path968"
+     d="m 877,832 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path972"
+     d="m 837,864 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path974"
+     d="m 873,868 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line976"
+     y2="828"
+     x2="873"
+     y1="828"
+     x1="841"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line978"
+     y2="868"
+     x2="873"
+     y1="868"
+     x1="841"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path980"
+     d="m 841,828 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path982"
+     d="m 877,832 a 4,4 0 0 0 -4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line984"
+     y2="864"
+     x2="837"
+     y1="832"
+     x1="837"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line986"
+     y2="864"
+     x2="877"
+     y1="832"
+     x1="877"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path988"
+     d="m 837,864 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path990"
+     d="m 873,868 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text992"
+     y="851.90002"
+     x="857"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan994"
+       y="851.90002"
+       x="857" />
+  </text>
+  <g
+     id="g996">
+    <polyline
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="87.993,848 367,848 367,848 826.262,848 "
+       id="polyline998" />
+    <polygon
+       style="fill: #000000"
+       points="833.762,848 823.762,853 826.262,848 823.762,843 "
+       id="polygon1000" />
+    <polygon
+       style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000"
+       points="833.762,848 823.762,853 826.262,848 823.762,843 "
+       id="polygon1002" />
+  </g>
+  <text
+     style="fill: #000000;text-anchor:start;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal"
+     x="315"
+     y="840"
+     id="text1004">
+    <tspan
+       x="315"
+       y="840"
+       id="tspan1006">Przekazuje dane</tspan>
+  </text>
+  <path
+     inkscape:connector-curvature="0"
+     id="path1012"
+     d="m 11,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1014"
+     d="m 127,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1018"
+     d="m 7,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1020"
+     d="m 123,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1022"
+     y2="8"
+     x2="123"
+     y1="8"
+     x1="11"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1024"
+     y2="57"
+     x2="123"
+     y1="57"
+     x1="11"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1026"
+     d="M 11,8 A 4,4 0 0 0 7,12"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1028"
+     d="M 127,12 A 4,4 0 0 0 123,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1030"
+     y2="53"
+     x2="7"
+     y1="12"
+     x1="7"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1032"
+     y2="53"
+     x2="127"
+     y1="12"
+     x1="127"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1034"
+     d="m 7,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1036"
+     d="m 123,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1038"
+     y="36.400002"
+     x="67"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1040"
+       y="36.400002"
+       x="67">Mikrokontroler</tspan>
+  </text>
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="67,57 67,57 67,148 67,148 "
+     id="polyline1042" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1048"
+     d="m 231,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1050"
+     d="m 307,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1054"
+     d="m 227,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1056"
+     d="m 303,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1058"
+     y2="8"
+     x2="303"
+     y1="8"
+     x1="231"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1060"
+     y2="57"
+     x2="303"
+     y1="57"
+     x1="231"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1062"
+     d="m 231,8 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1064"
+     d="M 307,12 A 4,4 0 0 0 303,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1066"
+     y2="53"
+     x2="227"
+     y1="12"
+     x1="227"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1068"
+     y2="53"
+     x2="307"
+     y1="12"
+     x1="307"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1070"
+     d="m 227,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1072"
+     d="m 303,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1074"
+     y="36.400002"
+     x="267"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1076"
+       y="36.400002"
+       x="267">Nadajnik</tspan>
+  </text>
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="267,57 267,57 267,208 267,208 "
+     id="polyline1078" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1084"
+     d="m 391,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1086"
+     d="m 507,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1090"
+     d="m 387,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1092"
+     d="m 503,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1094"
+     y2="8"
+     x2="503"
+     y1="8"
+     x1="391"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1096"
+     y2="57"
+     x2="503"
+     y1="57"
+     x1="391"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1098"
+     d="m 391,8 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1100"
+     d="M 507,12 A 4,4 0 0 0 503,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1102"
+     y2="53"
+     x2="387"
+     y1="12"
+     x1="387"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1104"
+     y2="53"
+     x2="507"
+     y1="12"
+     x1="507"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1106"
+     d="m 387,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1108"
+     d="m 503,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1110"
+     y="36.400002"
+     x="447"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1112"
+       y="36.400002"
+       x="447">Odbiornik #1</tspan>
+  </text>
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="447,57 447,57 447,228 447,228 "
+     id="polyline1114" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1120"
+     d="m 531,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1122"
+     d="m 647,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1126"
+     d="m 527,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1128"
+     d="m 643,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1130"
+     y2="8"
+     x2="643"
+     y1="8"
+     x1="531"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1132"
+     y2="57"
+     x2="643"
+     y1="57"
+     x1="531"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1134"
+     d="m 531,8 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1136"
+     d="M 647,12 A 4,4 0 0 0 643,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1138"
+     y2="53"
+     x2="527"
+     y1="12"
+     x1="527"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1140"
+     y2="53"
+     x2="647"
+     y1="12"
+     x1="647"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1142"
+     d="m 527,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1144"
+     d="m 643,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1146"
+     y="36.400002"
+     x="587"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1148"
+       y="36.400002"
+       x="587">Odbiornik #2</tspan>
+  </text>
+  <path
+     inkscape:connector-curvature="0"
+     id="path1154"
+     d="m 671,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1156"
+     d="m 787,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1160"
+     d="m 667,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1162"
+     d="m 783,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1164"
+     y2="8"
+     x2="783"
+     y1="8"
+     x1="671"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1166"
+     y2="57"
+     x2="783"
+     y1="57"
+     x1="671"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1168"
+     d="m 671,8 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1170"
+     d="M 787,12 A 4,4 0 0 0 783,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1172"
+     y2="53"
+     x2="667"
+     y1="12"
+     x1="667"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1174"
+     y2="53"
+     x2="787"
+     y1="12"
+     x1="787"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1176"
+     d="m 667,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1178"
+     d="m 783,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1180"
+     y="36.400002"
+     x="727"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1182"
+       y="36.400002"
+       x="727">Odbiornik #3</tspan>
+  </text>
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="587,57 587,57 587,228 587,228 "
+     id="polyline1184" />
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="727,57 727,57 727,228 727,228 "
+     id="polyline1186" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1192"
+     d="m 811,8 a 4,4 0 0 0 -4,4 l 4,0 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1194"
+     d="m 907,12 a 4,4 0 0 0 -4,-4 l 0,4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1198"
+     d="m 807,53 a 4,4 0 0 0 4,4 l 0,-4 z"
+     style="fill:#ffffff" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1200"
+     d="m 903,57 a 4,4 0 0 0 4,-4 l -4,0 z"
+     style="fill:#ffffff" />
+  <line
+     id="line1202"
+     y2="8"
+     x2="903"
+     y1="8"
+     x1="811"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1204"
+     y2="57"
+     x2="903"
+     y1="57"
+     x1="811"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1206"
+     d="m 811,8 a 4,4 0 0 0 -4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1208"
+     d="M 907,12 A 4,4 0 0 0 903,8"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1210"
+     y2="53"
+     x2="807"
+     y1="12"
+     x1="807"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <line
+     id="line1212"
+     y2="53"
+     x2="907"
+     y1="12"
+     x1="907"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1214"
+     d="m 807,53 a 4,4 0 0 0 4,4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path1216"
+     d="m 903,57 a 4,4 0 0 0 4,-4"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <text
+     id="text1218"
+     y="36.400002"
+     x="857"
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:sanserif">
+    <tspan
+       id="tspan1220"
+       y="36.400002"
+       x="857">Komputer</tspan>
+  </text>
+  <polyline
+     style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10; stroke: #000000"
+     points="857,57 857,57 857,828 857,828 "
+     id="polyline1222" />
+</svg>

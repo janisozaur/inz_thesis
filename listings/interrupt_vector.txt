@@ -1,0 +1,20 @@
+00000000 <__vectors>:
+   0:	12 c0    rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0    rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0    rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0    rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0    rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0    rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0    rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0    rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	37 c0    rjmp	.+110    	; 0x80 <__vector_8>
+  12:	25 c0    rjmp	.+74     	; 0x5e <__vector_9>
+  14:	23 c0    rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0    rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0    rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0    rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0    rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0    rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0    rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0    rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0    rjmp	.+54     	; 0x5c <__bad_interrupt>
