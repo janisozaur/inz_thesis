@@ -89,9 +89,8 @@ Istnieje kilka czynników, które można podejrzewać o spowalnianie działania.
 \textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych} \ppauza aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2,40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2,13GHz} jest znikome.
 
 Przeprowadzone testy pokazują, że wspomniany powyżej laptop wykonuje 100000 pełnych cykli takich obliczeń w przeciągu 448ms, co oznacza, że jeden cykl obliczeń zajmuje niecałe 5\textmu s.
-
-% Przyjmuję więc, że praca ta wykonywana jest na tyle szybko, żeby nie spowalniała działania całego systemu\graffito{dodać testy wydajności - ilość pełnych transformacji układu na sekundę}.
-
+\newline
+\newline
 \textsl{Szybkość transmisji danych}
 Szybkość transmisji danych zależy głównie od ilości danych przesyłanych protokołem określonym w sekcji \ref{sec:protocol} oraz prędkości tego protokołu.
 
@@ -114,7 +113,8 @@ gdzie:
 \end{description}
 
 Wykorzystując wymienione powyżej prędkości otrzymujemy czasy odpowiednio 8,3ms oraz 2,1ms.
-
+\newline
+\newline
 \textsl{Szybkość pobierania danych}
 Szybkość pobierania danych uzależniona jest od wykorzystanego zjawiska fizycznego i parametrów elementów je realizujących. W tym przypadku jest to zestaw nadajnik i odbiornik ultradźwiękowe wykorzystujące częstotliowść 40kHz. Związane z tym konsekwencje opisałem już częściowo w sekcji \ref{section:sound_limit}.
 
@@ -134,7 +134,8 @@ W przyszłej wersji systemu można pokusić się o implementację metody, która
  \item jeśli nie zostanie uzyskane potwierdzenie otrzymania sygnału od wszystkich odbiorników w spodziewanym czasie (również odgórnie ustalonym), wysyłać sygnał z tego markera aż do uzyskania potwierdzenia ze wszystkich odbiorników.
 \end{enumerate}
 Chociaż metoda ta może wprowadzać pewne opóźnienia związane z oczekiwaniem na wygaszenie pinów odbiorników, to można przyjąć (jak pokazują testy), że większa część nadawanych sygnałów trafia do odbiorników, zatem skumulowana wydajność metody powinna być wyższa.
-
+\newline
+\newline
 \textsl{Odbicia sygnału}
 Kolejnym bardzo niekorzystnym dla systemu zjawiskiem są odbicia sygnału dźwiękowego od otoczenia. Podczas pierwszych testów urządzenia zauważyłem, że większa część pomiarów nijak ma się do rzeczywistości. Wykorzystując analizator logiczny zbadałem jakie faktycznie sygnały otrzymuje mikrokontroler na pinach odbiorników.
 
@@ -172,7 +173,8 @@ Wprawdzie ,,rozwiązanie'' działa, jednak znacząco spowalnia system \ppauza od
 Inną metodą obejścia tego problemu jest zwiększenie tłumienia sygnału rejestrowanego przez odbiornik. Praktyka pokazuje, że takie działanie faktycznie eliminuje problem, z drugiej jednak strony stanowczo pogarsza sprawność systemu, gdyż wymagane jest wtedy znacznie precyzyjniejsze celowanie markerem w odbiorniki. Oscylogram tego badania przedstawia rysunek \ref{fig:oscilloscope_attenuated}.
 
 Z tego też powodu uznałem to za rozwiązanie gorsze, gdyż gracz, który jest docelowym użytkownikiem, w ferworze gry nie może pozwolić sobie na troskanie się sprawnością wykorzystywanego kontrolera.
-
+\newline
+\newline
 \textsl{Podsumowanie szybkości działania}
 Opierając się na wspomnianych powyżej testach widać, że czynnikiem powodującym największe opóźnienia jest dokładnie ten sam, który najtrudniej wyeliminować, czyli odbicia dźwięku. W związku z wprowadzonymi obejściami problemów, wydajność systemu ograniczona jest do najwyżej 25Hz\graffito{Pełen status nadawany jest co minimum 40ms}.
 
