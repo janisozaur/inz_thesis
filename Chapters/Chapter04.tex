@@ -9,7 +9,7 @@ W swojej pracy wykorzystałem sprzęt, który pokrótce omówię.
 Sprzęt, abstrahując od szczegółowego sposobu realizacji, składa się z dwóch \index{marker}markerów, których funkcje pełnią głośniki ultradźwiękowe, trzech \index{odbiornik}odbiorników pod postacią mikrofonów ultradźwiękowych oraz \index{mikrokontroler}mikrokontrolera \textsmaller{AVR Atmega8}. Dodatkowo w układzie zamontowanych jest 8 diod LED, które służą do nadzorowania stanu układu.
 
 \subsection{W ogóle}
-Działanie mikrokontrolera sprowadza się do ciągłego, aktywnego prowadzenia pomiarów opóźnień czasów propagacji sygnału ultradźwiękowego pomiędzy markerami, a odbiornikami. Pozyskane w ten sposób dane przekazywane są za pomocą wyznaczonego \index{protokół}protokołu do komputera, gdzie następuje ich dalsza obróbka.
+Działanie mikrokontrolera sprowadza się do ciągłego, aktywnego prowadzenia pomiarów opóźnień czasów propagacji sygnału ultradźwiękowego pomiędzy markerami, a odbiornikami. Pozyskane w ten sposób dane przekazywane są za pomocą specjalnie opracowanego \index{protokół}protokołu do komputera, gdzie następuje ich dalsza obróbka.
 
 Uproszczony schemat układu prezentuje rysunek~\ref{fig:device_scheme}.
 
@@ -74,7 +74,7 @@ Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed
 \index{trilateracja}
 Metoda wyznaczenia trójwymiarowej pozycji znając odległości od trzech punktów o znanych współrzędnych nazywana jest \textit{trilateracją}\graffito{dodać info skąd to wiadomo}.
 
-Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, drugi na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$}. Przyjmując takie rozmieszczenie, jakie zaprezentowane jest na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
+Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, drugi na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$}. Rozmieszczenie takie zaprezentowano na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
 \begin{center}
  $S_1 (0, 0)$
 
