@@ -401,6 +401,36 @@ Jak widać dodanie nowego markera jest zadaniem trywialnym.
 
 Chociaż kosztem łatwości rozszerzalności oprogramowania wymaganych jest kilka wywołań funkcji więcej, to nie ma to znaczącego wpływu na wydajność programu.
 
+\subsection{Stickman}
+Trzecią i ostatnią stworzoną aplikacją demo jest \textsl{Stickman}.
+
+Zadaniem tej aplikacji jest odwzorowywanie ruchów użytkownika na ekranie komputera. W głównej części aplikacji rysowana jest figurka imitująca użytkownika, której ruchy rąk odpowiadają ruchom wykonywanym przez użytkownika.
+
+\paragraph{Kalibracja}
+Ze względu na możliwość wykorzystania \textsl{Nietoperza} przez różnych użytkowników, do poprawnego działania tej aplikacji wymagane jest przeprowadzenie kalibracji, która dostosowywuje parametry aplikacji do aktualnego użytkownika.
+
+Stworzyłem dwie metody kalibracji:
+\begin{itemize}
+  \item zwykła,
+  \item eksperymentalna.
+\end{itemize}
+\newline
+\newline
+\textsl{Kalibracja zwykła} W trybie zwykłym możliwe jest przystosowanie systemu do działania podczas noszenia przez użytkownika. Jest to prostsza z dwóch metod, która wykorzystuje zmiany pozycji względem oczekiwanych osi do odwzorowania ruchów rękoma. Do przeprowadzenia tej kalibracji potrzebne jest pobranie dwóch punktów kontrolnych:
+\begin{itemize}
+  \item punkt bliski, czyli taki, który znajduje się przy ramieniu użytkownika,
+  \item punkt daleki, czyli taki, który znajduje się na w miejscu, w którym będzie ręka użytkownika gdy zostanie ona wyprostowana przed siebie.
+\end{itemize}
+
+Na podstawie tych informacji można wyznaczyć długość ręki (długość wektora pomiędzy tymi punktami), przesunięcie ramienia względem początku układu współrzędnych oraz ,,domyślne'' wychylenie ręki w płaszczyznach XZ (poziome) oraz YZ (pionowe).
+
+Każda kolejna pozyskana próbka posłuży do sprawdzenia względnej pozycji wobec punktu bliskiego i dalekiego, a następnie na podstawie odwrotnych równań trygonometrycznych wyznaczone zostaną kąty, o jakie należało będzie obrócić rękę wokół osi X oraz Y.
+
+Rysowana figurka potrafi także, na podstawie długości wektora mającego początek w punkcie bliskim, zaś koniec w aktualnej próbce, zginać rękę. Działanie to jest jednak ograniczone do tylko i wyłącznie jednej płaszczyzny, poniewać nie przewidziano pozyskania informacji dotyczącej pozycji łokcia. Może zatem istnieć wiele takich ustawień ręki, które spowodują przesunięcie markera do tej samej pozycji, lecz dla aplikacji tej wszystkie one będą jednakowe.
+\newline
+\newline
+\textsl{Kalibracja eksperymentalna} Drugi typ kalibracji, znacznie bardziej złożony od pierwszego w założeniu pozwalać miał na wykorzystanie \textsl{Nietoperza} z dowolnej pozycji. Pozostało to niestety tylko założeniem, gdyż pomimo mnogich testów i rozważań teoretycznych nie udało się doprowadzić tej metody do stanu w pełni sprawnego \ppauza chociaż wielokrotnie wydawało się, że wszystko już działa, to kolejny test pokazywał, że byłem w błędzie.
+
 \section{Protokół}
 \label{sec:protocol}
 \index{protokół}
