@@ -77,7 +77,7 @@ Za zmianę będziemy przyjmować wygaszenie pinu mikrokontrolera, co spowodowane
 \paragraph{Teoretyczne ograniczenia całego systemu}
 Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i odbiorników.
 
-Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG jest odpowiednio droga, wykorzystuje jednak znacznie wyższe częstotliwości} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
+Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
 Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także wymienić kwarc generujący częstotliwość dla tych elementów. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
 \begin{equation}
@@ -149,7 +149,7 @@ Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczy
 W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
 
 \paragraph{Qt}
-Wieloplatformowe środowisko (ang. \textsl{framework}) \textsmaller{Qt}, licencjonowane wolną licencją \textsc{GNU LGPL 2.1} oraz \textsc{GNU GPL 3.0}, składa się z kilku komponentów. W jego skład wchodzą między innymi: biblioteka \textsc{Qt} oraz kompilator \verb|moc|. Wszystkie te elementy znacznie usprawniają pisanie aplikacji w języku \verb|C++| dostarczając metod, które abstrachują od specyfiki wykorzystywanego systemu operacyjnego.
+Wieloplatformowe środowisko (ang. \textsl{framework}) \textsmaller{Qt}, licencjonowane wolną licencją \textsc{GNU LGPL 2.1} oraz \textsc{GNU GPL 3.0}, składa się z kilku komponentów. W jego skład wchodzą między innymi: biblioteka \textsc{Qt} oraz kompilator \verb|moc|. Wszystkie te elementy znacznie usprawniają pisanie aplikacji w języku \verb|C++| dostarczając metod, które abstrahują od specyfiki wykorzystywanego systemu operacyjnego.
 
 Pisanie nawet skomplikowanych programów z wykorzystaniem \textsc{Qt} jest proste, łatwe, szybkie i przyjemne. Programista świadomy różnic pomiędzy systemami operacyjnymi i delegujący obsługę parametrów do metod dostarczanych przez klasy bibliotek \textsc{Qt} zyskuje możliwość skompilowania swojego kodu pod platformy \textsc{Linux}, \textsc{Windows} oraz \textsc{Mac OS X} bez konieczności jakichkolwiek zmian.
 
@@ -159,7 +159,7 @@ Szerokie spektrum dostarczanych klas (począwszy od kontenerów danych i metod i
 \textsl{Sygnały i sloty}
 Ze względu na intensywne wykorzystywanie w stworzonych aplikacjach połączeń sygnał-slot, zamieszczam poniżej ich opis.
 
-Centralną właściwością środowiska \textsc{Qt}, a jednocześnie jedną z najbardziej odróżniających ten framework od innych, jest mechanizm sygnałów i slotów będący zarządzaną metoda komunikacji pomiędzy obiektami.
+Centralną właściwością środowiska \textsc{Qt}, a jednocześnie jedną z najbardziej odróżniających ten framework od innych, jest mechanizm sygnałów i slotów będący zarządzaną metodą komunikacji pomiędzy obiektami.
 
 Chociaż na pierwszy rzut oka przypomina ona znane dotychczas metody oparte o wywołania zwrotne (ang. \textsl{callback}) i faktycznie się z nich wywodzi, to jednak różni się od nich w kilku kluczowych aspektach.
 
@@ -214,7 +214,7 @@ Deklarację pewnej minimalnej klasy zawierającej sloty prezentuje listing \ref{
   \label{lst:slots_declaration}
 \end{listing}
 
-Połączenie emitera ze słuchaczem następuje poprzez wywołanie metody \verb|connect| klasy \verb|QObject|, której argumentami są obiekty nadający i odbrierający, a także nazwy łączonych metod. Sygnatura slotu i sygnału musi być taka sama, z wyjątkiem zwracanego typu.
+Połączenie emitera ze słuchaczem następuje poprzez wywołanie metody \verb|connect| klasy \verb|QObject|, której argumentami są obiekty nadający i odbierający, a także nazwy łączonych metod. Sygnatura slotu i sygnału musi być taka sama, z wyjątkiem zwracanego typu.
 
 Użyteczną cechą jest możliwość podłączenia sygnału do sygnału, dzięki czemu zostanie wywołany drugi z sygnałów, a w efekcie podłączone do niego sloty.
 
@@ -226,7 +226,7 @@ Pozostała charakterystyka tego rozwiązania, taka jak przekazywanie meta-typów
 Zadaniem tego narzędzia jest przeparsowanie dostarczonych plików źródłowych pod kątem odszukania wśród nich deklaracji klas dziedziczących z \verb|QObject|, a zatem wykorzystujących rozszerzone możliwości oferowane przez \textsc{Qt} i wygenerowanie kodu zrozumiałego przez wspomniany wyżej ,,zwykły'' kompilator. Kod dostarczony przez programistę, pozbawiony rozszerzeń \textsc{Qt} oraz kod wygenerowany przez narzędzie \texttt{moc} są kompilowane, a następnie łączone ze sobą na etapie linkowania.
 
 \paragraph{QSerialPort}
-Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jako samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z głównych powodów, dla których wybrałem właśnie ją.
+Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jak samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z głównych powodów, dla których wybrałem właśnie ją.
 
 Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie.
 
@@ -313,7 +313,7 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
-Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednie wykresów pozycji markera oraz jego odległości, ustawiane są parametry wykresów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych. Wykresy przedstawiają dane pobrane w ciągu ostatnich 10 sekund i wraz z przybywaniem kolejnych danych wykres jest przesuwany aby spełnić wymieniony właśnie warunek.
+Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednio wykresów pozycji markera oraz jego odległości, ustawiane są parametry tych obiektów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych. Wykresy przedstawiają dane pobrane w ciągu ostatnich 10 sekund i wraz z przybywaniem kolejnych danych wykres jest przesuwany aby spełnić wymieniony właśnie warunek.
 
 Następuje inicjalizacja pozostałych danych interfejsu użytkownika:
 \begin{itemize}
@@ -344,13 +344,13 @@ public:
 
 Instancja ta tworzona jest dopiero podczas pierwszego wywołania metody \verb|instance()| i ,,żyje'' aż do końca działania aplikacji. Konstruktor tej klasy dokonuje iteracji przez dostępne markery i inicjalizuje lokalne bufory danych dla każdego z markerów. Aby uniknąć konieczności deklarowania pola dla każdego z markerów, co wykluczyłoby prezentowaną poniżej metodę rozszerzania o kolejne markery, zastosowałem kontener \verb|QHash|, którego kluczem jest identyfikator markera \verb|Sample::Marker|, zaś wartością tablica \verb|QVector| zawierająca dane próbek. Analogiczne rozwiązanie zaimplementowałem dla wykorzystywanych przez \textsc{QWT} prostokątów otaczających, lecz w tym przypadku wartością kontenera jest klasa \verb|QRectF| opisująca prostokąt za pomocą danych zmiennoprzecinkowych.
 
-Celem tej klasy jest zapewnienie interfejsu do buforowania i rozdysponowywania danych, który abstrachuje od implementacji metody faktycznie pobierającej dane.
+Celem tej klasy jest zapewnienie interfejsu do buforowania i rozdysponowywania danych, który abstrahuje od implementacji metody faktycznie pobierającej dane.
 
 Po odczytaniu danych z portu szeregowego dopisywane są one do dynamicznej tablicy będącej polem \verb|SamplingThread|. Dopiero teraz następuje synchronizacja i identyfikacja raportów, zgodnie z algorytmem \ref{alg:sync} (str. \pageref{alg:sync}).
 
 Jeśli udało się zsynchronizować dane, co oznacza, że przybyła przynajmniej jedna próbka, emitowany jest sygnał \verb|dataArrived()|, którego odbiorcą jest metoda \verb|SignalData::fetchSamples()|. Pobiera ona dane z \verb|SamplingThread| i dla każdej nowej próbki dopisuje ją do lokalnego bufora, a także przetwarza aktualizując na tej podstawie prostokąt otaczający.
 
-Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie na potrzeby \textsc{QWT} w metodzie \verb|SignalData::fetchSamples()| ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonuję wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
+Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie na potrzeby \textsc{QWT} w metodzie \verb|SignalData::fetchSamples()| ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonałem wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
 
 Z pomocą przychodzi tutaj klasa \verb|QMutexLocker|, która w swoim konstruktorze, przyjmującym jako argument tylko wskaźnik do obiektu \verb|QMutex|, blokuje mutex, zaś destruktor odblokowuje go. Dzięki temu, tworząc automatyczną zmienną na początku każdej metody operującej na krytycznych danych zapewniam, że dostęp do nich jest ekskluzywny, tzn. w dowolnym momencie dane te przetwarzane są przez maksymalnie jeden wątek.
 
@@ -428,10 +428,10 @@ Na podstawie tych informacji można wyznaczyć długość ręki (długość wekt
 
 Każda kolejna pozyskana próbka posłuży do sprawdzenia względnej pozycji wobec punktu bliskiego i dalekiego, a następnie na podstawie odwrotnych równań trygonometrycznych wyznaczone zostaną kąty, o jakie należało będzie obrócić rękę wokół osi X oraz Y.
 
-Rysowana figurka potrafi także, na podstawie długości wektora mającego początek w punkcie bliskim, zaś koniec w aktualnej próbce, zginać rękę. Działanie to jest jednak ograniczone do tylko i wyłącznie jednej płaszczyzny, poniewać nie przewidziano pozyskania informacji dotyczącej pozycji łokcia. Może zatem istnieć wiele takich ustawień ręki, które spowodują przesunięcie markera do tej samej pozycji, lecz dla aplikacji tej wszystkie one będą jednakowe.
+Rysowana figurka potrafi także, na podstawie długości wektora mającego początek w punkcie bliskim, zaś koniec w aktualnej próbce, zginać rękę. Działanie to jest jednak ograniczone do tylko i wyłącznie jednej płaszczyzny, ponieważ nie przewidziano pozyskania informacji dotyczącej pozycji łokcia. Może zatem istnieć wiele takich ustawień ręki, które spowodują przesunięcie markera do tej samej pozycji, lecz dla aplikacji tej wszystkie one będą jednakowe.
 \newline
 \newline
-\textsl{Kalibracja eksperymentalna} Drugi typ kalibracji, znacznie bardziej złożony od pierwszego w założeniu pozwalać miał na wykorzystanie \textsl{Nietoperza} z dowolnej pozycji. Pozostało to niestety tylko założeniem, gdyż pomimo mnogich testów i rozważań teoretycznych nie udało się doprowadzić tej metody do stanu w pełni sprawnego \ppauza chociaż wielokrotnie wydawało się, że wszystko już działa, to kolejny test pokazywał, że byłem w błędzie.
+\textsl{Kalibracja eksperymentalna} Drugi typ kalibracji, znacznie bardziej złożony od pierwszego, w założeniu pozwalać miał na wykorzystanie \textsl{Nietoperza} z dowolnej pozycji. Pozostało to niestety tylko założeniem, gdyż pomimo mnogich testów i rozważań teoretycznych nie udało się doprowadzić tej metody do stanu pełnej sprawności \ppauza chociaż wielokrotnie wydawało się, że wszystko już działa, to kolejny test pokazywał, że byłem w błędzie.
 
 Do przeprowadzenia tej metody kalibracji wymagany jest jeden punkt więcej niż ma to miejsce przy kalibracji metodą zwykłą. Wynika to z konieczności ponownego ustawienia trójwymiarowego układu współrzędnych, a znając tylko dwa punkty, wiadomo, że są one współliniowe, zaś dookoła prostej możliwy jest dowolny obrót. Trzeci, niewspółliniowy punkt, pozwoli na określenie dokładnej translacji i rotacji.
 
