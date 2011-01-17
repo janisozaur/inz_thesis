@@ -85,8 +85,10 @@ Stanowiłoby to duży atut systemu w przypadku jego popularyzacji.
 Niestety, szybkość układu pozostawia wiele do życzenia.
 
 Istnieje kilka czynników, które można podejrzewać o spowalnianie działania. Rozpatrzmy po kolei każdy z nich.
-
-\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych} \ppauza aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2,40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2,13GHz} jest znikome.
+\newline
+\newline
+\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych}
+Aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2,40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2,13GHz} jest znikome.
 
 Przeprowadzone testy pokazują, że wspomniany powyżej laptop wykonuje 100000 pełnych cykli takich obliczeń w przeciągu 448ms, co oznacza, że jeden cykl obliczeń zajmuje niecałe 5\textmu s.
 \newline
