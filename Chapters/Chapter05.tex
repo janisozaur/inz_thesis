@@ -3,7 +3,7 @@
 
 Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylko i wyłącznie z takich właśnie narzędzi.
 
-\graffito{Logo Fundacji Wolnego Oprogramowania \ppauza Free Software Foundation \newline\newline \includegraphics[width=\marginparwidth]{gfx/gnuhead_inkscape.pdf}}Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}.
+\graffito{ \includegraphics[width=\marginparwidth]{gfx/gnuhead_inkscape.pdf} Logo Fundacji Wolnego Oprogramowania \ppauza Free Software Foundation}Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}.
 
 \section{Oprogramowanie mikrokontrolera}
 W pracy wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
@@ -21,7 +21,7 @@ Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbk�
 
 Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie \index{timer}timerów urządzenia \ppauza stara się o dokładność danych, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
 
-Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów znacznie wzrasta ilość taktów zegara, podczas których dane te są przetwarzane. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0} oraz licznika przepełnień \texttt{ovfCounter}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} \ppauza w jednym takcie zegara.
+Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów znacznie wzrasta ilość taktów zegara, podczas których dane te są przetwarzane. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} oraz licznika przepełnień \texttt{ovfCounter} \ppauza w jednym takcie zegara.
 
 Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązało by się jednak z mankamentem wspomnianym powyżej, zaś precyzja osiągana przez oprogramowanie wykorzystujące timer o wielkości ośmiu bitów, jaka została opisana w sekcji \ref{section:microcontroller_limit}, jest wystarczająca do bardzo dokładnego śledzenia pozycji.
 
@@ -241,6 +241,12 @@ Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były w
   \url{https://launchpad.net/janisozaur-inz}
 \end{verse}
 
+\paragraph{Bullet Physics Engine}
+Aby uatrakcyjnić prezentację, a zarazem zademonstrować jedno z przykładowych zastosowań systemu, wykorzystałem otwarty silnik fizyki \textsc{Bullet PE}. Jest to dojrzały projekt, wykorzystywany w wielu popularnych grach (np. \textsc{GTA 4}), programach graficznych (\textsc{Blender}), a także na potrzeby produkcji filmowych (\textsc{2012}).
+
+\paragraph{OpenGL}
+\textsc{OpenGL} to otwarta biblioteka graficzna, której implementację dostarcza zwykle producent sterowników do posiadanej karty graficznej. Udostępnia ona możliwości tego elementu na potrzeby renderowania, przetwarzania i wyświetlania grafiki trójwymiarowej.
+
 \subsection{Trilaterator}
 Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części programu.
 
@@ -414,9 +420,11 @@ Program, podczas przykładowego uruchomienia, zaprezentowany jest na rysunku \re
 
 \subsection{Stickman}
 \label{sec:app_stickman}
-Trzecią i ostatnią stworzoną aplikacją demo jest \textsl{Stickman}.
+Trzecią i ostatnią, a zarazem najciekawszą, z punktu widzenia użytkownika końcowego, stworzoną aplikacją demo jest \textsl{Stickman}.
 
 Zadaniem tej aplikacji jest odwzorowywanie ruchów użytkownika na ekranie komputera. W głównej części aplikacji rysowana jest figurka imitująca użytkownika, której ruchy rąk odpowiadają ruchom wykonywanym przez użytkownika.
+
+Dzięki zastosowaniu silnika fizyki możliwa jest prezentacja interakcji z wirtualnym otoczeniem, jaka możliwa jest poprzez śledzenie ruchów.
 
 \paragraph{Kalibracja}
 Ze względu na możliwość wykorzystania \textsl{Nietoperza} przez różnych użytkowników, do poprawnego działania tej aplikacji wymagane jest przeprowadzenie kalibracji, która dostosowywuje parametry aplikacji do aktualnego użytkownika.
@@ -452,7 +460,17 @@ Program oparty został o istniejące wcześniej źródła programu \textsmaller{
 
 Wspomniana pętla zdarzeń, stanowiąca ciało wirtualnej metody \verb|run()|, to prosta pętla \verb|while|, która usypiana jest na zadany interwał, po czym wywołuje funkcję odpytującą port o nowe dane. Aby móc poprawnie zakończyć działanie wątku, w każdej iteracji sprawdzany jest stan zmiennej \verb|mRun|, która określa, czy wątek ma wciąż działać \ppauza ma ona wtedy wartość \verb|true|. Podczas zamykania programu usuwany jest obiekt tego wątku, a jego destruktor wywołuje metodę \verb|stop()|, która zapewnia bezpieczny sposób zwolnienia zasobów i pozamykania otwartych połączeń.
 
-Program umożliwia też przeprowadzenie prostego testu wydajności: procedura przekształcania układu współrzędnych wywoływana jest 100000 razy, a sumaryczny czas, jaki zajęło to działanie wypisywany jest na standardowym wyjściu błędów \verb|stderr|.
+Klasa \verb|GLWidget| odpowiada za wyświetlanie sceny za pomocą biblioteki \textsc{OpenGL}. Osadzone są w niej również instancje obiektów odpowiedzialnych za przetwarzanie zdarzeń fizycznych. Akcje te są od siebie niezależne i możliwa jest sytuacja, gdy nastąpi wyświetlenie kilku klatek z takim samym ustawieniem elementów z powodu nieprzetworzenia danych świata fizycznego pomiędzy nimi, jak i sytuacja odwrotna, czyli pominięcie wyświetlenia pewnych danych dostarczonych przez silnik fizyki.
+
+Separacja tych zdarzeń ma na celu umożliwienie przetwarzania danych w sposób niezależny, gdyż nie jest możliwym przewidzenie, jak dużo czasu zajmie wyrenderowanie i wyświetlenie klatki oraz obliczenie nowych pozycji ciał przez silnik fizyki. Nominalnie odświeżanie klatek następuje co 20ms, zaś krok symulacji silnika fizyki wywoływany jest co 15ms.
+
+Przybycie każdego raportu powoduje aktualizację stanu klasy \verb|GLWidget| oraz ponowne przeliczenie kątów w zgięciach ręki. W miejscu dłoni każdej z rąk umocowana jest sfera, która jest ciałem kinematycznym\graffito{Ciało kinematyczne może powodować akcje w silniku fizyki, lecz nie jest ich odbiorcą}. Pozwala to na uderzenie ustawionych pudełek i obserwację ich zachowań.
+
+Możliwe jest włączanie i wyłączanie rysowania wybarnych komponentów sceny w trakcie działania programu, co pozwala na dokładniejszą analizę jego działania.
+
+Ponieważ elementy interfejsu zajmują znaczną część ekranu, nie pozostawiając wiele na obszar renderowania, zgrupowałem je w karty, które dodatkowo można ukryć, pozostawiając na ekranie miejsce tylko na wyrenderowany obraz. Przywracanie paska opcji odbywa się z poziomu menu programu.
+
+Program umożliwia też przeprowadzenie prostego testu wydajności: procedura przekształcania układu współrzędnych w trybie kalibracji eksperymentalnej wywoływana jest 100000 razy, a sumaryczny czas, jaki zajęło to działanie wypisywany jest na standardowym wyjściu błędów \verb|stderr|.
 
 \section{Protokół}
 \label{sec:protocol}
