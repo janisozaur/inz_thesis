@@ -31,7 +31,7 @@ Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie 
 
 Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:
 \begin{enumerate}
- \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
+ \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}.} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
     \begin{equation}
       i = \frac{1}{F_{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
       \label{eq:sampling_frequency}
@@ -44,14 +44,14 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
     \end{equation}
 \end{enumerate}
 
-Jak pokazuje równanie~\ref{eq:microcontroller_limit}\graffito{W praktyce należy uwzględnić jeszcze wymagania protokołu \ppauza patrz sekcja \ref{sec:protocol}}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
+Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
 Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
  340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
 \end{equation}
 
-Rozdzielczość\graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem} można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera oraz zwiększając częstotliwość pracy mikrokontrolera.
+Rozdzielczość\graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem.} można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera oraz zwiększając częstotliwość pracy mikrokontrolera.
 
 \paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
@@ -77,7 +77,7 @@ Za zmianę będziemy przyjmować wygaszenie pinu mikrokontrolera, co spowodowane
 \paragraph{Teoretyczne ograniczenia całego systemu}
 Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i odbiorników.
 
-Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
+Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości.} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
 Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także wymienić kwarc generujący częstotliwość dla tych elementów. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
 \begin{equation}
@@ -113,7 +113,7 @@ Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequenc
 \label{sec:prescaler}
 W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dzielnik częstotliwości, o programowanym stopniu podziału. Jego działanie polega na zliczaniu taktów zegara; gdy wewnętrzny licznik prescalera osiągnie zaprogramowaną wcześniej wartość, wyzwalane jest przerwanie timera oraz następuje przepełnienie licznika, w związku z czym zliczana wartość ,,przekręca się'' i liczenie rozpoczyna się ponownie od zera.
 
-Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
+Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia.} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
 
 \paragraph{Przerwania}
 W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w przypadku zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
@@ -186,7 +186,7 @@ Pociąga to za sobą konsekwencję, że jeżeli obiekt nie przynależy do żadne
 
 W celu uproszczenia obsługi, środowisko \textsc{Qt} domyślnie wykorzystuje do wszystkich obiektów wątek główny aplikacji i jeśli programista jawnie nie usunie z niego obiektów, to ich sygnały będą przetwarzane właśnie w tym wątku.
 
-Aby zintegrować to rozwiązanie z kodem, postanowiono ,,rozszerzyć'' standard\graffito{,,Rozszerzenie'' to wykorzystywane jest tylko i wyłącznie do środowiskia \textsc{Qt}} języka \verb|C++|. Do istniejących już kwalifikatorów \verb|public|, \verb|private| i \verb|protected| dodano dwa nowe: \verb|signals| i \verb|slots|.
+Aby zintegrować to rozwiązanie z kodem, postanowiono ,,rozszerzyć'' standard\graffito{,,Rozszerzenie'' to wykorzystywane jest tylko i wyłącznie do środowiskia \textsc{Qt}.} języka \verb|C++|. Do istniejących już kwalifikatorów \verb|public|, \verb|private| i \verb|protected| dodano dwa nowe: \verb|signals| i \verb|slots|.
 
 Kwalifikator \verb|signals| definiuje sygnały. Mają one taką samą strukturę, jak zwykłe metody klasy z następującymi wyjątkami:
 \begin{aenumerate}
@@ -232,10 +232,10 @@ Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}
 Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie.
 
 \paragraph{Qwt}
-Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa.
+Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}.}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa.
 
 \paragraph{Bazaar}
-\textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3}.
+\textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}.}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3}.
 
 Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były wykorzystując te narzędzia i należą do projektu \texttt{janisozaur-inz} dostępnego pod adresem:
 \begin{verse}
@@ -464,7 +464,7 @@ Klasa \verb|GLWidget| odpowiada za wyświetlanie sceny za pomocą biblioteki \te
 
 Separacja tych zdarzeń ma na celu umożliwienie przetwarzania danych w sposób niezależny, gdyż nie jest możliwym przewidzenie, jak dużo czasu zajmie wyrenderowanie i wyświetlenie klatki oraz obliczenie nowych pozycji ciał przez silnik fizyki. Nominalnie odświeżanie klatek następuje co 20ms, zaś krok symulacji silnika fizyki wywoływany jest co 15ms.
 
-Przybycie każdego raportu powoduje aktualizację stanu klasy \verb|GLWidget| oraz ponowne przeliczenie kątów w zgięciach ręki. W miejscu dłoni każdej z rąk umocowana jest sfera, która jest ciałem kinematycznym\graffito{Ciało kinematyczne może powodować akcje w silniku fizyki, lecz nie jest ich odbiorcą}. Pozwala to na uderzenie ustawionych pudełek i obserwację ich zachowań.
+Przybycie każdego raportu powoduje aktualizację stanu klasy \verb|GLWidget| oraz ponowne przeliczenie kątów w zgięciach ręki. W miejscu dłoni każdej z rąk umocowana jest sfera, która jest ciałem kinematycznym\graffito{Ciało kinematyczne może powodować akcje w silniku fizyki, lecz nie jest ich odbiorcą.}. Pozwala to na uderzenie ustawionych pudełek i obserwację ich zachowań.
 
 Możliwe jest włączanie i wyłączanie rysowania wybarnych komponentów sceny w trakcie działania programu, co pozwala na dokładniejszą analizę jego działania.
 
@@ -522,7 +522,7 @@ Zrezygnowałem natomiast z funkcji:
 \begin{itemize}
  \item bity parzystości \ppauza te dane kontrolne bardzo słabo spełniają swoją rolę, gdyż są bardzo podatne na zakłócenia, które powodują przestawienie parzystej ilości bitów,
  \item kontrola przepływu \ppauza funkcjonalność nie jest dostępna w mikrokontrolerze.
- \item więcej niż 8 bitów w jednej ramce \ppauza chociaż mikrokontroler oferuje przesłanie do 9 bitów danych w jednej ramce, to wykorzystanie tej funkcjonalności znacznie ograniczyłoby funkcjonalność platformy ze względu na fakt, iż układy stosowane w komputerach rzadko kiedy oferują obsługę takich ramek\graffito{Obsługa 9-bitowych ramek wymaga też specjalnego oprogramowania}, ponadto spowodowałoby dodatkowy narzut pracy na mikrokontrolerze związany z podziałem danych na 9-bitowe części, nie oferując przy tym żadnego wzrostu wydajności \ppauza przesłanie 64 bitów (8 bajtów) wymagałoby i tak 8 ramek.
+ \item więcej niż 8 bitów w jednej ramce \ppauza chociaż mikrokontroler oferuje przesłanie do 9 bitów danych w jednej ramce, to wykorzystanie tej funkcjonalności znacznie ograniczyłoby funkcjonalność platformy ze względu na fakt, iż układy stosowane w komputerach rzadko kiedy oferują obsługę takich ramek\graffito{Obsługa 9-bitowych ramek wymaga też specjalnego oprogramowania.}, ponadto spowodowałoby dodatkowy narzut pracy na mikrokontrolerze związany z podziałem danych na 9-bitowe części, nie oferując przy tym żadnego wzrostu wydajności \ppauza przesłanie 64 bitów (8 bajtów) wymagałoby i tak 8 ramek.
 \end{itemize}
 
 Pełna ramka standardu RS232 składa się zatem z 10 bitów:

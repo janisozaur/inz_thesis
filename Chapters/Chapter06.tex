@@ -3,7 +3,7 @@
 
 \section{Cele}
 
-Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i Symulacji Komputerowych}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać system, jak np.:
+Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i Symulacji Komputerowych.}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać system, jak np.:
 \begin{itemize}
  \item medycyna \ppauza manipulacja trójwymiarowymi obrazami skanów pacjentów,
  \item cyfrowe modelowanie \ppauza szybkie prototypowanie modeli,
@@ -29,9 +29,9 @@ Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi
 \paragraph{Dokładność}
 Dokładność systemu została już określona w sekcji \ref{section:precision}, pozwolę więc sobie jedynie przytoczyć obliczone parametry.
 
-Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z faktem, że można natknąć się na ograniczenia mikrokontrolera} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
+Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z faktem, że można natknąć się na ograniczenia mikrokontrolera.} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
 
-Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit} i \ref{eq:sound_limit}}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
+Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit} i \ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
 
 Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
 
@@ -71,9 +71,9 @@ Wykonanie tej procedury spowoduje przekształcanie układu współrzędnych urz�
 \paragraph{Kompatybilność z oprogramowaniem}
 Program wykorzystuje do komunikacji z komputerem protokół \index{RS232}\textsmaller{RS232}. Jest to standard komunikacji szeregowej niegdyś bardzo często dostępny w komputerach, jednak dziś odpowiednie złącza i interfejsy dostępne są za sprawą stosunkowo niedrogich adapterów wpinanych do portu \index{USB}\textsmaller{USB}.
 
-Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \index{USART}\textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
+Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \index{USART}\textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter.} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
 
-Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{\index{bps}bps \ppauza baud per second; symbole na sekundę; w~przypadku RS232 1 symbol to 1 bit} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}
+Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{\index{bps}bps \ppauza baud per second; symbole na sekundę; w~przypadku RS232 1 symbol to 1 bit.} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}
 
 Wynika to z równania określającego prędkość transmisji w mikrokontrolerze:
 \begin{equation}
@@ -92,7 +92,7 @@ Każda z tych wartości musi być liczbą całkowitą, co powoduje, że wykorzys
 
 Moje doświadczenie z mikrokontrolerami pokazuje, że wartość ta jest dostatecznie mała, aby można było założyć, że trasmisja jest dokładna.
 
-Wykorzystany do komunikacji interfejs oraz zaproponowany protokół\graffito{Protokół opisano w~sekcji \ref{sec:protocol}} jest bardzo prosty, co pozwala na dodanie obsługi systemu do dowolnego programu pragnącego skorzystać z tej możliwości znikomym nakładem pracy.
+Wykorzystany do komunikacji interfejs oraz zaproponowany protokół\graffito{Protokół opisano w~sekcji \ref{sec:protocol}.} jest bardzo prosty, co pozwala na dodanie obsługi systemu do dowolnego programu pragnącego skorzystać z tej możliwości znikomym nakładem pracy.
 
 Stanowiłoby to duży atut systemu w przypadku jego popularyzacji.
 
@@ -102,8 +102,8 @@ Niestety, szybkość układu pozostawia wiele do życzenia.
 Istnieje kilka czynników, które można podejrzewać o spowalnianie działania. Rozpatrzmy po kolei każdy z nich.
 \newline
 \newline
-\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych}
-Aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2,40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2,13GHz} jest znikome.
+\textsl{Wydajność obliczeń}\graffito{Obliczenia dotyczą głównie przekształcania układu współrzędnych.}
+Aby nie obciążać zbędną pracą mikrokontrolera, który na dodatek nie posiada wystarczającej mocy obliczeniowej, obliczenia dokonywane są dopiero na komputerze\graffito{Jeśli dana aplikacja faktycznie takich obliczeń wymaga.}. Chociaż w celu pełnego przywrócenia układu współrzędnych użytkownika z dowolnego ustawienia odbiorników wymaganych jest kilka obrotów oraz translacji punktów\graffito{Obrót i translacja wymagają mnożenia macierzy 4\texttimes 4 przez trójwymiarowy wektor.}, a także obliczanie wartości odwrotnych funkcji trygonometrycznych oraz normalizacje trójwymiarowych wektorów, to wykorzystanie procesora przez aplikację zarówno na laptopie wyposażonym w procesor \textsmaller{Intel Core 2 Duo T7700 2,40GHz} oraz komputerze stacjonarnym z procesorerm \textsmaller{Intel Core 2 Duo E6420 2,13GHz} jest znikome.
 
 Przeprowadzone testy pokazują, że wspomniany powyżej laptop wykonuje 100000 pełnych cykli takich obliczeń w przeciągu 448ms, co oznacza, że jeden cykl obliczeń zajmuje niecałe 5\textmu s.
 \newline
@@ -137,7 +137,7 @@ Szybkość pobierania danych uzależniona jest od wykorzystanego zjawiska fizycz
 
 Należy zauważyć, że opisane wcześniej parametry tyczą się tylko pojedynczego okresu fali, nie jest natomiast zbadany czas w jakim dźwięk faktycznie dotrze z markera do odbiorników.
 
-Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za pomocą stworzonego systemu, moja ręka ma przeciętnie długość 68cm} i wykorzystując przekstałcony wzór \ref{eq:sound_distance} uzyskujemy:
+Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za pomocą stworzonego systemu, moja ręka ma przeciętnie długość 68cm.} i wykorzystując przekstałcony wzór \ref{eq:sound_distance} uzyskujemy:
 \begin{equation}
  t = \frac{x}{v} = \frac{70\textrm{cm}}{340\frac{\textrm{m}}{\textrm{s}}} = 0,7\textrm{m} \cdot \frac{1}{340}\frac{s}{m} \approx 0,002\textrm{s} = 2\textrm{ms}
  \label{eq:reporting_speed}
@@ -168,7 +168,7 @@ Porównując długość okresu, w którym nadawany jest sygnał (linia \texttt{T
 
 Na wykresie widać ponadto, że występuje ponowne wygaszenie linii po kilku milisekundach od zakończenia odbierania sygnału. W tym przypadku również zakładałem, że jest to sygnał odbity, który dobiegł do odbiornika.
 
-Dokładniejsze badanie z wykorzystaniem oscyloskopu potwierdzają przypuszczenia. Wyniki tego badania prezentuje rysunek \ref{fig:oscilloscope}\graffito{Sygnał pomiędzy pinem mikrokontrolera, a~punktem testowym jest negowany}.
+Dokładniejsze badanie z wykorzystaniem oscyloskopu potwierdzają przypuszczenia. Wyniki tego badania prezentuje rysunek \ref{fig:oscilloscope}\graffito{Sygnał pomiędzy pinem mikrokontrolera, a~punktem testowym jest negowany.}.
 
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/oscyloskop_1.png}
@@ -193,13 +193,13 @@ Z tego też powodu uznałem to za rozwiązanie gorsze, gdyż gracz, który jest 
 \newline
 \newline
 \textsl{Podsumowanie szybkości działania}
-Opierając się na wspomnianych powyżej testach widać, że czynnikiem powodującym największe opóźnienia jest dokładnie ten sam, który najtrudniej wyeliminować, czyli odbicia dźwięku. W związku z wprowadzonymi obejściami problemów, wydajność systemu ograniczona jest do najwyżej 25Hz\graffito{Pełen status nadawany jest co minimum 40ms}.
+Opierając się na wspomnianych powyżej testach widać, że czynnikiem powodującym największe opóźnienia jest dokładnie ten sam, który najtrudniej wyeliminować, czyli odbicia dźwięku. W związku z wprowadzonymi obejściami problemów, wydajność systemu ograniczona jest do najwyżej 25Hz\graffito{Pełen status nadawany jest co minimum 40ms.}.
 
 \paragraph{Porównanie z innymi systemami}
 Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\textsl{Wiimote} oraz \index{Sony!Sixaxis}\textsl{Sixaxis} postanowiłem przeprowadzić porównanie tych urządzeń z moim rozwiązaniem.
 \newline
 
-\textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z 25.04.2007\citep{Br10}}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
+\textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z 25.04.2007\citep{Br10}.}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
 
 Należy najpierw zbadać, do jakiego pliku został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje listing~\ref{lst:sixaxis}.
 
@@ -222,7 +222,7 @@ Jak widać, w ciągu prawie dokładnie 50s przetransmitowanych zostało dokładn
  \frac{250000\textrm{b}}{50\textrm{s}} : 50\frac{\textrm{b}}{\textrm{raport}} = 100\textrm{Hz}
 \end{equation}
 
-Analizując strukturę raportu, łatwo rozpoznać przyporządkowanie danych do przycisków i policzyć ilość przycisków ,,analogowych''\graffito{Przyciskami analogowymi zwykło nazywać się przyciski, które raportują jak bardzo są naciśnięte}.
+Analizując strukturę raportu, łatwo rozpoznać przyporządkowanie danych do przycisków i policzyć ilość przycisków ,,analogowych''\graffito{Przyciskami analogowymi zwykło nazywać się przyciski, które raportują jak bardzo są naciśnięte.}.
 \newline
 
 \index{Nintendo!Wiimote}\textsl{Wiimote}. W celu zbadania tego kontrolera wykorzystałem otwartoźródłową bibliotekę \texttt{CWiid}\citep{CWiid}. Zmodyfikowałem źródło jednego z programów, aby raportował czas przyjścia raportu, a następnie w oparciu o informacje o rozmiarach raportów (\citep{Wiibrew}) wybrałem raport, którego rozmiar wynosi dokładnie 18 bajtów, po czym obliczyłem ile raportów przyszło w danym okresie czasu.
@@ -235,7 +235,7 @@ Wyniki tego testu pokazuje listing~\ref{lst:wiimote}.
   \label{lst:wiimote}
 \end{listing}
 
-Do pliku \texttt{log} zapisane zostały czasy w formacie \textit{sekundy.nanosekundy}\graffito{W systemach Linux czas reprezentowany jest jako ilość sekund od 1970-01-01T00:00:00Z (ISO 8601)}. W każdej linii pliku zapisana jest dokładnie jedna próbka, dlatego też ilość pobranych próbek wynosi 2500, co pokazuje program \texttt{wc} z argumentem \texttt{-l}. Różnicę pomiędzy rozpoczęciem, a zakończeniem rejestrowania danych prezentuje wynik działania programu \texttt{bc}. Wynika stąd, że prędkość raportowania wynosi
+Do pliku \texttt{log} zapisane zostały czasy w formacie \textit{sekundy.nanosekundy}\graffito{W systemach Linux czas reprezentowany jest jako ilość sekund od 1970-01-01T00:00:00Z (ISO 8601).}. W każdej linii pliku zapisana jest dokładnie jedna próbka, dlatego też ilość pobranych próbek wynosi 2500, co pokazuje program \texttt{wc} z argumentem \texttt{-l}. Różnicę pomiędzy rozpoczęciem, a zakończeniem rejestrowania danych prezentuje wynik działania programu \texttt{bc}. Wynika stąd, że prędkość raportowania wynosi
 \begin{equation}
  \frac{2500}{25,45\textrm{s}} \approx 100\textrm{Hz}
 \end{equation}
