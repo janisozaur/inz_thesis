@@ -75,9 +75,9 @@ Za zmianę będziemy przyjmować wzbudzenie pinu mikrokontrolera, co spowodowane
 \end{enumerate}
 
 \paragraph{Teoretyczne ograniczenia całego systemu}
-Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i odbiorników.
+Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i~odbiorników.
 
-Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości.} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
+Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w~aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości.} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
 Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także wymienić kwarc generujący częstotliwość dla tych elementów. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
 \begin{equation}
@@ -93,7 +93,7 @@ Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornik
  \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
  \item uruchamiany jest wewnętrzny licznik urządzenia,
  \item wysyłany jest sygnał, który aktywuje jeden z dwóch markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
- \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z danego odbiornika) jest zapamiętywany,
+ \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z~sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z~danego odbiornika) jest zapamiętywany,
  \item zatrzymywany jest wewnętrzny timer urządzenia,
  \item dane o odstępach czasowych przekazywane są do komputera,
  \item następuje uśpienie układu, które pozwala na zaniknięcie sygnałów ultradźwiękowych,
@@ -116,7 +116,7 @@ W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dziel
 Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia.} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
 
 \paragraph{Przerwania}
-W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w przypadku zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
+W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w~momencie zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
 
 Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wybranej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
 
@@ -144,7 +144,7 @@ Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymieniony
   \label{lst:interrupt_vector}
 \end{listing}
 
-Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i \texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
+Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i~\texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań oznaczonych jako \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
 
 \section{Oprogramowanie dla komputera}
 W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
@@ -162,7 +162,7 @@ Ze względu na intensywne wykorzystywanie w stworzonych aplikacjach połączeń 
 
 Centralną właściwością środowiska \textsc{Qt}, a jednocześnie jedną z najbardziej odróżniających ten framework od innych, jest mechanizm sygnałów i slotów będący zarządzaną metodą komunikacji pomiędzy obiektami.
 
-Chociaż na pierwszy rzut oka przypomina ona znane dotychczas metody oparte o wywołania zwrotne (ang. \textsl{callback}) i faktycznie się z nich wywodzi, to jednak różni się od nich w kilku kluczowych aspektach.
+Chociaż na pierwszy rzut oka przypomina ona znane dotychczas metody oparte o wywołania zwrotne (ang. \textsl{callback}) i faktycznie się z~nich wywodzi, to jednak różni się od nich w kilku kluczowych aspektach.
 
 Jest to metoda dynamiczna (działająca w runtime). Metoda wywołań zwrotnych wykorzystywana jest głównie do zamodelowania statycznych (tj. znanych już podczas czasu kompilacji - ang. \textsl{compiletime}) powiązań pomiędzy obiektami jak np:
 \begin{verse}
@@ -176,17 +176,17 @@ powiadom wszystkie odbiorniki o zajściu zdarzenia $\omega$
 
 Zastosowanie w tym miejscu wektorów wskaźników jest jedynie obejściem problemu, a nie jego rozwiązaniem, gdyż nakłada na programistę obowiązek pamiętania o poprawnym przydzielaniu i zwalnianiu pamięci na te elementy, w przypadku aplikacji wielowątkowych szczegółowego analizowania zależności czasowych pomiędzy wywołaniami kodu obiektów, oraz drobiazgowego sprawdzania typów wywołań.
 
-Podejście to wprowadza ponadto nadmiarową i zbędną wiedzę o odbiornikach do nadajnika.
+Podejście to wprowadza ponadto nadmiarową i zbędną wiedzę o~odbiornikach do nadajnika.
 
 Rozwiązanie dostarczane przez framework \textsc{Qt} jest elegancką metodą pozbycia się wymienionych wad na rzecz udostępnienia programiście prostego w obsłudze, lecz potężnego i skutecznego, mechanizmu dynamicznego wiązania obiektów w pary nadajnik-odbiornik.
 
-Przekazywane sygnały są ,,wątkowo-bezpieczne'' (ang. \textsl{thread-safe}), co pozwala na przetwarzanie sygnału w innym wątku niż ten, który zainicjował jego wysłanie. Aby zrealizować takie podejście, każdy z obiektów dziedziczących po klasie \verb|QObject| powinien należeć do jakiegoś wątku, tak aby był on uwzględniany w pętli zdarzeń (ang. \textsl{event loop}), jaka jest przez ten wątek przetwarzana. Domyślnie każdy nowy obiekt przynależy do wątku rodzica, który go utworzył.
+Przekazywane sygnały są ,,wątkowo-bezpieczne'' (ang. \textsl{thread-safe}), co pozwala na przetwarzanie sygnału w innym wątku niż ten, który zainicjował jego wysłanie. Aby zrealizować takie podejście, każdy z~obiektów dziedziczących po klasie \verb|QObject| powinien należeć do jakiegoś wątku, tak aby był on uwzględniany w pętli zdarzeń (ang. \textsl{event loop}), jaka jest przez ten wątek przetwarzana. Domyślnie każdy nowy obiekt przynależy do wątku rodzica, który go utworzył.
 
 Pociąga to za sobą konsekwencję, że jeżeli obiekt nie przynależy do żadnego wątku, to jego zdarzenia nie będą przetwarzane.
 
 W celu uproszczenia obsługi, środowisko \textsc{Qt} domyślnie wykorzystuje do wszystkich obiektów wątek główny aplikacji i jeśli programista jawnie nie usunie z niego obiektów, to ich sygnały będą przetwarzane właśnie w tym wątku.
 
-Aby zintegrować to rozwiązanie z kodem, postanowiono ,,rozszerzyć'' standard\graffito{,,Rozszerzenie'' to wykorzystywane jest tylko i wyłącznie do środowiskia \textsc{Qt}.} języka \verb|C++|. Do istniejących już kwalifikatorów \verb|public|, \verb|private| i \verb|protected| dodano dwa nowe: \verb|signals| i \verb|slots|.
+Aby zintegrować to rozwiązanie z kodem, postanowiono ,,rozszerzyć'' standard\graffito{,,Rozszerzenie'' to wykorzystywane jest tylko i wyłącznie do środowiskia \textsc{Qt}.} języka \verb|C++|. Do istniejących już kwalifikatorów \verb|public|, \verb|private| i~\verb|protected| dodano dwa nowe: \verb|signals| i \verb|slots|.
 
 Kwalifikator \verb|signals| definiuje sygnały. Mają one taką samą strukturę, jak zwykłe metody klasy z następującymi wyjątkami:
 \begin{aenumerate}
@@ -205,7 +205,7 @@ Deklarację pewnej minimalnej klasy zawierającej sygnały prezentuje listing \r
 
 Jak pokazano, aby klasa mogła wykorzystać mechanizm sygnałów (a także slotów), musi ona dziedziczyć z klasy \verb|QObject| i wywoływać makro \verb|Q_OBJECT| w prywatnej części deklaracji.
 
-Kwalifikator \verb|slots|, jak łatwo się domyślić, deklaruje sloty. Poza dodatkową możliwością wywołania slotu, są to tradycyjne metody klasy i tak samo obowiązują je pozostałe kwalifikatory: \verb|public|, \verb|private| i \verb|protected|. W odróżnieniu od sygnałów, sloty wymagają dostarczenia implementacji i mogą zwracać wartości.
+Kwalifikator \verb|slots|, jak łatwo się domyślić, deklaruje sloty. Poza dodatkową możliwością wywołania slotu, są to tradycyjne metody klasy i tak samo obowiązują je pozostałe kwalifikatory: \verb|public|, \verb|private| i~\verb|protected|. W odróżnieniu od sygnałów, sloty wymagają dostarczenia implementacji i mogą zwracać wartości.
 
 Deklarację pewnej minimalnej klasy zawierającej sloty prezentuje listing \ref{lst:slots_declaration}.
 
@@ -215,7 +215,7 @@ Deklarację pewnej minimalnej klasy zawierającej sloty prezentuje listing \ref{
   \label{lst:slots_declaration}
 \end{listing}
 
-Połączenie emitera ze słuchaczem następuje poprzez wywołanie metody \verb|connect| klasy \verb|QObject|, której argumentami są obiekty nadający i odbierający, a także nazwy łączonych metod. Sygnatura slotu i sygnału musi być taka sama, z wyjątkiem zwracanego typu.
+Połączenie emitera ze słuchaczem następuje poprzez wywołanie metody \verb|connect| klasy \verb|QObject|, której argumentami są obiekty nadający i~odbierający, a także nazwy łączonych metod. Sygnatura slotu i sygnału musi być taka sama, z wyjątkiem zwracanego typu.
 
 Użyteczną cechą jest możliwość podłączenia sygnału do sygnału, dzięki czemu zostanie wywołany drugi z sygnałów, a w efekcie podłączone do niego sloty.
 
@@ -227,17 +227,17 @@ Pozostała charakterystyka tego rozwiązania, taka jak przekazywanie meta-typów
 Zadaniem tego narzędzia jest przeparsowanie dostarczonych plików źródłowych pod kątem odszukania wśród nich deklaracji klas dziedziczących z \verb|QObject|, a zatem wykorzystujących rozszerzone możliwości oferowane przez \textsc{Qt} i wygenerowanie kodu zrozumiałego przez wspomniany wyżej ,,zwykły'' kompilator. Kod dostarczony przez programistę, pozbawiony rozszerzeń \textsc{Qt} oraz kod wygenerowany przez narzędzie \texttt{moc} są kompilowane, a następnie łączone ze sobą na etapie linkowania.
 
 \paragraph{QSerialPort}
-Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jak samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z głównych powodów, dla których wybrałem właśnie ją.
+Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jak samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z~głównych powodów, dla których wybrałem właśnie ją.
 
 Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie \citep{QSP}.
 
 \paragraph{Qwt}
-Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}.}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa \citep{QWT}.
+Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}.}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i~obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa \citep{QWT}.
 
 \paragraph{Bazaar}
 \textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}.}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3} \citep{BZR}.
 
-Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były wykorzystując te narzędzia i należą do projektu \texttt{janisozaur-inz} dostępnego pod adresem:
+Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były wykorzystując te narzędzia i należą do projektu nazwanego \texttt{janisozaur-inz} dostępnego pod adresem:
 \begin{verse}
   \url{https://launchpad.net/janisozaur-inz}
 \end{verse}
@@ -280,7 +280,7 @@ Jeśli marker znajdzie się dostatecznie daleko od odbiorników, może nastąpi�
 Aby uniknąć tego problemu, odbiorniki \textsl{Nietoperza} rozstawione są na planie trójkąta równobocznego o boku 33cm. Pozwala to na wystarczająco dokładne śledzenie precyzji już za pomocą typu zmiennoprzecinkowego pojedynczej precyzji \verb|float|. Na potrzeby tej demonstracji zdecydowałem się jednak wykorzystać typ \verb|double| dostarczający podwójnej precyzji.
 
 \paragraph{Wieloplatformowość}
-Aplikacja ta prezentuje także zalety wykorzystanego środowiska, które może być kompilowane pod wszystkimi trzema znaczącymi systemami operacyjnymi: \textsl{Linux}, \textsl{Windows} i \textsl{Mac OS X}. Do poprawnego skompilowania nie jest wymagana żadna zmiana kodu.
+Aplikacja ta prezentuje także zalety wykorzystanego środowiska, które może być kompilowane pod wszystkimi trzema znaczącymi systemami operacyjnymi: \textsl{Linux}, \textsl{Windows} oraz \textsl{Mac~OS~X}. Do poprawnego skompilowania nie jest wymagana żadna zmiana kodu.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{gfx/wizualizacja_3d.png}
@@ -320,7 +320,7 @@ Jest to taki sam prawoskrętny układ, jak wykorzystywany w bibliotece \textsc{O
 \paragraph{Struktura programu}
 Program napisany jest z wykorzystaniem środowiska \textsc{Qt}, ponadto korzysta z bibliotek \textsc{QSerialPort} oraz \textsc{Qwt}.
 
-Po uruchomieniu programu tworzone są obiekty wykresów \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednio wykresów pozycji markera oraz jego odległości, ustawiane są parametry tych obiektów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych. Wykresy przedstawiają dane pobrane w ciągu ostatnich 10 sekund i wraz z przybywaniem kolejnych danych wykres jest przesuwany aby spełnić wymieniony właśnie warunek.
+Po uruchomieniu programu tworzone są obiekty wykresów: instancje klas \verb|PositionPlot| i \verb|DistancePlot|, które dziedziczą z klasy \verb|QwtPlot| i zajmują się rysowaniem odpowiednio wykresów pozycji markera oraz jego odległości, ustawiane są parametry tych obiektów dotyczące skali, legendy oraz uruchamiane są timery odpowiadające za odświeżanie danych. Wykresy przedstawiają dane pobrane w ciągu ostatnich 10 sekund i wraz z przybywaniem kolejnych danych wykres jest przesuwany aby spełnić wymieniony właśnie warunek.
 
 Następuje inicjalizacja pozostałych danych interfejsu użytkownika:
 \begin{itemize}
@@ -339,7 +339,7 @@ explicit SamplingThread(QObject *parent = 0);
 \end{verbatim}
 metodą \verb|setInterval(double)|, sprawdzał nadejście nowych danych.
 
-Klasa \verb|SignalData|, która dziedziczy z klasy \verb|QObject| aby zyskać możliwość wykorzystania slotów i sygnałów, implementuje wzorzec \verb|singleton|, czyli obiektową metodę zapewnienia dostępności jednej i zawsze tej samej instancji. Uzyskałem to poprzez oznaczenie jedynego dostępnego konstruktora kwalifikatorem \verb|private| i zaimplementowałem statyczną metodę zwracającą referencję do statycznej zmiennej tworzonej w tej metodzie:
+Klasa \verb|SignalData|, która dziedziczy z klasy \verb|QObject| aby zyskać możliwość wykorzystania slotów i sygnałów, implementuje wzorzec projektowy \verb|singleton|, czyli obiektową metodę zapewnienia dostępności jednej i zawsze tej samej instancji. Uzyskałem to poprzez oznaczenie jedynego dostępnego konstruktora kwalifikatorem \verb|private| i zaimplementowałem statyczną metodę zwracającą referencję do statycznej zmiennej tworzonej w tej metodzie:
 \begin{verbatimtab}
 class SignalData : public QObject
 {
@@ -357,7 +357,7 @@ Po odczytaniu danych z portu szeregowego dopisywane są one do dynamicznej tabli
 
 Jeśli udało się zsynchronizować dane, co oznacza, że przybyła przynajmniej jedna próbka, emitowany jest sygnał \verb|dataArrived()|, którego odbiorcą jest metoda \verb|SignalData::fetchSamples()|. Pobiera ona dane z \verb|SamplingThread| i dla każdej nowej próbki dopisuje ją do lokalnego bufora, a także przetwarza aktualizując na tej podstawie prostokąt otaczający.
 
-Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie na potrzeby \textsc{QWT} w metodzie \verb|SignalData::fetchSamples()| ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonałem wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
+Ponieważ pobranie próbek w metodzie \verb|SamplingThread::append()| oraz ich zbuforowanie w metodzie \verb|SignalData::fetchSamples()| na potrzeby \textsc{QWT} ma miejsce w różnych wątkach, zadbałem o poprawną synchronizację tych zdarzeń w czasie \ppauza niedopuszczalnym jest przekazywanie danych (które usuwa informację pierwotną) podczas dopisywania nowych danych. Serializacji tych wywołań dokonałem wykorzystując obiekt klasy \verb|QMutex|, który blokowany jest przed rozpoczęciem operacji na krytycznych danych i zwalniany po ich przetworzeniu.
 
 Z pomocą przychodzi tutaj klasa \verb|QMutexLocker|, która w swoim konstruktorze, przyjmującym jako argument tylko wskaźnik do obiektu \verb|QMutex|, blokuje mutex, zaś destruktor odblokowuje go. Dzięki temu, tworząc automatyczną zmienną na początku każdej metody operującej na krytycznych danych zapewniam, że dostęp do nich jest ekskluzywny, tzn. w dowolnym momencie dane te przetwarzane są przez maksymalnie jeden wątek.
 
@@ -367,10 +367,10 @@ Biblioteka \textsc{QWT} pozwala na buforowanie rysowanych wykresów, dzięki cze
 
 W pierwszym podejściu do implementacji przesuwania wykresu wykorzystałem zmianę skali osi X przesuwając wyświetlany fragment zgodnie z nadchodzącymi danymi. Okazało się to problematyczne, gdyż jak wspomina autor wykorzystanej biblioteki (\citep{UweRathmannNewsgroup}), po zmianie osi wymagane jest odrysowanie całego wykresu.
 
-Aby ominąć ten defekt postanowiłem wykorzystać klasę \verb|QwtPlotPanner| która przesuwa widoczny zakres wykresu nie powodując przy tym unieważnienia bufora. Natknąłem się jednak tutaj na problem, gdyż slot dokonujący przesunięcia oznaczony był jako prywatny. Ratunkiem okazała się możliwość podpięcia sygnału do sygnału \ppauza emitując swój sygnał wyzwalałem istniejący sygnał tej klasy do wywołania prywatnej metody, której efektem było przesunięcie widocznego fragmentu wykresu. W efekcie użycie procesora znacznie spadło.
+Aby ominąć ten defekt wykorzystałem klasę \verb|QwtPlotPanner| która przesuwa widoczny zakres wykresu nie powodując przy tym unieważnienia bufora. Natknąłem się jednak tutaj na problem, gdyż slot dokonujący przesunięcia oznaczony był jako prywatny. Ratunkiem okazała się możliwość podpięcia sygnału do sygnału \ppauza emitując swój sygnał wyzwalałem istniejący sygnał tej klasy do wywołania prywatnej metody, której efektem było przesunięcie widocznego fragmentu wykresu. W efekcie użycie procesora znacznie spadło.
 
 \paragraph{Rozszerzanie obsługi o dodatkowe markery}
-Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
+Chociaż dostępna aktualnie wersja sprzętu zaprojektowana jest do obsługi tylko i~wyłącznie dwóch markerów, to prezentowany program przygotowany został w sposób pozwalający na obsługę dowolnej ilości markerów.
 
 Zadbałem o to, aby dodawanie markerów było możliwie proste dla programisty. Wykorzystałem w tym celu mało znaną możliwość, jaką oferuje środowisko \textsc{Qt}, tj. jawne wykorzystanie meta-obiektów.
 
@@ -451,20 +451,20 @@ Rysowana figurka potrafi także, na podstawie długości wektora mającego pocz�
 \newline
 \textsl{Kalibracja eksperymentalna} Drugi typ kalibracji, znacznie bardziej złożony od pierwszego, w założeniu pozwalać miał na wykorzystanie \textsl{Nietoperza} z dowolnej pozycji. Pozostało to niestety tylko założeniem, gdyż pomimo mnogich testów i rozważań teoretycznych nie udało się doprowadzić tej metody do stanu pełnej sprawności \ppauza chociaż wielokrotnie wydawało się, że wszystko już działa, to kolejny test pokazywał, że byłem w błędzie.
 
-Do przeprowadzenia tej metody kalibracji wymagany jest jeden punkt więcej niż ma to miejsce przy kalibracji metodą zwykłą. Wynika to z konieczności ponownego ustawienia trójwymiarowego układu współrzędnych, a znając tylko dwa punkty, wiadomo, że są one współliniowe, zaś dookoła prostej możliwy jest dowolny obrót. Trzeci, niewspółliniowy punkt, pozwoli na określenie dokładnej translacji i rotacji.
+Do przeprowadzenia tej metody kalibracji wymagana jest znajomość położenia jednego punktu więcej niż ma to miejsce przy kalibracji metodą zwykłą. Wynika to z konieczności ponownego ustawienia trójwymiarowego układu współrzędnych, a znając tylko dwa punkty, wiadomo, że są one współliniowe, zaś dookoła prostej możliwy jest dowolny obrót. Trzeci, niewspółliniowy, punkt pozwoli na określenie dokładnej translacji i rotacji.
 
 Odwracając tę transformację, tzn. znajdując takie przekształcenie, które zmieni pozyskany z próbek układ współrzędnych na układ jaki prezentowany jest na rysunku \ref{fig:coordinate_system}, możliwe byłoby dokonywanie normalizacji pozostałych próbek za pomocą tej samej transformacji. Pozwoliłoby to na wykorzystanie metody analogicznej jak w przypadku kalibracji zwykłej.
 
 \paragraph{Struktura programu}
-Program oparty został o istniejące wcześniej źródła programu \textsmaller{Charter}. Głównym współdzielonym fragmentem jest klasa \verb|SignalData| oraz kod wątku dokonującego odbierania danych z portu szeregowego (klasa \verb|SamplingThread|). Nie jest to jednak dokładna kopia, gdyż w tym przypadku nie istnieje potrzeba zapewnienia rozszerzalności o nowe markery (człowiek ma tylko dwie ręce, a dodanie śledzenia innych kończyn wymagałoby dopisania ich faktycznej obsługi \ppauza w odróżnieniu od wykresów, gdzie dane dla każdego z markerów są takiej samej struktury). Ponadto program ten nie wykorzystuje biblioteki \textsc{QWT}, wymagane w związku z tym było dostarczenie własnej implementacji pętli zdarzeń.
+Program oparty został o istniejące wcześniej źródła programu \textsmaller{Charter}. Głównym współdzielonym fragmentem jest klasa \verb|SignalData| oraz kod wątku dokonującego odbierania danych z portu szeregowego (klasa \verb|SamplingThread|). Nie jest to jednak dokładna kopia, gdyż w tym przypadku nie istnieje potrzeba zapewnienia rozszerzalności o nowe markery (człowiek ma tylko dwie ręce, a dodanie śledzenia innych kończyn wymagałoby dopisania ich faktycznej obsługi \ppauza w odróżnieniu od wykresów, gdzie dane dla każdego z~markerów są takiej samej struktury). Ponadto program ten nie wykorzystuje biblioteki \textsc{QWT}, wymagane w związku z tym było dostarczenie własnej implementacji pętli zdarzeń.
 
-Wspomniana pętla zdarzeń, stanowiąca ciało wirtualnej metody \verb|run()|, to prosta pętla \verb|while|, która usypiana jest na zadany interwał, po czym wywołuje funkcję odpytującą port o nowe dane. Aby móc poprawnie zakończyć działanie wątku, w każdej iteracji sprawdzany jest stan zmiennej \verb|mRun|, która określa, czy wątek ma wciąż działać \ppauza ma ona wtedy wartość \verb|true|. Podczas zamykania programu usuwany jest obiekt tego wątku, a jego destruktor wywołuje metodę \verb|stop()|, która zapewnia bezpieczny sposób zwolnienia zasobów i pozamykania otwartych połączeń.
+Wspomniana pętla zdarzeń, która stanowi ciało wirtualnej metody \verb|run()|, to prosta pętla \verb|while|, która usypiana jest na zadany interwał, po czym wywołuje funkcję odpytującą port o nowe dane. Aby móc poprawnie zakończyć działanie wątku, w każdej iteracji sprawdzany jest stan zmiennej \verb|mRun|, która określa, czy wątek ma wciąż działać \ppauza ma ona wtedy wartość \verb|true|. Podczas zamykania programu usuwany jest obiekt tego wątku, a jego destruktor wywołuje metodę \verb|stop()|, która zapewnia bezpieczny sposób zwolnienia zasobów i pozamykania otwartych połączeń.
 
 Klasa \verb|GLWidget| odpowiada za wyświetlanie sceny za pomocą biblioteki \textsc{OpenGL}. Osadzone są w niej również instancje obiektów odpowiedzialnych za przetwarzanie zdarzeń fizycznych. Akcje te są od siebie niezależne i możliwa jest sytuacja, gdy nastąpi wyświetlenie kilku klatek z takim samym ustawieniem elementów z powodu nieprzetworzenia danych świata fizycznego pomiędzy nimi, jak i sytuacja odwrotna, czyli pominięcie wyświetlenia pewnych danych dostarczonych przez silnik fizyki.
 
 Separacja tych zdarzeń ma na celu umożliwienie przetwarzania danych w sposób niezależny, gdyż nie jest możliwym przewidzenie, jak dużo czasu zajmie wyrenderowanie i wyświetlenie klatki oraz obliczenie nowych pozycji ciał przez silnik fizyki. Nominalnie odświeżanie klatek następuje co 20ms, zaś krok symulacji silnika fizyki wywoływany jest co 15ms.
 
-Przybycie każdego raportu powoduje aktualizację stanu klasy \verb|GLWidget| oraz ponowne przeliczenie kątów w zgięciach ręki. W miejscu dłoni każdej z rąk umocowana jest sfera, która jest ciałem kinematycznym\graffito{Ciało kinematyczne może powodować akcje w silniku fizyki, lecz nie jest ich odbiorcą.}. Pozwala to na uderzenie ustawionych pudełek i obserwację ich zachowań.
+Przybycie każdego raportu powoduje aktualizację stanu pól klasy \verb|GLWidget| oraz ponowne przeliczenie kątów w zgięciach ręki. W miejscu dłoni każdej z rąk umocowana jest sfera, która jest ciałem kinematycznym\graffito{Ciało kinematyczne może powodować akcje w silniku fizyki, lecz nie jest ich odbiorcą.}. Pozwala to na uderzenie ustawionych pudełek i obserwację ich zachowań.
 
 Możliwe jest włączanie i wyłączanie rysowania wybarnych komponentów sceny w trakcie działania programu, co pozwala na dokładniejszą analizę jego działania.
 

@@ -3,7 +3,7 @@
 
 \section{Cele}
 
-Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i Symulacji Komputerowych.}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać system, jak np.:
+Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i~Symulacji Komputerowych.}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać system, jak np.:
 \begin{itemize}
  \item medycyna \ppauza manipulacja trójwymiarowymi obrazami skanów pacjentów,
  \item cyfrowe modelowanie \ppauza szybkie prototypowanie modeli,
@@ -29,9 +29,9 @@ Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi
 \paragraph{Dokładność}
 Dokładność systemu została już określona w sekcji \ref{section:precision}, pozwolę więc sobie jedynie przytoczyć obliczone parametry.
 
-Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z faktem, że można natknąć się na ograniczenia mikrokontrolera.} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
+Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z~faktem, że można natknąć się na ograniczenia mikrokontrolera.} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
 
-Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit} i \ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
+Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit}~i~\ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
 
 Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
 
@@ -50,7 +50,7 @@ Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje p
 
 % prostota użytkowania
 \paragraph{Prostota użytkowania}
-Starałem się zaprojektować system w taki sposób, aby korzystanie z niego było możliwie proste, jednak wymogi systemu powodują, że korzystanie z niego nie jest tak proste, jak ma to miejsce w przypadku systemów ,,konkurencyjnych'' \graffito{Wiimote, Sixaxis, Kinect...}.
+Starałem się zaprojektować system w~taki sposób, aby korzystanie z niego było możliwie proste, jednak wymogi systemu powodują, że korzystanie z niego nie jest tak proste, jak ma to miejsce w przypadku systemów ,,konkurencyjnych'' \graffito{Wiimote, Sixaxis, Kinect...}.
 
 Aby móc w pełni wykorzystać oprogramowanie, a~w~szczególności program \textsmaller{\nameref{sec:app_stickman}}, wymagane jest dokonanie \index{kalibracja}kalibracji. Nie jest to czynność trudna, lecz wymóg wykonania jej każdorazowo po uruchomieniu może zniechęcać użytkowników.
 
@@ -150,13 +150,13 @@ W przyszłej wersji systemu można pokusić się o implementację metody, która
  \item wysłać krótki sygnał z markera, o ustalonej z góry długości,
  \item jeśli nie zostanie uzyskane potwierdzenie otrzymania sygnału od wszystkich odbiorników w spodziewanym czasie (również odgórnie ustalonym), wysyłać sygnał z tego markera aż do uzyskania potwierdzenia ze wszystkich odbiorników.
 \end{enumerate}
-Chociaż metoda ta może wprowadzać pewne opóźnienia związane z oczekiwaniem na wzbudzenie pinów odbiorników, to można przyjąć (jak pokazują testy), że większa część nadawanych sygnałów trafia do odbiorników, zatem skumulowana wydajność metody powinna być wyższa.
+Chociaż metoda ta może wprowadzać pewne opóźnienia związane z~oczekiwaniem na wzbudzenie pinów odbiorników, to można przyjąć (jak pokazują testy), że większa część nadawanych sygnałów trafia do odbiorników, zatem skumulowana wydajność metody powinna być wyższa.
 \newline
 \newline
 \textsl{Odbicia sygnału}
 Kolejnym bardzo niekorzystnym dla systemu zjawiskiem są odbicia sygnału dźwiękowego od otoczenia. Podczas pierwszych testów urządzenia zauważyłem, że większa część pomiarów nijak ma się do rzeczywistości. Wykorzystując analizator logiczny zbadałem jakie faktycznie sygnały otrzymuje mikrokontroler na pinach odbiorników.
 
-Rezultaty tego badania przedstawia rysunek \ref{fig:logic_analyzer}. Przedstawione są tam 4 wykresy, pierwszy ukazujący sygnał wyzwalający nadawanie, natomiast trzy pozostałe wykresy ukazują stan linii odbiorników w czasie. Z pierwszego wykresu łatwo odczytać, że zawarte są dwie próbki.
+Rezultaty tego badania przedstawia rysunek \ref{fig:logic_analyzer}. Przedstawione są tam 4 wykresy, pierwszy ukazujący sygnał wyzwalający nadawanie, natomiast trzy pozostałe wykresy ukazują stan linii odbiorników w~czasie. Z pierwszego wykresu łatwo odczytać, że zawarte są dwie próbki.
 
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/odbicia.pdf}
@@ -187,7 +187,7 @@ Aby uwolnić się od wspomnianej usterki, wprowadziłem do kodu mikrokontrolera 
 
 Wprawdzie ,,rozwiązanie'' działa, jednak znacząco spowalnia system \ppauza odstęp pomiędzy próbkami wynosi ponad 20ms.
 
-Inną metodą obejścia tego problemu jest zwiększenie tłumienia sygnału rejestrowanego przez odbiornik. Praktyka pokazuje, że takie działanie faktycznie eliminuje problem, z drugiej jednak strony stanowczo pogarsza sprawność systemu, gdyż wymagane jest wtedy znacznie precyzyjniejsze celowanie markerem w odbiorniki. Oscylogram tego badania przedstawia rysunek \ref{fig:oscilloscope_attenuated}.
+Inną metodą obejścia tego problemu jest zwiększenie tłumienia sygnału rejestrowanego przez odbiornik. Praktyka pokazuje, że takie działanie faktycznie eliminuje problem, z drugiej jednak strony stanowczo pogarsza sprawność systemu, gdyż wymagane jest wtedy precyzyjniejsze celowanie markerem w odbiorniki. Oscylogram tego badania przedstawia rysunek \ref{fig:oscilloscope_attenuated}.
 
 Z tego też powodu uznałem to za rozwiązanie gorsze, gdyż gracz, który jest docelowym użytkownikiem, w ferworze gry nie może pozwolić sobie na troskanie się sprawnością wykorzystywanego kontrolera.
 \newline

@@ -19,7 +19,7 @@ Uproszczony schemat układu prezentuje rysunek~\ref{fig:device_scheme}.
 \end{figure}
 
 \section{W szczególe}
-Działanie systemu opiera się na założeniu, że dźwięk w powietrzu rozchodzi się ze stałą, znaną szybkością.\graffito{Założenie takie można przyjąć, gdyż odchylenia tej wartości spowodowane temperaturą i wilgotnością powietrza są niewielkie i nie wpływają znacząco na działanie systemu.}
+Działanie systemu opiera się na założeniu, że dźwięk w powietrzu rozchodzi się ze stałą, znaną szybkością.\graffito{Założenie takie można przyjąć, gdyż odchylenia tej wartości spowodowane temperaturą i~wilgotnością powietrza są niewielkie i~nie wpływają znacząco na działanie systemu.}
 
 Ponieważ szybkość ta jest stała, można łatwo wyznaczyć odległość, jaką musiał przebyć dźwięk, aby dotrzeć do odbiornika:
 \begin{equation}
@@ -34,7 +34,7 @@ gdzie:
  \item[$t$] \ppauza~czas od wysłania sygnału do jego dotarcia do odbiornika. 
 \end{description}
 
-Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protokół}protokołu, tylko i wyłącznie odczyty z licznika dla każdego z odbiorników.
+Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protokół}protokołu, tylko i wyłącznie odczyty z~licznika dla każdego z~odbiorników.
 
 \paragraph{Przetwarzanie danych}
 Aby dane były do czegoś użyteczne, wymagane jest ich przetworzenie. Przetwarzanie danych tej postaci może odbywać się różnorakimi metodami, np.:
@@ -50,7 +50,7 @@ Aby dane były do czegoś użyteczne, wymagane jest ich przetworzenie. Przetwarz
 W celach demonstracyjnych postanowiłem pokazać, jak odtworzyć pozycję markera w trzech wymiarach, korzystając tylko z informacji o względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
 \newline
 
-Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji odległości od każdego z odbiorników, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
+Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji odległości od każdego z~odbiorników, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{gfx/diagramy/schemat_przeciecia_sfer}
@@ -105,7 +105,7 @@ Podstawiając do równania \ref{eq:sphere} współrzędne punktów $S_1$, $S_2$ 
  \end{cases}
  \label{eq:sphere_system_1}
 \end{equation}
-gdzie $r_1$, $r_2$ i $r_3$ to odpowiednio odległości \index{marker}markera od każdego z \index{odbiornik}odbiorników \textsmaller{\#1}, \textsmaller{\#2} i \textsmaller{\#3}, a zarazem promienie sfer, których punktu przecięcia poszukujemy.
+gdzie $r_1$, $r_2$ i $r_3$ to odpowiednio odległości \index{marker}markera od każdego z~odbiorników\index{odbiornik} \textsmaller{\#1}, \textsmaller{\#2} i \textsmaller{\#3}, a zarazem promienie sfer, których punktu przecięcia poszukujemy.
 
 W celu uproszczenia następnych obliczeń przyjmijmy poniższą postać równania \ref{eq:sphere_system_1}:
 \begin{equation}
@@ -135,7 +135,7 @@ Z równania \ref{eq:determine_x_1} można łatwo wyznaczyć $x$:
  x = \frac{r_1^2 - r_2^2 + a^2}{2a} \label{eq:determine_x_2}
 \end{eqnarray}
 
-Podstawiając $x$ z równania \ref{eq:determine_x_2} do pierwszego równania układu \ref{eq:sphere_system_2} dowiemy się, które punkty są wspólne dla sfer mających środki w, odpowiednio, $S_1$ i $S_2$:
+Podstawiając $x$ z równania \ref{eq:determine_x_2} do pierwszego równania układu \ref{eq:sphere_system_2} dowiemy się, które punkty są wspólne dla sfer mających środki w,~odpowiednio, $S_1$ i $S_2$:
 
 \begin{eqnarray}
  r_1^2 = x^2 + y^2 + z^2 \\
@@ -180,7 +180,7 @@ Jak jednak pamiętamy z opisu, jeden z tych punktów, ,,tylny'' odrzucamy, w zwi
  z = \sqrt{r_1^2 - x^2 - y^2}
 \end{equation}
 
-Reasumując, jeśli przyjąć rozmieszczenie \index{odbiornik}odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w skonstruowanym systemie jest prawdziwe.} będzie miał następujące współrzędne:
+Reasumując, jeśli przyjąć rozmieszczenie \index{odbiornik}odbiorników takie jak na rysunku~\ref{fig:schema_coordinates}, punkt przecięcia się sfer\graffito{Dla uproszczenia przyjmujemy, że punkt taki zawsze istnieje, co w~skonstruowanym systemie jest prawdziwe.} będzie miał następujące współrzędne:
 %\graffito{dodać info o lokalności układu i konieczności jego odtworzenia}
 \begin{eqnarray}
  x & = & \frac{r_1^2 - r_2^2 + a^2}{2a} \label{eq:trilateration_final_x}\\
