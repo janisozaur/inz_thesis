@@ -3,7 +3,7 @@
 
 Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylko i wyłącznie z takich właśnie narzędzi.
 
-\graffito{ \includegraphics[width=\marginparwidth]{gfx/gnuhead_inkscape.pdf} Logo Fundacji Wolnego Oprogramowania \ppauza Free Software Foundation}Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}.
+\graffito{ \includegraphics[width=\marginparwidth]{gfx/gnuhead_inkscape.pdf} Logo Fundacji Wolnego Oprogramowania \ppauza Free Software Foundation \citep{FSF}}Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}. Wszyzstkie otwarte licencje typu \textsc{GNU GPL} stworzone zostały przez fundację FSF, która też stoi na straży ich przestrzegania.
 
 \section{Oprogramowanie mikrokontrolera}
 W pracy wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
@@ -229,13 +229,13 @@ Zadaniem tego narzędzia jest przeparsowanie dostarczonych plików źródłowych
 \paragraph{QSerialPort}
 Biblioteka \textsc{QSerialPort}, oparta o wolną licencję \textsc{GNU LGPL 2.1}, dostarcza metod komunikacji wykorzystujych port szeregowoy \textsmaller{RS232}. Opiera się ona o środowisko \textsc{Qt}, przez co bardzo łatwo jest zintegrować ją z projektami korzystającymi z tych narzędzi. Podobnie jak samo \textsc{Qt}, biblioteka ta jest wieloplatformowa, co było jednym z głównych powodów, dla których wybrałem właśnie ją.
 
-Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie.
+Dostarcza ona metody obsługi portów oparte o interfejs \verb|QIODevice| udostępniany przez \textsc{Qt}, które implementowane są z wykorzystaniem natywnych funkcji systemowych dla każdej z platform, dzięki czemu przekazywanie danych odbywa się szybko i sprawnie \citep{QSP}.
 
 \paragraph{Qwt}
-Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}.}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa.
+Zadaniem tej biblioteki\graffito{\textsc{QWT} oznacza \textsc{Qt Widgets for Technical Applications}.}, opartej o wolną licencję \textsc{Qwt License 1.0} (która z kolei oparta jest o licencję \textsc{GNU LGPL 2.1}), jest rysowanie i obsługa wykresów. Jest ona, podobnie jak \textsc{QSerialPort}, oparta o środowisko \textsc{Qt}, co zapewnia niedostępny w innym przypadku poziom integracji. Ponieważ poza \textsc{Qt} oraz standardową biblioteką \textsc{libstdc++} nie posiada ona żadnych zewnętrznych zależności, to podobnie jak te projekty jest ona także wieloplatformowa \citep{QWT}.
 
 \paragraph{Bazaar}
-\textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}.}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3}.
+\textsc{Bazaar} lub, w skrócie, \textsc{bzr}\graffito{Skrót wziął się od nazwy wykonywanego polecenia \ppauza \texttt{bzr}.}, to dystrybuowany system kontroli wersji, który pozwala na śledzenie i oznaczanie zmian w kodzie źródłowym, dzięki czemu można śledzić rozwój programu, oznaczać wydania, współdzielić kod pomiędzy gałęziami,  przypisywać błędy do rewizji oraz wiele innych. W połączeniu z serwisem \textsc{Launchpad} umożliwia hostowanie kodu w repozytorium on-line oraz wygodne zarządzanie projektem. Oba narzędzia udostępniane są na zasadach wolnych licencji, odpowiednio: \textsc{GNU GPL 2} i późniejsze oraz \textsc{GNU Affero GPL v3} \citep{BZR}.
 
 Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były wykorzystując te narzędzia i należą do projektu \texttt{janisozaur-inz} dostępnego pod adresem:
 \begin{verse}
@@ -243,7 +243,7 @@ Całość stworzonej pracy, włączając w to ten dokument, wersjonowane były w
 \end{verse}
 
 \paragraph{Bullet Physics Engine}
-Aby uatrakcyjnić prezentację, a zarazem zademonstrować jedno z przykładowych zastosowań systemu, wykorzystałem otwarty silnik fizyki \textsc{Bullet PE}. Jest to dojrzały projekt, wykorzystywany w wielu popularnych grach (np. \textsc{GTA 4}), programach graficznych (\textsc{Blender}), a także na potrzeby produkcji filmowych (\textsc{2012}).
+Aby uatrakcyjnić prezentację, a zarazem zademonstrować jedno z przykładowych zastosowań systemu, wykorzystałem otwarty silnik fizyki \textsc{Bullet PE}. Jest to dojrzały projekt, wykorzystywany w wielu popularnych grach (np. \textsc{GTA 4}), programach graficznych (\textsc{Blender}), a także na potrzeby produkcji filmowych (\textsc{2012}) \citep{BPE}.
 
 \paragraph{OpenGL}
 \textsc{OpenGL} to otwarta biblioteka graficzna, której implementację dostarcza zwykle producent sterowników do posiadanej karty graficznej. Udostępnia ona możliwości tego elementu na potrzeby renderowania, przetwarzania i wyświetlania grafiki trójwymiarowej.
