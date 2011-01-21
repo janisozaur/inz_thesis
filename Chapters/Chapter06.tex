@@ -73,7 +73,22 @@ Program wykorzystuje do komunikacji z komputerem protokół \index{RS232}\textsm
 
 Chociaż do uruchomienia komunikacji z wykorzystaniem modułu \index{USART}\textsmaller{USART}\graffito{\textsmaller{USART} \ppauza Universal Synchronous and Asynchronous serial Receiver and Transmitter} mikrokontrolera nie jest wymagane stosowanie zewnętrznego oscylatora, to jego wykorzystanie zmniejsza ilość błędów, jakie mogą zachodzić podczas transmisji.
 
-Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{\index{bps}bps \ppauza baud per second; symbole na sekundę; w~przypadku RS232 1 symbol to 1 bit} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}\graffito{dopisać tłumaczenie dlaczego tak jest}
+Ze względu na brak możliwości zakupu stosownego oscylatora, zdecydowałem się wykorzystać wbudowany w mikrokontroler zadajnik częstotliowści. W takiej konfiguracji, w przypadku transmisji danych z prędkością 9600bps\graffito{\index{bps}bps \ppauza baud per second; symbole na sekundę; w~przypadku RS232 1 symbol to 1 bit} błąd wynosi zaledwie 0,2\%.\label{sec:usart_error}
+
+Wynika to z równania określającego prędkość transmisji w mikrokontrolerze:
+\begin{equation}
+F_\textrm{USART} = \frac{F_\textrm{cpu}}{16 \cdot \textrm{(UBRR + 1)}}
+\end{equation}
+gdzie:
+\begin{description}
+  \item[$F_\textrm{USART}$] \ppauza~prędkość komunikacji w bps,
+  \item[$F_\textrm{cpu}$] \ppauza~częstotliwość procesora,
+  \item[UBRR] \ppauza~rejestr konfiguracji modułu \textsmaller{USART}.
+\end{description}
+
+Każda z tych wartości musi być liczbą całkowitą, co powoduje, że wykorzystując częstotliowść 8MHz nie jest możliwym uzyskanie dokładnych prędkości, jakie obsługiwane są przez pozostałe urządzenia wykorzystujące ten protokół, lecz wartości bardzo do nich zbilżone.
+
+% str 136
 
 Moje doświadczenie z mikrokontrolerami pokazuje, że wartość ta jest dostatecznie mała, aby można było założyć, że trasmisja jest dokładna.
 
