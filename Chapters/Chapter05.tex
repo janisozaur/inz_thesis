@@ -29,11 +29,11 @@ Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie 
 \paragraph{Ograniczenia mikrokontrolera}
 \label{section:microcontroller_limit}
 
-Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_{cpu} = 8$ MHz wyznacza się w następujący sposób:
+Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_\textrm{cpu} = 8$ MHz wyznacza się w następujący sposób:
 \begin{enumerate}
- \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}.} ustawiony jest na $F_{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
+ \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}.} ustawiony jest na $F_\textrm{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
     \begin{equation}
-      i = \frac{1}{F_{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
+      i = \frac{1}{F_\textrm{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
       \label{eq:sampling_frequency}
     \end{equation}
 
@@ -55,6 +55,7 @@ Rozdzielczość\graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach 
 
 \paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
+\index{marker}
 
 Ze względu na wykorzystanie nadajników i odbiorników ultradźwiękowych używających dźwięku o częstotliwości $F_{d} = 40$ kHz, należy zbadać jakie narzuca to ograniczenia.
 

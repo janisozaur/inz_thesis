@@ -37,7 +37,7 @@ Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, p
 
 % stabilnosc
 \paragraph{Stabilność}
-Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje pewną niestabilność, która objawia się drganiem odtworzonej pozycji markera. Widać to dobrze na rysunku \ref{fig:position_shaky}, którego górna część pokazuje odtworzoną pozycję w trzech wymiarach. Wszystkie dane, a w szczególności wartość $X$ oraz $Z$, wykazują kilkucentymetrowe drgania pomimo stabilnego umocowania zarówno układu jak i markera.
+Pomimo przytoczonej powyżej, relatywnie małej, dokładności układ wykazuje pewną niestabilność, która objawia się drganiem odtworzonej pozycji \index{marker}markera. Widać to dobrze na rysunku \ref{fig:position_shaky}, którego górna część pokazuje odtworzoną pozycję w trzech wymiarach. Wszystkie dane, a w szczególności wartość $X$ oraz $Z$, wykazują kilkucentymetrowe drgania pomimo stabilnego umocowania zarówno układu jak i markera.
 
 \begin{figure}
  \includegraphics[width=\textwidth]{gfx/pozycja/pozycja.pdf}
@@ -143,13 +143,14 @@ Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za po
  \label{eq:reporting_speed}
 \end{equation}
 
-Aby zagwarantować dotarcie sygnału markera do każdego z odbiorników, stworzone oprogramowanie nadaje go dopóty, dopóki nie zostanie odebrane potwierdzenie dotarcia z każdego z odbiorników. W powiązaniu z faktem, że nie można rozpocząć nadawania z innego markera, póki ,,kanał'' nie jest wolny, oznacza to, że sygnał z markera nadawany jest przynajmniej tak długo, jak długo zajmuje mu dotarcie do ostatniego z odbiorników.
+Aby zagwarantować dotarcie sygnału \index{marker}markera do każdego z odbiorników, stworzone oprogramowanie nadaje go dopóty, dopóki nie zostanie odebrane potwierdzenie dotarcia z każdego z odbiorników. W powiązaniu z faktem, że nie można rozpocząć nadawania z innego markera, póki ,,kanał'' nie jest wolny, oznacza to, że sygnał z markera nadawany jest przynajmniej tak długo, jak długo zajmuje mu dotarcie do ostatniego z odbiorników.
 
-W przyszłej wersji systemu można pokusić się o implementację metody, która niwelowałaby ten efekt. Działanie tej metody powinno wyglądać następująco:
+W przyszłej wersji systemu można pokusić się o implementację metody, która niwelowałaby ten efekt. Działanie tej metody może wyglądać następująco:
 \begin{enumerate}
  \item wysłać krótki sygnał z markera, o ustalonej z góry długości,
  \item jeśli nie zostanie uzyskane potwierdzenie otrzymania sygnału od wszystkich odbiorników w spodziewanym czasie (również odgórnie ustalonym), wysyłać sygnał z tego markera aż do uzyskania potwierdzenia ze wszystkich odbiorników.
 \end{enumerate}
+
 Chociaż metoda ta może wprowadzać pewne opóźnienia związane z~oczekiwaniem na wzbudzenie pinów odbiorników, to można przyjąć (jak pokazują testy), że większa część nadawanych sygnałów trafia do odbiorników, zatem skumulowana wydajność metody powinna być wyższa.
 \newline
 \newline
@@ -247,7 +248,7 @@ Porównanie tych i pozostałych parametrów kontrolerów prezentuje tabela \ref{
 \begin{table}[b]
   \myfloatalign
 \noindent\makebox[\textwidth]{%
-\index{Bluetooth} \index{USB} \index{RS232} \index{akceleromter} \index{żyroskop}
+\index{Bluetooth} \index{USB} \index{RS232} \index{akceleromter} \index{żyroskop} \index{Sony!Sixaxis} \index{Nintendo!Wiimote}
 \begin{tabularx}{1.5\textwidth}{X|XXX} \toprule
     & \emph{Sixaxis} & \emph{Wiimote} & \emph{Nietoperz} \\ \hline
     Ilość przycisków & 17 & 11 & 0 \\
