@@ -83,16 +83,17 @@ Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odb
 \begin{equation}
  f = \frac{1}{i} = \frac{1}{1~\mu\textrm{s}} = 1~\textrm{MHz}
 \end{equation}
-gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}.
+gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}.
+%\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}
 
 \subsection{Algorytm}
 \label{sec:uc_algorithm}
-Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:\graffito{metoda wyznaczania }
+Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:
 \begin{enumerate}
  \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
  \item uruchamiany jest wewnętrzny licznik urządzenia,
  \item wysyłany jest sygnał, który aktywuje jeden z dwóch markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
- \item następuje aktywne oczekiwanie na ,,wygaszenie''\graffito{opisać czym jest wygaszenie} pinów wszystkich odbiorników,\graffito{Czas wygaszenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z danego odbiornika) jest zapamiętywany}
+ \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z danego odbiornika) jest zapamiętywany,
  \item zatrzymywany jest wewnętrzny timer urządzenia,
  \item dane o odstępach czasowych przekazywane są do komputera,
  \item następuje uśpienie układu, które pozwala na zaniknięcie sygnałów ultradźwiękowych,
@@ -221,7 +222,7 @@ Użyteczną cechą jest możliwość podłączenia sygnału do sygnału, dzięki
 Pozostała charakterystyka tego rozwiązania, taka jak przekazywanie meta-typów, rozgraniczenie pomiędzy obiektem nadającym, a odbierającym oraz inne, nie została wykorzystana w stworzonym oprogramowaniu, w związku z czym odsyłam czytelnika do dokumentacji środowiska \textsc{Qt} \citep{Qt}.
 \newline
 \newline
-\textsl{Kompilator moc} Ponieważ powyższe rozwiązanie nie należy do standardu języka \verb|C++|, zaś całe oprogramowanie stworzone przy pomocy środowiska \textsc{Qt} kompilowane jest przy pomocy kompilatora \verb|C++| zgodnego ze standardem ANSI C++\graffito{jaki to dokłądnie standard i skąd?}, takiego jak \texttt{g++}, dostarczany jest wraz z \textsc{Qt} kompilator \texttt{moc}, czyli \textsl{meta-object compiler}.
+\textsl{Kompilator moc} Ponieważ powyższe rozwiązanie nie należy do standardu języka \verb|C++|, zaś całe oprogramowanie stworzone przy pomocy środowiska \textsc{Qt} kompilowane jest przy pomocy kompilatora \verb|C++| zgodnego ze standardem ISO/IEC C++\citep{CPPStandard}, takiego jak \texttt{g++}, dostarczany jest wraz z \textsc{Qt} kompilator \texttt{moc}, czyli \textsl{meta-object compiler}.
 
 Zadaniem tego narzędzia jest przeparsowanie dostarczonych plików źródłowych pod kątem odszukania wśród nich deklaracji klas dziedziczących z \verb|QObject|, a zatem wykorzystujących rozszerzone możliwości oferowane przez \textsc{Qt} i wygenerowanie kodu zrozumiałego przez wspomniany wyżej ,,zwykły'' kompilator. Kod dostarczony przez programistę, pozbawiony rozszerzeń \textsc{Qt} oraz kod wygenerowany przez narzędzie \texttt{moc} są kompilowane, a następnie łączone ze sobą na etapie linkowania.
 
@@ -434,9 +435,8 @@ Stworzyłem dwie metody kalibracji:
   \item zwykła,
   \item eksperymentalna.
 \end{itemize}
-\newline
-\newline
-\textsl{Kalibracja zwykła} W trybie zwykłym możliwe jest przystosowanie systemu do działania podczas noszenia przez użytkownika. Jest to prostsza z dwóch metod, która wykorzystuje zmiany pozycji względem oczekiwanych osi do odwzorowania ruchów rękoma. Do przeprowadzenia tej kalibracji potrzebne jest pobranie dwóch punktów kontrolnych:
+
+\noindent\textsl{Kalibracja zwykła} W trybie zwykłym możliwe jest przystosowanie systemu do działania podczas noszenia przez użytkownika. Jest to prostsza z dwóch metod, która wykorzystuje zmiany pozycji względem oczekiwanych osi do odwzorowania ruchów rękoma. Do przeprowadzenia tej kalibracji potrzebne jest pobranie dwóch punktów kontrolnych:
 \begin{itemize}
   \item punkt bliski, czyli taki, który znajduje się przy ramieniu użytkownika,
   \item punkt daleki, czyli taki, który znajduje się na w miejscu, w którym będzie ręka użytkownika gdy zostanie ona wyprostowana przed siebie.
