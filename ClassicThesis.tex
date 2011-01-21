@@ -138,7 +138,7 @@
 % tocaligned eulerchapternumbers drafting linedheaders listsseparated 
 % subfig nochapters beramono eulermath parts minionpro pdfspacing 
 % listings dottedtoc
-\usepackage[eulerchapternumbers,drafting,pdfspacing,
+\usepackage[eulerchapternumbers,pdfspacing,
             subfig,beramono,eulermath,dottedtoc]{classicthesis}
 \renewcommand{\lstlistlistingname}{\listoflistingscaption}
 %*******************************************************            
@@ -208,6 +208,7 @@
 
 
 \usepackage{rotating}
+\usepackage{pdfpages}
 %********************************************************************
 % Hyphenation
 %*******************************************************
@@ -216,6 +217,9 @@
 % GO!GO!GO! MOVE IT!
 %*******************************************************
 \begin{document}
+%********************************************************************
+% Frontmatter
+%*******************************************************
 \frenchspacing
 \raggedbottom
 \selectlanguage{polish} % american ngerman
@@ -223,22 +227,7 @@
 %\setbibpreamble{}
 \pagenumbering{roman}
 \pagestyle{plain}
-%********************************************************************
-% Frontmatter
-%*******************************************************
-%*******************************************************
-% Little Dirty Titlepage
-%*******************************************************
-\thispagestyle{empty}
-%\pdfbookmark[1]{Titel}{title}
-%*******************************************************
-\begin{center}
-    \spacedlowsmallcaps{\myName} \\ \medskip                        
-
-    \begingroup
-        \color{Maroon}\spacedallcaps{\myTitle}
-    \endgroup
-\end{center}
+\includepdf[pagecommand={\thispagestyle{empty}}]{FrontBackmatter/front_pl.pdf}
 \include{FrontBackmatter/Titlepage}
 \include{FrontBackmatter/Titleback}
 %\cleardoublepage\include{FrontBackmatter/Dedication}
@@ -274,7 +263,7 @@
 %*******************************************************
 \cleardoublepage\include{FrontBackmatter/Bibliography}
 \cleardoublepage\include{FrontBackmatter/Colophon}
-\cleardoublepage\include{FrontBackmatter/Declaration}
+\cleardoublepage\includepdf[pagecommand={\thispagestyle{empty}}]{FrontBackmatter/declaration.pdf}
 % ********************************************************************
 % Game Over: Restart, Restore or Quit?
 %*******************************************************
