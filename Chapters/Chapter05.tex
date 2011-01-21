@@ -46,7 +46,7 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
 
 Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
-Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wygaszenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
+Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wzbudzenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
  340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
 \end{equation}
@@ -60,7 +60,7 @@ Ze względu na wykorzystanie nadajników i odbiorników ultradźwiękowych używ
 
 Podobnie jak w przypadku wyliczania ograniczeń mikrokontrolera, tak i w tym przypadku należy wyznaczyć minimalny interwał, w jakim może zajść zmiana.
 
-Za zmianę będziemy przyjmować wygaszenie pinu mikrokontrolera, co spowodowane jest zaniknięciem nadawanego sygnału. Zdarzenie takie może zajść jedynie co pełny okres fali dźwiękowej. Policzmy więc odległość, jaka będzie dzieliła obraną fazę fali w dwóch ,,sąsiadujących'' okresach:
+Za zmianę będziemy przyjmować wzbudzenie pinu mikrokontrolera, co spowodowane jest zaniknięciem nadawanego sygnału. Zdarzenie takie może zajść jedynie co pełny okres fali dźwiękowej. Policzmy więc odległość, jaka będzie dzieliła obraną fazę fali w dwóch ,,sąsiadujących'' okresach:
 
 \begin{enumerate}
  \item wyliczamy okres $T$ fali dźwiękowej:
@@ -492,8 +492,8 @@ Raport w zaprojektowanym protokole prezentuje rysunek \ref{fig:protocol}.
 Każda ramka składa się z ośmiu bajtów, do których należą:
 \begin{itemize}
  \item \texttt{M$_\textrm{\texttt{id}}$} \ppauza $id$ markera,
- \item \texttt{O$_n$} \ppauza wartość zmiennej \texttt{ovfCounter} w chwili wygaszenia pinu odbiornika $n$,
- \item \texttt{T$_n$} \ppauza wartość rejestru \texttt{TCNT0} w chwili wygaszenia pinu odbiornika $n$,
+ \item \texttt{O$_n$} \ppauza wartość zmiennej \texttt{ovfCounter} w chwili wzbudzenia pinu odbiornika $n$,
+ \item \texttt{T$_n$} \ppauza wartość rejestru \texttt{TCNT0} w chwili wzbudzenia pinu odbiornika $n$,
  \item \texttt{F} \ppauza zawsze \texttt{0xFF}.
 \end{itemize}
 
