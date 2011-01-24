@@ -1,9 +1,9 @@
 %*******************************************************
 % Table of Contents
 %*******************************************************
-%\phantomsection
+\phantomsection
 \refstepcounter{dummy}
-\pdfbookmark[1]{\contentsname}{tableofcontents}
+\pdfbookmark[0]{\contentsname}{tableofcontents}
 \setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
 \setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
 \manualmark
@@ -26,7 +26,7 @@
     %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\listfigurename}
-    \pdfbookmark[1]{\listfigurename}{lof}
+    \pdfbookmark[0]{\listfigurename}{lof}
     \listoffigures
 
     \vspace*{8ex}
@@ -37,7 +37,7 @@
     %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\listtablename}
-    \pdfbookmark[1]{\listtablename}{lot}
+    \pdfbookmark[0]{\listtablename}{lot}
     \listoftables
         
     \vspace*{8ex}
@@ -49,7 +49,7 @@
 	  %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    \pdfbookmark[1]{\lstlistlistingname}{lol2}
+    \pdfbookmark[0]{\lstlistlistingname}{lol2}
     \listoflistings
     \vspace*{8ex}
 
@@ -59,7 +59,7 @@
 	  %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    \pdfbookmark[1]{\listalgorithmname}{loa}
+    \pdfbookmark[0]{\listalgorithmname}{loa}
     \listofalgorithms
     \vspace*{8ex}
 
@@ -70,7 +70,7 @@
     %*******************************************************
     %\phantomsection 
     \refstepcounter{dummy}
-    \pdfbookmark[1]{Indeks}{indeks}
+    \pdfbookmark[0]{Indeks}{indeks}
     \markboth{\spacedlowsmallcaps{Indeks}}{\spacedlowsmallcaps{Indeks}}
     \printindex
 \endgroup

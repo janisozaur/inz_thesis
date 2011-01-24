@@ -234,8 +234,6 @@
 %\cleardoublepage\include{FrontBackmatter/Abstract}
 %\cleardoublepage\include{FrontBackmatter/Publication}
 %\cleardoublepage\include{FrontBackmatter/Acknowledgments}
-\pagestyle{scrheadings}
-\cleardoublepage\include{FrontBackmatter/Contents}
 %********************************************************************
 % Mainmatter
 %*******************************************************
@@ -261,8 +259,10 @@
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************
+\pagestyle{scrheadings}
 \cleardoublepage\include{FrontBackmatter/Bibliography}
 \cleardoublepage\include{FrontBackmatter/Colophon}
+\cleardoublepage\include{FrontBackmatter/Contents}
 \cleardoublepage\includepdf[pagecommand={\thispagestyle{empty}}]{FrontBackmatter/declaration.pdf}
 % ********************************************************************
 % Game Over: Restart, Restore or Quit?
