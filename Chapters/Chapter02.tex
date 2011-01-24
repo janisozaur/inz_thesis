@@ -4,32 +4,33 @@
 \section{Cel}
 Celem pracy jest zademonstrowanie i ewaluacja systemu śledzenia ruchów, który obsługuje sześć stopni swobody.
 
-\section{Założenia}
 W ostatnich latach popularność systemów śledzenia ruchu znacznie wzrosła głównie za sprawą konsol oraz dodatków do nich. Praca ta ma na celu zbadanie możliwości wykorzystania systemu śledzenia ruchu opartego na ultradźwiękach; system taki nie został jeszcze wykorzystany w żadnej znaczącej konsoli.
 
-Zadaniem systemu jest śledzenie i raportowanie pozycji dwóch markerów w celu wykorzystania tych danych do interakcji z komputerem, a~w~szczególności aplikacji wykorzystujących grafikę trójwymiarową.
+Zadaniem systemu jest śledzenie i raportowanie pozycji dwóch markerów, a także przetwarzanie pobranych tym sposobem danych do interakcji z komputerem, w~szczególności do obsługi aplikacji wykorzystujących grafikę trójwymiarową.
 
-\subsection{Stopnie swobody}
+\section{Założenia}
+O pewnym ciele mówimy, że jest \textsl{swobodne}, jeśli nie istnieją ograniczenia, które uniemożliwiałyby mu wykonanie \textsl{dowolnych} ruchów \graffito{Inercjalny układ odniesienia to układ na który nie działają żadne siły lub siły na niego działające równoważą się.}w~inercjalnym układzie odniesienia pod wpływem zewnętrznych sił.
+
 \index{stopień swobody}
-Mianem stopnia swobody określamy ilość niezależnych\graffito{Niezależnych \ppauza niemożliwych do uzyskania za pomocą złożenia innnych ruchów.} ruchów, jakie może wykonać pewne ciało sztywne.
+Mianem \textsl{stopnia swobody} określamy ilość niezależnych\graffito{Niezależnych \ppauza niemożliwych do uzyskania za pomocą złożenia innnych ruchów.} ruchów, jakie może wykonać pewne swobodne ciało sztywne.
 
-O pewnym ciele mówimy, że jest \textsl{swobodne}, jeśli nie istnieją ograniczenia, które uniemożliwiałyby mu wykonanie \textsl{dowolnych} ruchów w~inercjalnym układzie współrzędnych pod wpływem zewnętrznych sił.
-
-Ciało sztywne swobodne posiada sześć stopni swobody:
+Swobodne ciało sztywne swobodne posiada sześć stopni swobody:
 \begin{itemize}
  \item translacja \ppauza trzy stopnie swobody określają pozycję ciała w trzech wymiarach,
  \item rotacja \ppauza trzy stopnie swobody pozwalają na dowolny obrót ciała względem każdej z osi.
 \end{itemize}
 
-W oparciu o charakterystykę \index{marker}markera, która pozwala na śledzenie tylko i wyłącznie jego pozycji, przyjmuję, że marker zachowuje się podobnie jak nieważki i swobodny punkt materialny. Oznacza to, że posiada on trzy stopnie swobody związane z translacją \citep{WrZa76}.
-
-\subsection{Marker}
-Marker jest małym urządzeniem, które użytkownik powinien przyczepić do swojego ciała w taki sposób, aby zmiana pozycji danej części ciała skutkowała zawsze takim samym przemieszczeniem markera. Dzięki temu założeniu można przyjąć, że pozycja markera odpowiada, z pewną dokładnością, pozycji śledzonej części ciała.
+\index{marker}
+\textsl{Marker} jest małym urządzeniem, które użytkownik powinien przyczepić do swojego ciała w taki sposób, aby zmiana pozycji danej części ciała skutkowała zawsze takim samym przemieszczeniem markera. Dzięki temu założeniu można przyjąć, że pozycja markera odpowiada, z pewną dokładnością, pozycji śledzonej części ciała.
 
 Możliwe jest także przyczepienie markera do obiektu innego niż ciało użytkownika, jednak możliwość śledzenia na komputerze własnych ruchów przemawia do odbiorcy znacznie trafniej, dlatego też skoncentrowałem się na zademonstrowaniu efektów mojej pracy w~taki właśnie sposób.
 
+Ponieważ wykorzystany sprzęt pozwala śledzić tylko i wyłącznie pozycję markerów, można na tej podstawie przyjąć, że marker stanowi pewien nieważki, swobodny punkt materialny. Oznacza to, że posiada on trzy stopnie swobody związane z translacją.
+
+Sześć stopni swobody osiągnięto poprzez śledzenie dwóch niezależnych markerów \citep{WrZa76}.
+
 \section{Zakres}
-W wyniku wykonania pracy powstało oprogramowanie, które wykorzystuje dostarczony sprzęt (sprzęt nie został wykonany samodzielnie, nie stanowi więc części pracy, lecz jego koncepcja została stworzona przeze mnie) w celu demonstracji metody śledzenia ruchów użytkownika. Sześć stopni swobody osiągnięto poprzez śledzenie dwóch markerów, z których każdy posiada trzy niezależne stopnie swobody.
+W wyniku wykonania pracy powstało oprogramowanie, które wykorzystuje dostarczony sprzęt (sprzęt nie został wykonany samodzielnie, nie stanowi więc części pracy, lecz jego koncepcja została stworzona przeze mnie) w celu demonstracji metody śledzenia ruchów użytkownika.
 
 Oprogramowanie działa zarówno na mikrokontrolerze \textsmaller{AVR Atmega8}, będącym jedynym programowalnym elementem części sprzętowej, jak i na komputerze.
 
