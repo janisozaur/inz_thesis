@@ -28,6 +28,38 @@ Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasow
 
 Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązało by się jednak z mankamentem wspomnianym powyżej, zaś precyzja osiągana przez oprogramowanie wykorzystujące timer o wielkości ośmiu bitów, jaka została opisana w sekcji \ref{section:microcontroller_limit}, jest wystarczająca do bardzo dokładnego śledzenia pozycji.
 
+
+\paragraph{Przerwania}
+W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w~momencie zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
+
+Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wybranej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
+
+Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiar ograniczony byłby do młodszego bajtu danych.
+
+Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
+
+Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje listing~\ref{lst:interrupt_handler}.
+
+\begin{listing}
+  \lstinputlisting[language=C]{listings/atmega_interrupt.c}
+  \caption{Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}}
+  \label{lst:interrupt_handler}
+\end{listing}
+
+Oznaczenie zmiennej jako \texttt{volatile} oznajmia kompilatorowi, że wszelkie odczyty i zapisy muszą operować na wartości zmiennej z pamięci. W przypadku braku takiego zapisu kompilator podczas kompilowania kodu źródłowego z włączoną flagą optymalizacji może przyjąć, że procedura zmieniająca wartość zmiennej nie jest nigdzie wywoływana, przez co bezpiecznym jest cache-owanie wartości zmiennej, a w efekcie zignoruje skutki wywołania przerwania.
+
+Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR \ppauza pozwala np. na zagnieżdżanie przerwań, czyli przerwanie przetwarzania procedury ISR przez inne przerwanie.
+
+Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje listing~\ref{lst:interrupt_vector}.
+
+\begin{listing}
+  \lstinputlisting{listings/interrupt_vector.txt}
+  \caption[Wektor obsługi przerwań]{Wygenerowany wektor obsługi przerwań}
+  \label{lst:interrupt_vector}
+\end{listing}
+
+Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i~\texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań oznaczonych jako \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
+
 \subsection{Dokładność pozyskanych danych}\label{section:precision}
 Z powodu cyfrowej natury urządzenia, operuje ono na dyskretnych wartościach. Zarówno następująca w tym przypadku dyskretyzacja danych jak i wykorzystane do pomiarów zjawisko fizyczne, wprowadzają pewne ograniczenia dokładności, jaka może zostać uzyskana przez system.
 
@@ -95,37 +127,6 @@ Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odb
 \end{equation}
 gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}.
 %\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}
-
-\paragraph{Przerwania}
-W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w~momencie zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
-
-Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wybranej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
-
-Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiar ograniczony byłby do młodszego bajtu danych.
-
-Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
-
-Przykład procedury obsługi przerwania na podstawie opisanej właśnie funkcjonalności prezentuje listing~\ref{lst:interrupt_handler}.
-
-\begin{listing}
-  \lstinputlisting[language=C]{listings/atmega_interrupt.c}
-  \caption{Procedura obsługi przerwania \texttt{Timer/Counter0 Overflow}}
-  \label{lst:interrupt_handler}
-\end{listing}
-
-Oznaczenie zmiennej jako \texttt{volatile} oznajmia kompilatorowi, że wszelkie odczyty i zapisy muszą operować na wartości zmiennej z pamięci. W przypadku braku takiego zapisu kompilator podczas kompilowania kodu źródłowego z włączoną flagą optymalizacji może przyjąć, że procedura zmieniająca wartość zmiennej nie jest nigdzie wywoływana, przez co bezpiecznym jest cache-owanie wartości zmiennej, a w efekcie zignoruje skutki wywołania przerwania.
-
-Makro \texttt{ISR(vector [, attributes])} z biblioteki \textsmaller{avr-libc} definiuje następujące po nim ciało funkcji jako procedurę obsługi przerwania. Argument \texttt{vector} jest wymagany i oznacza pozycję w wektorze przerwań mikrokontrolera, do której przypisany ma zostać kod. Argument \texttt{attributes} jest opcjonalny i modyfikuje działanie procedury ISR \ppauza pozwala np. na zagnieżdżanie przerwań, czyli przerwanie przetwarzania procedury ISR przez inne przerwanie.
-
-Wygenerowany wektor przerwań, prezentujący obecność tylko dwóch, wymienionych powyżej, procedur obsługi przerwania prezentuje listing~\ref{lst:interrupt_vector}.
-
-\begin{listing}
-  \lstinputlisting{listings/interrupt_vector.txt}
-  \caption[Wektor obsługi przerwań]{Wygenerowany wektor obsługi przerwań}
-  \label{lst:interrupt_vector}
-\end{listing}
-
-Pierwsza pozycja na liście jest punktem wejścia programu, od którego rozpoczyna się wykonywanie kodu. Pozycje z adresów \texttt{0x10} i~\texttt{0x12} to przekierowania do odpowiednio procedur ISR dla przerwań oznaczonych jako \texttt{Timer/Counter0 Overflow} i \texttt{Timer/Counter1 Overflow}.
 
 \section{Oprogramowanie dla komputera}
 W celu stworzenia oprogramowania dla komputera wykorzystałem kilka środowisk i bibliotek.
