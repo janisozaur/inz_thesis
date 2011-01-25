@@ -12,14 +12,125 @@ Z powodu słabego przyjęcia się urządzenia (miała na to wpływ między innym
 
 Pomimo chłodnego przyjęcia dotychczasowych rozwiązań, producenci najwyraźniej dostrzegali duże możliwości rozwoju w tej dziedzinie, gdyż w~roku 2006. wprowadzona została przez firmę \index{Nintendo}\textsmaller{Nintendo} konsola \index{Nintendo!Wii}\textsmaller{Wii}, której głównym atutem był nowy sposób sterowania \ppauza za pomocą bezprzewodowego kontrolera wyposażonego w \index{akcelerometr}akcelerometr. Urządzenie to jest w stanie odczytywać przyspieszenia, jakie na nie działają we wszystkich trzech osiach. Wprowadzony w roku 2009. dodatek \textsmaller{MotionPlus}, który zawiera trójosiowy \index{żyroskop}żyroskop, umożliwia dodatkowo śledzenie obrotów w trzech osiach, znacznie zwiększając dokładność systemu.
 
-Na dzień dzisiejszy, wśród aktualnych ,,dużych''\graffito{Mowa tutaj o~systemach, które nie są projektowane jako przenośne, chociaż i w tym przypadku zaczyna się wykorzystywać jakieś formy śledzenia ruchów.} konsol siódmej generacji, każdy z domowych systemów posiada system śledzenia ruchu. Są to, w kolejności wprowadzania na rynek:
-\begin{enumerate}
- \item \index{Nintendo!Wiimote}\textsmaller{Wiimote} \ppauza \textsmaller{Nintendo Wii},
- \item \index{Sony!PlayStation!Eye}\textsmaller{PlayStation Eye} \ppauza \textsmaller{Sony PlayStation},
- \item \index{Nintendo!MotionPlus}\textsmaller{Wii MotionPlus} \ppauza \textsmaller{Nintendo Wii},
- \item \index{Sony!PlayStation!Move}\textsmaller{PlayStation Move} \ppauza \textsmaller{Sony PlayStation},
- \item \index{Microsoft!Kinect}\textsmaller{Kinect} \ppauza \textsmaller{Microsoft Xbox 360}.
-\end{enumerate}
+Na dzień dzisiejszy, wśród aktualnych ,,dużych''\graffito{Mowa tutaj o~systemach, które nie są projektowane jako przenośne, chociaż i w tym przypadku zaczyna się wykorzystywać jakieś formy śledzenia ruchów.} konsol siódmej generacji, każdy z domowych systemów posiada system śledzenia ruchu.
+
+Przybliżę ich charakterystykę zgodnie z kolejnością wprowadzania na rynek.
+
+\index{Nintendo!Wiimote}\paragraph{Wiimote}
+Kontroler do konsoli \textsmaller{Nintendo Wii}, wyposażony we wspomniany akcelerometr w technologii \graffito{MEMS \ppauza Microelectromechanical systems.}MEMS. Dzięki wprowadzeniu takiego kontrolera jako integralnej części systemu, firma \textsmaller{Nintendo} dokonując \graffito{O małej ilości zmian stanowi relatywnie małe zwiększenie mocy obliczeniowej, niewielkie różnice w~architekturze konsoli oraz pełna kompatybilność wsteczna (wliczając w to gry i akcesoria).} niewielkich zmian w istniejącym produkcie \ppauza \index{Nintendo!GameCube}\textsmaller{Nintendo GameCube} \ppauza lecz wprowadzając niespotykany dotychczas i bardzo naturalny sposób interakcji osiągnęła rynkowy sukces \citep{WiiSales}.
+
+Kontroler posiada ponadto kamerę zdolną śledzić do czterech punktów, zaś zastosowany do kamery filtr zapewnia wysoką skuteczność śledzenia promieniowania podczerwonego. Element \textsmaller{Sensor Bar} umieszczany nad lub pod telewizorem, wyposażony w zestaw podczerwonych diod na każdym z końców, pozwala kontrolerowi na poznanie odległości od telewizora poprzez wyznaczenie względnego odstępu pomiędzy krańcami elementu \textsmaller{Sensor Bar}.
+
+Ten mechanizm sterowania zyskał szczególną popularność dzięki grom, które odwzorowywały sporty, w których wykorzystywane są ,,drążki'' \ppauza np. baseball, golf, tenis.
+
+Zalety:
+\begin{itemize}
+  \item jako integralna część konsoli jest dostarczany wraz z nią i nie odbiera zasobów programiście,
+  \item wykorzystuje standard \texttt{I$^2$C},
+  \item wykorzystuje standard Bluetooth.
+\end{itemize}
+
+Wady:
+\begin{itemize}
+  \item dostarcza jedynie ograniczone dane,
+  \item nie jest możliwe wykorzystanie wszystkich możliwości kontrolera jednocześnie.
+\end{itemize}
+
+\index{Sony!PlayStation!Eye}\paragraph{PlayStation Eye}
+Dodatek do konsoli \textsmaller{Sony PlayStation 3} pod postacią kamery. Kamera ta jest w stanie nadawać obraz wymiarów 320\texttimes{}240 pikseli z częstotliwością 120Hz lub 640\texttimes{}480 pikseli i 60Hz; posiada także cztery mikrofony.
+
+Urządzenie pozwala na wykrywanie i śledzenie ruchów za pomocą metod wizualnych oraz dźwiękowych, a także tłumienie echa. W zależności od programu, wykorzystanie kamery jest różne \ppauza może wahać się od pobrania zdjęcia użytkownika, przez śledzenie głowy, aż do pełnego śledzenia ciała. Jako że jest to zwykła kamera, ograniczona ona jest do zaledwie dwóch wymiarów. Imitację trzeciego można zaimplementować badając rozmiar śledzonego obiektu, rozwiązanie takie będzie jednak bardzo mało podatne na zmiany ,,głębokości''.
+
+Oprogramowanie konsoli pozwala także na prowadzenie wideorozmów oraz prostą edycję nagranego materiału \citep{PSEye}.
+
+Zalety:
+\begin{itemize}
+  \item dostarcza relatywnie dokładny (jak na standardy konsol) obraz z dużą częstotliwością,
+  \item posiada zestaw mikrofonów zwiększający funkcjonalność.
+\end{itemize}
+
+Wady:
+\begin{itemize}
+  \item jako dodatek do systemu, a nie jego integralna część, jego oprogramowanie odbiera część zasobów dostępnych dotychczas dla progrmiasty,
+  \item śledzi ruch tylko w dwóch wymiarach.
+\end{itemize}
+
+\index{Nintendo!MotionPlus}\paragraph{Wii MotionPlus}
+Jedno z rozszerzeń kontrolera \textsmaller{Wiimote}, które zawiera trójosiowy żyroskop. Urządzenie dzięki dostarczaniu danych o obrocie niweluje ograniczenia akcelerometru uniemożliwiające dokładne stwierdzenie rotacji.
+
+Dane pobierane są z rozszerzenia za pomocą interfejsu \texttt{I$^2$C}, który pozwala na adresowanie do 127 urządzeń za pomocą zaledwie dwóch przewodów (oraz wspólnej masy), dzięki czemu możliwe jest dołączanie innych rozszerzeń, a także możliwe jest pozyskanie tych danych za pomocą mikrokontrolera.
+
+Zwiększona precyzja daynch pozwoliła m.in. na dokładniejsze odwzorowanie sportów takich jak: łucznictwo, rzut dyskiem, golf oraz walka mieczem.
+
+Zalety:
+\begin{itemize}
+  \item znacznie zwiększa precyzję dostarczanych danych.
+\end{itemize}
+
+Wady:
+\begin{itemize}
+  \item jako element opcjonalny powoduje fragmentację rynku,
+  \item wbudowana kamera ma mały kąt widzenia.
+\end{itemize}
+
+\index{Sony!PlayStation!Move}\paragraph{PlayStation Move}
+Rozszerzenie do konsoli \textsmaller{Sony PlayStation 3}, które opiera swoje działanie o wizualne metody śledzenia, dostępne za pomocą opisanego już \textsmaller{PlayStation Eye}.
+
+System \textsmaller{PlayStation Move} składa się z dwóch kontrolerów: \textsmaller{Motion Controller} oraz \textsmaller{Navigation Controller}.
+
+Kontroler \textsmaller{Motion Controller} zawiera sferę, która podświetlana jest za pomocą diod na kolor, jaki nie występuje w otoczeniu. Pozwala to na dokładne śledzenie położenia kontrolera przez kamerę, natomiast czujniki przyspieszenia, obrotu oraz geomagnetyczności zawarte w urządzeniu zapewniają wystarczającą ilość danych, jaka jest potrzebna do odwzorowania skomplikowanych ruchów. Element ten posiada także część przycisków dostępną w standardowym kontrolerze \textsmaller{Sixaxis}.
+
+Element \textsmaller{Navigation Controller} zawiera tylko przyciski oraz gałkę analogową.
+
+Sterowanie takie wykorzystane jest w grach typu \textsl{First Person Shooter}, natomiast dema prezentowane przez firmę \textsmaller{Sony} obejmują łucznictwo, walki mieczami, boks i inne.
+
+Zalety:
+\begin{itemize}
+  \item system automatycznie dostraja się do otoczenia,
+  \item mnogość czujników zapewnia możliwość dokładnego odwzorowania ruchu,
+  \item wykorzystuje standard Bluetooth.
+\end{itemize}
+
+Wady:
+\begin{itemize}
+  \item czujniki znajdują się tylko w kontrolerze \textsmaller{Motion Controller}, przez co wiele gier wymagających śledzenia obu rąk wymuszać będzie zakup więcej niż jednego zestawu,
+  \item ograniczenie śledzenia tylko do rąk,
+  \item przyciski dostępne w każdym z elementów osobno nie stanowią pełnej gamy przycisków oferowanych przez konsolę, co może powodować dodatkowy narzut projketowania i pracy programistycznej do obsługi obu schematów.
+\end{itemize}
+
+\index{Microsoft!Kinect}\paragraph{Kinect}
+Dodatek do konsoli \textsmaller{Microsoft Xbox 360}, który zawiera kamerę RGB oraz czujnik 3D, którego działanie oparte jest na emitowaniu światła podczerwonego i odbieraniu jego odbicia. W urządzeniu zawarta jest także siatka mikrofonów (ang. \textsl{multi-array microphone}) oraz ruchoma podstawa. Dzięki tym elementom możliwe jest odpowiednio: śledzenie głosu i anulowanie echa oraz ,,skanowanie'' przestrzenie w celu dopasowania do użytkownika.
+
+Gry wykorzystujące ten sensor pozwalają tańczyć, wykonywać gimnastykę, sporty a także wiele innych.
+
+Sensor wykorzystywany jest także w wielu projektach, które nie dotyczą konsoli. Przykładowy projekt, dzięki wykorzystaniu dwóch urządzeń \textsmaller{Kinect} rekonstruuje trójwymiarową scenę w postaci wirtualnej, nakłada na nią pobrane na żywo dane z kamer RGB oraz pozwala przesuwać kamerę w wirtualnej scenie w miejsce, w którym nie jest zlokalizowany żaden z sensorów, nie tracąc przy tym szczegółów sceny \citep{TwoKinects}.
+
+Zalety:
+\begin{itemize}
+  \item użytkownik nie musi trzymać żadnego urządzenia,
+  \item system jest w stanie sam znaleźć użytkownika dzięki zastosowaniu ruchomej podstawy,
+  \item posiada sterowniki \textsl{open source}.
+\end{itemize}
+
+Wady:
+\begin{itemize}
+  \item ponieważ użytkownik nie trzyma żadnego kontrolera, nie ma możliwości naciśnięcia przycisku,
+  \item nie jest możliwe prawdziwe odwzorowanie chodu, gdyż użytkownik porusza się w ograniczonej przestrzeni.
+\end{itemize}
+
+
+\paragraph{Podsumowanie}
+Jak pokazuje rynek, istnieje wiele metod śledzenia ruchów gracza. Każda z nich ma odmienne wady i zalety, różne jest także ich zastosowanie.
+
+Należy zauważyć, że wprowadzenie systemu śledzenia ruchów jako dodatku do konsoli stawia większe wymagania, niż ma to w przypadku zintegrowania takiego systemu wraz z nową konsolą:
+\begin{itemize}
+  \item w\graffito{Zasoby dostępne w~konsolach są mocno ograniczone, nie jest możliwe ich rozszerzanie.} celu obsługi systemu konieczne jest odebranie programiście pewnej ilości zasobów konsoli,
+  \item konieczna jest promocja urządzenia,
+  \item powodowana jest fragmentacja rynku, objawiająca się faktem, że użytkownik może nie posiadać danego dodatku, co odbija się na oprogramowaniu \ppauza nie wszystkie produkcje będą wykorzystywać system,
+  \item często\graffito{Sytuacja taka miała miejsce w przypadku gry MAG.} koszta ponoszą studia deweloperskie, które dodają obsługę systemu już po premierze gry.
+\end{itemize}
+
+Nie jest możliwe stwierdzenie, który z tych systemów jest ,,najlepszy'', gdyż pomimo faktu, że wszystkie są systemami śledzenia ruchów, to są one jednak od siebie bardzo odmienne, a to uniemożliwia ich jednoznaczne porównanie.
 
 % Ei choro aeterno antiopam mea, labitur bonorum pri no. His no decore
 % nemore graecis. In eos meis nominavi, liber soluta vim cu. Sea commune
