@@ -1,8 +1,6 @@
 \myChapter{Testy}\label{ch:tests}
 %************************************************
 
-\section{Cele}
-
 Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzonego systemu i oprogramowania pod kątem wykorzystania w grach wideo\graffito{Wynika to ze studiowania na specjalności Technologii Gier i~Symulacji Komputerowych.}. Nie jest jednak trudno sobie wyobrazić inne dziedziny, w których można wykorzystać system, jak np.:
 \begin{itemize}
  \item medycyna \ppauza manipulacja trójwymiarowymi obrazami skanów pacjentów,
@@ -12,7 +10,6 @@ Głównym zadaniem przeprowadzonych testów było zbadanie zachowania stworzoneg
 
 Głównym atutem systemu w tych dziedzinach jest naturalny sposób manipulacji i~interakcji z komputerem ze względu na pobieranie dodatkowo \ppauza w odróżnieniu od standardowego zostawu klawiatura + myszka \ppauza trzeciego wymiaru.
 
-\section{Metody}
 Aby określić przydatność systemu, należy zbadać kilka czynników. Ich wagi będą różnić się, w zależności od planowanego wykorzystania, jednak można zauważyć, że należy dążyć do optymalizacji cech takich jak:
 \begin{itemize}
  \item dokładność,
@@ -31,7 +28,7 @@ Dokładność systemu została już określona w sekcji \ref{section:precision},
 
 Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z~faktem, że można natknąć się na ograniczenia mikrokontrolera.} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
 
-Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,333mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit}~i~\ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
+Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,333mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit}~i~\ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,3mm, a zatem ograniczenie pomiarów prowadzonych przez system wynosi 8,3mm.
 
 Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
 
