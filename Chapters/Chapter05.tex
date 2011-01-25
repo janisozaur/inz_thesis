@@ -101,7 +101,7 @@ W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang.
 
 Implementacja procedur obsługi przerwań jest rozszerzeniem języka C, która jest charakterystyczna dla wybranej rodziny układów i wykorzystanego kompilatora, co powoduje, że wykorzystanie innego kompilatora lub innej rodziny układów wymaga przepisania procedur ISR zgodnie z nowymi wymaganiami.
 
-Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiary ograniczony byłyby do zaledwie 256 możliwości odległości markera od odbiornika.
+Jednym z wykorzystanych przerwań jest przerwanie wywoływane przez moduł \texttt{Timer/Counter0}: \texttt{Timer/Counter0 Overflow} (\texttt{TOV0}). Jest ono wyzwalane, gdy licznik \texttt{TCNT0} przekroczy maksymalną możliwą dla niego wartość i rozpocznie się ponowne odliczanie od zera. Zadaniem zawartego w tej procedurze kodu jest tylko i wyłącznie inkrementacja zmiennej \texttt{ovfCounter}, dzięki czemu znana jest ilość przepełnień licznika. W przypadku pominięcia tej danej, pomiar ograniczony byłby do młodszego bajtu danych.
 
 Drugie wykorzystane przerwanie jest również przerwaniem licznika i wyzwalane jest przez moduł \texttt{Timer/Counter1}. Jedynym zadaniem tego przerwania jest obsługa jednej z diod, której zadaniem jest wizualne potwierdzenie sprawności i działania układu.
 
@@ -230,9 +230,9 @@ Aby uatrakcyjnić prezentację, a zarazem zademonstrować jedno z przykładowych
 \textsc{OpenGL} to otwarta biblioteka graficzna, której implementację dostarcza zwykle producent sterowników do posiadanej karty graficznej. Udostępnia ona możliwości tego elementu na potrzeby renderowania, przetwarzania i wyświetlania grafiki trójwymiarowej.
 
 \subsection{Trilaterator}
-Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części programu.
+Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części okna programu.
 
-Aplikację wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator}.
+Interfejs aplikacji wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator}.
 
 \begin{figure}[t]
  \includegraphics[width=\textwidth]{gfx/trilaterator_triple.png}
@@ -240,12 +240,10 @@ Aplikację wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator
  \label{fig:trilaterator}
 \end{figure}
 
-Przykładowe dane oraz poprawność zastosowanej metody pokazuje rysunek \ref{fig:trilateration_sample}.
-
-Jak widać, oddalenie odbiorników od siebie na odległość zaledwie kilku centymetrów pozwala badać położenie markera w przestrzeni.
+Wizualizację przykładowych danych pokazuje rysunek \ref{fig:trilateration_sample}.
 
 \paragraph{Struktura programu}
-Przedstawiony program jest celowo bardzo prosty i sprowadza się tylko do obsługi zdarzenia kliknięcia przycisku, tak aby łatwo można było prześledzić działanie metody. Całą istotę działania programu prezentuje listing~\ref{lst:trilateration}.
+Przedstawiony program jest celowo bardzo prosty, tak aby łatwo można było prześledzić działanie implementacji trilateracji. Całą istotę działania programu prezentuje listing~\ref{lst:trilateration}.
 
 \begin{listing}
   \lstinputlisting{listings/trilateration.cpp}
