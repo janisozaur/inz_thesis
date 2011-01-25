@@ -8,7 +8,7 @@ Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylk
 Stworzone oprogramowanie podzieliłem na dwie kategorie, w zależności od urządzenia, które będzie dany program uruchamiało: oprogramowanie dla mikrokontrolera oraz oprogramowanie dla komputera.
 
 \section{Oprogramowanie mikrokontrolera}
-Zadaniem mikrokontrolera jest prowadzenie pomiarów interwałów dzielących rozpoczęcie nadawania przez marker od odebrania sygnału przez odbiorniki.
+Zadaniem mikrokontrolera jest prowadzenie pomiarów interwałów czasowych, jakie dzielą rozpoczęcie nadawania przez marker od odebrania sygnału przez odbiorniki, a następnie przesłanie tych danych do komputera.
 
 Wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
 
@@ -22,7 +22,7 @@ Program, aby poprawnie spełniał swoje zadanie, jakim jest dostarczenie danych,
  \item prostota \ppauza ze względu na niewielkie możliwości mikrokontrolera \ppauza w porównaniu do komputerów \ppauza trzeba zoptymalizować wszelkie używane struktury i unikać wykonywania pracy, którą spokojnie może zająć się komputer.
 \end{itemize}
 
-Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie \index{timer}timerów urządzenia \ppauza stara się o dokładność danych, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
+Uważam, że program, który napisałem spełnia wszystkie stawiane mu wymagania. Mieści się w niecałych 200 liniach \ppauza nie ma zbędnego kodu, dba o poprawne inicjalizowanie \index{timer}timerów urządzenia \ppauza stara się zachować dokładność prowadzonych pomiarów, posiada możliwie najmniejsze struktury, które pozwolą przechować dane.
 
 Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasowany do rozmiaru rejestrów mikrokontrolera. W przypadku zmiennych o długości 16 bitów znacznie wzrasta ilość taktów zegara, podczas których dane te są przetwarzane. Krótkie zmienne pozwalają na przechwycenie danych timera \ppauza rejestru \texttt{TCNT0}\graffito{Rejestr \texttt{TCNT0} przechowuje aktualny stan licznika, a zmienna \texttt{ovfCounter} ilość cykli timera.} oraz licznika przepełnień \texttt{ovfCounter} \ppauza w jednym takcie zegara.
 
@@ -53,10 +53,10 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
 
 Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność sprzętu jest bardzo duża i znacznie przekracza wymagania gier wideo, gdzie w centrum zainteresowania są żwawe, gwałtowne ruchy. Pozwoliłaby ona na prawdopodobne wykorzystanie układu w zastosowaniach wymagających większej precyzji, jak np. modelowanie trójwymiarowe lub wizualizacja danych medycznych.
 
-Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wzbudzenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
-\begin{equation}
- 333~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} \approx 85,25~\textrm{mm}
-\end{equation}
+% Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wzbudzenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
+% \begin{equation}
+%  333~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} \approx 85,25~\textrm{mm}
+% \end{equation}
 
 \paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
@@ -85,11 +85,11 @@ Równanie \ref{eq:sound_limit} pokazuje ograniczenie wynikające z zastosowania 
 \paragraph{Teoretyczne ograniczenia całego systemu}
 Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i~odbiorników.
 
-Ograniczenie to pozwala badać odległość markera od odbiornika z dokładnością do co najwyżej 8,3mm.
+Ograniczenie to pozwala badać odległość markera od odbiornika z~dokładnością do co najwyżej 8,3mm.
 
 Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w~aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości.} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
-Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także wymienić kwarc generujący częstotliwość dla tych elementów. Bez konieczności przeprogramowywania mikrokontrolera można zastosować elementy używające częstotliwości do
+Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odbiorniki na podobne modele, korzystające z wyższych częstotliwości, a także zaktualizować układ nadajnika. Bez konieczności przeprogramowywania\graffito{Uwzględnić należy też możliwości protokołu.} mikrokontrolera można zastosować elementy używające częstotliwości do
 \begin{equation}
  f = \frac{1}{i} = \frac{1}{1~\mu\textrm{s}} = 1~\textrm{MHz}
 \end{equation}
@@ -232,7 +232,7 @@ Aby uatrakcyjnić prezentację, a zarazem zademonstrować jedno z przykładowych
 \subsection{Trilaterator}
 Pierwsza ze stworzonych aplikacji przeznaczona jest do przeprowadzania trilateracji, o której mowa w sekcji \ref{par:trilateration}. Wykonuje ona automatycznie obliczenia dane wzorami \ref{eq:trilateration_final_x}, \ref{eq:trilateration_final_y} i \ref{eq:trilateration_final_z}. Interfejs aplikacji umożliwia wprowadzanie wszelkich danych dotyczących rozmieszczenia odbiorników jak i markera. Wyniki dokonanych obliczeń prezentowane są w dolnej części okna programu.
 
-Interfejs aplikacji wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator}.
+Interfejs aplikacji wraz z przykładowymi danymi prezentuje rysunek \ref{fig:trilaterator}. Dane $a$, $b$ oraz $c$ odpowiadają wartościom z rysunku \ref{fig:schema_coordinates}.
 
 \begin{figure}[t]
  \includegraphics[width=\textwidth]{gfx/trilaterator_triple.png}

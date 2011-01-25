@@ -37,7 +37,7 @@ gdzie:
  \item[$t$] \ppauza~czas od wysłania sygnału do jego dotarcia do odbiornika. 
 \end{description}
 
-Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protokół}protokołu, tylko i wyłącznie odczyty z~licznika dla każdego z~odbiorników.
+Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza sygnałami kontrolnymi \index{protokół}protokołu, również odczyty z~licznika dla każdego z~odbiorników, które zgodnie z wzorem \ref{eq:sound_distance} są proporcjonalne do odległości markera od tego odbiornika.
 
 \paragraph{Przetwarzanie pozyskanych danych}
 Ponieważ dane odczytane z mikrokontrolera mają postać ,,surową'', nie niosą one informacji, która jest możliwa do natychmiastowego wykorzystania w komputerze. Dopiero po przetworzeniu danych można pozyskać z nich wartościową informację. Przetwarzanie takie najczęściej wymagać będzie agregacji pewnej ilości danych oraz poddanie ich pewnemu procesowi obróbki. Proces ten stanowić może np.:
@@ -63,7 +63,7 @@ Rysunek \ref{fig:schema_spheres}\graffito{W rysunku przyjęto widok ,,od przodu'
 Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że dla każdego punktu $P$, będzie istniał punkt $P'$, który będzie odbiciem punktu $P$ względem płaszczyzne, w której zawarte są odbiorniki.
 %\graffito{dodać notatkę w testach o możliwości wyeliminowania tego 'defektu' poprzez dodanie 4-tego odbiornika, niewspółpłaszczyznowego, jednak spowoduje to wzrost kosztów obliczeń}
 
-Należy wziąć pod uwagę fakt, że zarówno marker jak i odbiorniki są urządzeniami ,,kierunkowymi'', umieszczonymi w tulejach, które powodują, że sygnał nie jest wysyłany dookólnie, lecz w pewnym \ppauza z grubsza określonym \ppauza kierunku, zaś amplituda sygnału odbieranego będzie większa, jeśli będzie on wpadał prosto w tuleję\graffito{Sygnał dochodzący z boku może być zbyt słaby, aby został zarejestrowany.}, przez co szansa uznania go za poprawny jest znacznie większa.
+Należy wziąć pod uwagę fakt, że zarówno marker jak i odbiorniki są urządzeniami ,,kierunkowymi'', umieszczonymi w tulejach, które powodują, że sygnał nie jest wysyłany dookólnie, lecz w pewnym \ppauza z grubsza określonym \ppauza kierunku, zaś amplituda sygnału odbieranego będzie większa, jeśli będzie on wpadał prosto w tuleję\graffito{Sygnał dochodzący z~boku może być zbyt słaby, aby został zarejestrowany.}, przez co szansa uznania go za poprawny jest znacznie większa.
 
 Ta cecha układu została wykorzystana poprzez przeznaczenie układu do noszenia na tułowiu \ppauza łatwo zauważyć, że użytkownikowi ciężko byłoby przesunąć \index{marker}marker zbyt daleko do tyłu, gdyż ograniczałyby go stawy. 
 
@@ -71,9 +71,9 @@ Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed
 
 \paragraph{Pomiar czasu pomiędzy wysłaniem, a odebraniem sygnału}
 \label{sec:uc_algorithm}
-Ponieważ markery nie mogą nadawać sygnału ani jednocześnie, ani ciągle, konieczna jest pewna metoda, w wyniku realizacji której markery będą naprzemiennie nadawać sygnał, a informacja o jego odebraniu będzie zapisana oraz przesłana do komputera. Odbywa się to w następujący sposób:
+Z powodu tego, iż dostępne markery nadają tylko na jednej, ustalonej częstotliowści konieczne okazało się wykonanie procesu pomiarowego z podziałem czasu. Oznacza to, iż w jednej chwili czasu nadaje tylko i wyłącznie jeden marker, prowadzony jest więc pomiar tylko dla jednego kanału, a informacja o jego parametrach jest wstępnie przetwarzana, zapisywana i przesyłana do komputera. Odbywa się to w~następujący sposób:
 \begin{enumerate}
- \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
+ \item \index{prescaler}prescaler\graffito{Opis prescalera znajduje się poniżej.} urządzenia jest resetowany,\label{enum:prescaler}
  \item uruchamiany jest wewnętrzny licznik urządzenia,
  \item wysyłany jest sygnał, który aktywuje jeden z markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
  \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z~sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z~danego odbiornika) jest zapamiętywany,
@@ -225,4 +225,4 @@ Reasumując, jeśli przyjąć rozmieszczenie \index{odbiornik}odbiorników takie
    & = & \sqrt{r_1^2 - \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 - \left(\frac{b\frac{r_1^2 - r_2^2 + a^2}{-a} + b^2 + c^2 + r_1^2 - r_3^2}{2c}\right)^2} \nonumber
 \end{eqnarray}
 
-Jako ciekawostkę warto dodać informację, że system \textsc{GPS} korzysta z bardzo podobnej metody (chociaż jej implementacja jest zupełnie inna) \citep{MioGps}.
+Jako ciekawostkę warto dodać informację, że system \textsc{GPS} korzysta z~bardzo podobnej metody (chociaż jej implementacja jest zupełnie inna) \citep{MioGps}.
