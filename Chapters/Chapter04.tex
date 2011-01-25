@@ -37,37 +37,9 @@ gdzie:
  \item[$t$] \ppauza~czas od wysłania sygnału do jego dotarcia do odbiornika. 
 \end{description}
 
-Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza sygnałami kontrolnymi \index{protokół}protokołu, również odczyty z~licznika dla każdego z~odbiorników, które zgodnie z wzorem \ref{eq:sound_distance} są proporcjonalne do odległości markera od tego odbiornika.
-
-\paragraph{Przetwarzanie pozyskanych danych}
-Ponieważ dane odczytane z mikrokontrolera mają postać ,,surową'', nie niosą one informacji, która jest możliwa do natychmiastowego wykorzystania w komputerze. Dopiero po przetworzeniu danych można pozyskać z nich wartościową informację. Przetwarzanie takie najczęściej wymagać będzie agregacji pewnej ilości danych oraz poddanie ich pewnemu procesowi obróbki. Proces ten stanowić może np.:
-\begin{itemize}
- \item rozpoznawanie gestów,
- \item odtworzenie pozycji markera w trzech wymiarach,
- \item oczekiwanie na przemieszczenie markera do predefiniowanej pozycji.
-\end{itemize}
-
-\index{marker}
-Jako demonstrację możliwości systemu pokażę, jak odtworzyć pozycję markera w trzech wymiarach, korzystając wyłącznie z~informacji o~względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
-
-Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji wymienione powyżej dane, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
-
-\begin{figure}
-  \includegraphics[width=\textwidth]{gfx/diagramy/schemat_przeciecia_sfer}
-  \caption{Poglądowy schemat rozmieszczenia czujników}
-  \label{fig:schema_spheres}
-\end{figure}
-
-Rysunek \ref{fig:schema_spheres}\graffito{W rysunku przyjęto widok ,,od przodu'', tzn. zachodzi $z = 0$ dla wszystkich elementów z~wyjątkiem punktu $P$.} prezentuje rozmieszczenie odbiorników na płycie testowej. Znajdują się one w punktach oznaczonych odpowiednio jako $S_1$, $S_2$ i $S_3$. Punkt $P$ to punkt przecięcia się sfer.
-
-Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że dla każdego punktu $P$, będzie istniał punkt $P'$, który będzie odbiciem punktu $P$ względem płaszczyzne, w której zawarte są odbiorniki.
-%\graffito{dodać notatkę w testach o możliwości wyeliminowania tego 'defektu' poprzez dodanie 4-tego odbiornika, niewspółpłaszczyznowego, jednak spowoduje to wzrost kosztów obliczeń}
-
 Należy wziąć pod uwagę fakt, że zarówno marker jak i odbiorniki są urządzeniami ,,kierunkowymi'', umieszczonymi w tulejach, które powodują, że sygnał nie jest wysyłany dookólnie, lecz w pewnym \ppauza z grubsza określonym \ppauza kierunku, zaś amplituda sygnału odbieranego będzie większa, jeśli będzie on wpadał prosto w tuleję\graffito{Sygnał dochodzący z~boku może być zbyt słaby, aby został zarejestrowany.}, przez co szansa uznania go za poprawny jest znacznie większa.
 
 Ta cecha układu została wykorzystana poprzez przeznaczenie układu do noszenia na tułowiu \ppauza łatwo zauważyć, że użytkownikowi ciężko byłoby przesunąć \index{marker}marker zbyt daleko do tyłu, gdyż ograniczałyby go stawy. 
-
-Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed sobą, szczególnie jeśli zamierza coś nimi robić, można spokojnie odrzucić jeden z punktów \ppauza ten który znajduje się ,,z tyłu''.
 
 \paragraph{Pomiar czasu pomiędzy wysłaniem, a odebraniem sygnału}
 \label{sec:uc_algorithm}
@@ -84,10 +56,12 @@ Z powodu tego, iż dostępne markery nadają tylko na jednej, ustalonej częstot
 \end{enumerate}
 Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequence_diagram}.
 
+Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza sygnałami kontrolnymi \index{protokół}protokołu, również odczyty z~licznika dla każdego z~odbiorników, które zgodnie z wzorem \ref{eq:sound_distance} są proporcjonalne do odległości markera od tego odbiornika.
+
 \begin{figure}
  % fugly hack
- \hspace{-7em}
- \includegraphics[width=52em]{gfx/diagramy/diagram_sekwencji_sprzetu.pdf}
+ \hspace{-13em}
+ \includegraphics[width=50em]{gfx/diagramy/diagram_sekwencji_sprzetu.pdf}
  \caption{Diagram sekwencji oprogramowania mikrokontrolera}
  \label{fig:firmware_sequence_diagram}
 \end{figure}
@@ -99,10 +73,34 @@ Wyzerowanie prescalera przed rozpoczęciem pomiaru ma istotny wpływ na dokładn
 
 Resetowanie prescalera zawsze w tym samym miejscu zapewnia, że każdy pomiar rozpocznie się z dokładnie takim samym opóżnieniem.
 
-\paragraph{Trilateracja}
+\paragraph{Przetwarzanie pozyskanych danych}
+Ponieważ dane odczytane z mikrokontrolera mają postać ,,surową'', nie niosą one informacji, która jest możliwa do natychmiastowego wykorzystania w komputerze. Dopiero po przetworzeniu danych można pozyskać z nich wartościową informację. Przetwarzanie takie najczęściej wymagać będzie agregacji pewnej ilości danych oraz poddanie ich pewnemu procesowi obróbki. Proces ten stanowić może np.:
+\begin{itemize}
+ \item rozpoznawanie gestów,
+ \item odtworzenie pozycji markera w trzech wymiarach,
+ \item oczekiwanie na przemieszczenie markera do predefiniowanej pozycji.
+\end{itemize}
+
+\index{marker}
+Jako demonstrację możliwości systemu pokażę, jak odtworzyć pozycję markera w trzech wymiarach, korzystając wyłącznie z~informacji o~względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
+
 \label{par:trilateration}
 \index{trilateracja}
 Metoda wyznaczenia trójwymiarowej pozycji znając odległości od trzech punktów o znanych współrzędnych nazywana jest \textit{trilateracją}.%\graffito{dodać info skąd to wiadomo}
+
+Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji wymienione powyżej dane, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{gfx/diagramy/schemat_przeciecia_sfer}
+  \caption{Poglądowy schemat rozmieszczenia czujników}
+  \label{fig:schema_spheres}
+\end{figure}
+
+Rysunek \ref{fig:schema_spheres}\graffito{W rysunku przyjęto widok ,,od przodu'', tzn. zachodzi $z = 0$ dla wszystkich elementów z~wyjątkiem punktu $P$.} prezentuje rozmieszczenie odbiorników na płycie testowej. Znajdują się one w punktach oznaczonych odpowiednio jako $S_1$, $S_2$ i $S_3$. Punkt $P$ to punkt przecięcia się sfer.
+
+Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że dla każdego punktu $P$, będzie istniał punkt $P'$, który będzie odbiciem punktu $P$ względem płaszczyzny, w której zawarte są odbiorniki.
+
+Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed sobą, szczególnie jeśli zamierza coś nimi robić, a także ograniczone pole ,,widzenia'' odbiorników, można odrzucić jeden z punktów \ppauza ten który znajduje się ,,z tyłu''.
 
 Problem wyznaczenia położenia markera można uprościć, przyjmując określony układ współrzędnych, w którym jeden z odbiorników znajduje się w początku układu współrzędnych, drugi na osi $x$, a trzeci pozostaje ,,swobodny''\graffito{Współrzędna $z$ dla wszystkich odbiorników równa jest~$0$.}. Rozmieszczenie takie zaprezentowano na rysunku \ref{fig:schema_coordinates}, odbiorniki mają współrzędne odpowiednio:
 \begin{center}
