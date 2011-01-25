@@ -2,8 +2,7 @@
 \myChapter{Metoda}\label{ch:solution} % $\mathbb{ZNR}$
 %************************************************
 
-\section{Sprzęt}
-W swojej pracy wykorzystałem sprzęt, który pokrótce omówię.
+W rozdziale tym przybliżę metodę, jaką wykorzystałem do przetworzenia danych pobranych z mikrokontrolera, a w szczególności \emph{trilaterację} \ppauza metodę odtworzenia pozycji markera w trzech wymiarach. Zanim jednak przejdę do omówienia metody, konieczne jest pobieżne zapoznanie się ze sprzętem i jego charakterystyką.
 
 Sprzęt, abstrahując od szczegółowego sposobu realizacji, składa się z dwóch \index{marker}markerów, których funkcje pełnią głośniki ultradźwiękowe, trzech \index{odbiornik}odbiorników pod postacią mikrofonów ultradźwiękowych oraz \index{mikrokontroler}mikrokontrolera \textsmaller{AVR Atmega8}. Dodatkowo w układzie zamontowanych jest 8 diod LED, które służą do nadzorowania stanu układu. \textsl{Nietoperz} zaprezentowany jest na rysunku \ref{fig:nietoperz}.
 
@@ -13,8 +12,6 @@ Sprzęt, abstrahując od szczegółowego sposobu realizacji, składa się z dwó
   \label{fig:nietoperz}
 \end{sidewaysfigure}
 
-
-\section{W ogóle}
 Działanie mikrokontrolera sprowadza się do ciągłego, aktywnego prowadzenia pomiarów opóźnień czasów propagacji sygnału ultradźwiękowego pomiędzy \index{marker}markerami, a \index{odbiornik}odbiornikami. Pozyskane w ten sposób dane przekazywane są za pomocą specjalnie opracowanego \index{protokół}protokołu do komputera, gdzie następuje ich dalsza obróbka.
 
 Uproszczony schemat układu prezentuje rysunek~\ref{fig:device_scheme}.
@@ -25,7 +22,6 @@ Uproszczony schemat układu prezentuje rysunek~\ref{fig:device_scheme}.
  \label{fig:device_scheme}
 \end{figure}
 
-\section{W szczególe}
 Działanie systemu opiera się na założeniu, że dźwięk w powietrzu rozchodzi się ze stałą, znaną szybkością.\graffito{Założenie takie można przyjąć, gdyż odchylenia tej wartości spowodowane temperaturą i~wilgotnością powietrza są niewielkie i~nie wpływają znacząco na działanie systemu.}
 
 Ponieważ szybkość ta jest stała, można łatwo wyznaczyć odległość, jaką musiał przebyć dźwięk, aby dotrzeć do odbiornika:
@@ -43,21 +39,18 @@ gdzie:
 
 Dane, jakie przekazywane są do komputera w celu dalszej obróbki zawierają, poza specyfikacją \index{protokół}protokołu, tylko i wyłącznie odczyty z~licznika dla każdego z~odbiorników.
 
-\paragraph{Przetwarzanie danych}
-Aby dane były do czegoś użyteczne, wymagane jest ich przetworzenie. Przetwarzanie danych tej postaci może odbywać się różnorakimi metodami, np.:
+\paragraph{Przetwarzanie pozyskanych danych}
+Ponieważ dane odczytane z mikrokontrolera mają postać ,,surową'', nie niosą one informacji, która jest możliwa do natychmiastowego wykorzystania w komputerze. Dopiero po przetworzeniu danych można pozyskać z nich wartościową informację. Przetwarzanie takie najczęściej wymagać będzie agregacji pewnej ilości danych oraz poddanie ich pewnemu procesowi obróbki. Proces ten stanowić może np.:
 \begin{itemize}
- \item rozpoznawanie gestów za pomocą sieci neuronowych,
+ \item rozpoznawanie gestów,
  \item odtworzenie pozycji markera w trzech wymiarach,
- \item oczekiwanie na przemieszczenie markera do predefiniowanej pozycji,
- \item wiele innych.
+ \item oczekiwanie na przemieszczenie markera do predefiniowanej pozycji.
 \end{itemize}
 
-\paragraph{Odtworzenie pozycji markera}
 \index{marker}
-W celach demonstracyjnych postanowiłem pokazać, jak odtworzyć pozycję markera w trzech wymiarach, korzystając tylko z informacji o względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
-\newline
+Jako demonstrację możliwości systemu pokażę, jak odtworzyć pozycję markera w trzech wymiarach, korzystając wyłącznie z~informacji o~względnym położeniu odbiorników oraz przekazywanych do komputera danych o czasie, w jakim sygnał z markera dotarł do każdego z tych odbiorników.
 
-Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji odległości od każdego z~odbiorników, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
+Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dyspozycji wymienione powyżej dane, można założyć, że odbiorniki są środkami sfer, a promieniem każdej z nich \ppauza odległość, jaką przebył dźwięk od markera do tego odbiornika. Punkt przecięcia się tych sfer będzie pozycją markera.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{gfx/diagramy/schemat_przeciecia_sfer}
@@ -65,10 +58,9 @@ Aby wyznaczyć położenie markera w trójwymiarowej przestrzeni, mając do dysp
   \label{fig:schema_spheres}
 \end{figure}
 
-\paragraph{Rozmieszczenie elementów}
 Rysunek \ref{fig:schema_spheres}\graffito{W rysunku przyjęto widok ,,od przodu'', tzn. zachodzi $z = 0$ dla wszystkich elementów z~wyjątkiem punktu $P$.} prezentuje rozmieszczenie odbiorników na płycie testowej. Znajdują się one w punktach oznaczonych odpowiednio jako $S_1$, $S_2$ i $S_3$. Punkt $P$ to punkt przecięcia się sfer.
 
-Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że będą istniały dokładnie dwa punkty przecięcia wspomnianych powyżej sfer \ppauza lustrzane do siebie względem płaszczyzny, w której znajdują się odbiorniki.
+Ponieważ zastosowano tylko trzy \index{odbiornik}odbiorniki, będą one zawsze leżeć w jednej płaszczyźnie. Powoduje to, że dla każdego punktu $P$, będzie istniał punkt $P'$, który będzie odbiciem punktu $P$ względem płaszczyzne, w której zawarte są odbiorniki.
 %\graffito{dodać notatkę w testach o możliwości wyeliminowania tego 'defektu' poprzez dodanie 4-tego odbiornika, niewspółpłaszczyznowego, jednak spowoduje to wzrost kosztów obliczeń}
 
 Należy wziąć pod uwagę fakt, że zarówno marker jak i odbiorniki są urządzeniami ,,kierunkowymi'', umieszczonymi w tulejach, które powodują, że sygnał nie jest wysyłany dookólnie, lecz w pewnym \ppauza z grubsza określonym \ppauza kierunku, zaś amplituda sygnału odbieranego będzie większa, jeśli będzie on wpadał prosto w tuleję\graffito{Sygnał dochodzący z boku może być zbyt słaby, aby został zarejestrowany.}, przez co szansa uznania go za poprawny jest znacznie większa.
@@ -114,6 +106,12 @@ Podstawiając do równania \ref{eq:sphere} współrzędne punktów $S_1$, $S_2$ 
 \end{equation}
 gdzie $r_1$, $r_2$ i $r_3$ to odpowiednio odległości \index{marker}markera od każdego z~odbiorników\index{odbiornik} \textsmaller{\#1}, \textsmaller{\#2} i \textsmaller{\#3}, a zarazem promienie sfer, których punktu przecięcia poszukujemy.
 
+Wartości $r_1$, $r_2$ i $r_3$ obliczamy na podstawie danych $t_1$, $t_2$ i $t_3$, czyli odstępie czasu, jaki dzieli rozpoczęcie nadawania przez marker od odebrania tego sygnału przez mikrokontroler. Wykorzystując równanie \ref{eq:sound_distance} otrzymujemy:
+\begin{eqnarray}
+  r_n = 333\frac{\textrm{m}}{\textrm{s}} \cdot t_n & \textrm{dla } n \in \{1, 2, 3\}
+\end{eqnarray}
+
+
 W celu uproszczenia następnych obliczeń przyjmijmy poniższą postać równania \ref{eq:sphere_system_1}:
 \begin{equation}
  \begin{cases}
@@ -145,9 +143,9 @@ Z równania \ref{eq:determine_x_1} można łatwo wyznaczyć $x$:
 Podstawiając $x$ z równania \ref{eq:determine_x_2} do pierwszego równania układu \ref{eq:sphere_system_2} dowiemy się, które punkty są wspólne dla sfer mających środki w,~odpowiednio, $S_1$ i $S_2$:
 
 \begin{eqnarray}
- r_1^2 = x^2 + y^2 + z^2 \\
- r_1^2 = \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 + y^2 + z^2 \\
- y^2 + z^2 = r_1^2 - \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 \label{eq:intersection_circle}
+ r_1^2 & = & x^2 + y^2 + z^2 \\
+       & = &\left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 + y^2 + z^2 \nonumber \\
+ y^2 + z^2 & = & r_1^2 - \left(\frac{r_1^2 - r_2^2 + a^2}{2a}\right)^2 \label{eq:intersection_circle}
 \end{eqnarray}
 
 W równaniu \ref{eq:intersection_circle} prawa strona jest stała, widać więc, że jest to równanie okręgu.
