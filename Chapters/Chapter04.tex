@@ -69,6 +69,36 @@ Ta cecha układu została wykorzystana poprzez przeznaczenie układu do noszenia
 
 Wykorzystując fakt, że człowiek trzyma ręce w większości przypadków przed sobą, szczególnie jeśli zamierza coś nimi robić, można spokojnie odrzucić jeden z punktów \ppauza ten który znajduje się ,,z tyłu''.
 
+\paragraph{Pomiar czasu pomiędzy wysłaniem, a odebraniem sygnału}
+\label{sec:uc_algorithm}
+Ponieważ markery nie mogą nadawać sygnału ani jednocześnie, ani ciągle, konieczna jest pewna metoda, w wyniku realizacji której markery będą naprzemiennie nadawać sygnał, a informacja o jego odebraniu będzie zapisana oraz przesłana do komputera. Odbywa się to w następujący sposób:
+\begin{enumerate}
+ \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
+ \item uruchamiany jest wewnętrzny licznik urządzenia,
+ \item wysyłany jest sygnał, który aktywuje jeden z markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
+ \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z~sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z~danego odbiornika) jest zapamiętywany,
+ \item zatrzymywany jest wewnętrzny timer urządzenia,
+ \item dane o odstępach czasowych przekazywane są do komputera,
+ \item następuje uśpienie układu, które pozwala na zaniknięcie sygnałów ultradźwiękowych,
+ \item cała operacja powtarzana jest dla następnego markera.
+\end{enumerate}
+Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequence_diagram}.
+
+\begin{figure}
+ % fugly hack
+ \hspace{-8em}
+ \includegraphics[width=52em]{gfx/diagramy/diagram_sekwencji_sprzetu.pdf}
+ \caption{Diagram sekwencji oprogramowania mikrokontrolera}
+ \label{fig:firmware_sequence_diagram}
+\end{figure}
+
+W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dzielnik częstotliwości, o programowanym stopniu podziału. Jego działanie polega na zliczaniu taktów zegara; gdy wewnętrzny licznik prescalera osiągnie zaprogramowaną wcześniej wartość, wyzwalane jest przerwanie timera oraz następuje przepełnienie licznika, w związku z czym zliczana wartość ,,przekręca się'' i liczenie rozpoczyna się ponownie od zera.
+\label{sec:prescaler}
+
+Wyzerowanie prescalera przed rozpoczęciem pomiaru ma istotny wpływ na dokładność danych. Załóżmy na chwilę, że prescaler nie jest resetowany. Ponieważ nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia.} sprawdzenia aktualnego stanu licznika prescalera, nie możemy stwierdzić ile czasu upłynęło od ostatniego wyzwolenia przerwania timera. Bez znajomości tej wartości nie jest możliwe stwierdzenie, kiedy, licząc od zapisania bitów uruchamiających moduł timera, nastąpi wywołanie przerwania timera. Powyższe fakty powodują, że dla każdego z pomiarów będzie istniało pewne \emph{nieznane} opóźnienie rozpoczęcia naliczania interwału czasowego, co bezpośrednio przekłada się na dokładność pozyskanych danych.
+
+Resetowanie prescalera zawsze w tym samym miejscu zapewnia, że każdy pomiar rozpocznie się z dokładnie takim samym opóżnieniem.
+
 \paragraph{Trilateracja}
 \label{par:trilateration}
 \index{trilateracja}

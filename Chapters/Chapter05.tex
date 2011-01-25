@@ -5,17 +5,20 @@ Jako zwolennik wolnego i otwartego oprogramowania starałem się korzystać tylk
 
 \graffito{ \includegraphics[width=\marginparwidth]{gfx/gnuhead_inkscape.pdf} Logo Fundacji Wolnego Oprogramowania \ppauza Free Software Foundation \citep{FSF}}Sama praca udostępniana jest na zasadach otwartej licencji \textsc{GNU GPL 3.0}. Wszyzstkie otwarte licencje typu \textsc{GNU GPL} stworzone zostały przez fundację FSF, która też stoi na straży ich przestrzegania.
 
+Stworzone oprogramowanie podzieliłem na dwie kategorie, w zależności od urządzenia, które będzie dany program uruchamiało: oprogramowanie dla mikrokontrolera oraz oprogramowanie dla komputera.
+
 \section{Oprogramowanie mikrokontrolera}
-W pracy wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
+Zadaniem mikrokontrolera jest prowadzenie pomiarów interwałów dzielących rozpoczęcie nadawania przez marker od odebrania sygnału przez odbiorniki.
+
+Wykorzystany został układ \textsc{AVR Atmega8}, będący ośmiobitowym mikrokontrolerem. Sprzęt ten znacznie różni się od architektury znanej z komputerów osobistych \textsmaller{PC} i choć sama idea programowania jest podobna, wszystko pozostawione jest programiście, co w połączeniu z koniecznością programowania na bardzo niskim poziomie, jaki nie jest promowany na studiach, stanowi dodatkowe wyzwanie.
 
 Oprogramowanie zostało stworzone w języku \texttt{C}, wykorzystując do kompilacji kompilator \textsc{avr-gcc} oraz bibliotekę \textsc{avr-libc}, oba udostępniane na zasadach wolnej licencji \textsc{Modified Berkley License}. Do programowania wykorzystałem program \textsc{avrdude} (wolna licencja \textsc{GNU GPL 2} i późniejsze).
 
-\subsection{Wymagania}
-Zadaniem tej części oprogramowania jest dostarczenie danych, których obróbką zajmie się komputer. Wymagania, jakie są stawiane to przede wszystkim:
+Program, aby poprawnie spełniał swoje zadanie, jakim jest dostarczenie danych, których obróbką zajmie się komputer, musi podołać następującym wymaganiom:
 \begin{itemize}
  \item zwięzłość \ppauza program ma robić tylko i wyłącznie to, co absolutnie konieczne, ponieważ wprowadzanie dodatkowego, nadmiarowego kodu będzie powodowało opóźnienia w działaniu, co może przekładać się na
     niestabilność działania,
- \item dokładność \ppauza dostarczanie niepewnych danych mija się z celem pracy, należy więc zadbać o to, aby dane były możliwie najdokładniejsze,
+ \item dokładność\graffito{Niedokładność może pojawić się w wyniku braku lub niepoprawnej inicjalizacji modułów mikrokontrolera} \ppauza dostarczanie niepewnych danych mija się z celem pracy, należy więc zadbać o to, aby dane były możliwie najdokładniejsze,
  \item prostota \ppauza ze względu na niewielkie możliwości mikrokontrolera \ppauza w porównaniu do komputerów \ppauza trzeba zoptymalizować wszelkie używane struktury i unikać wykonywania pracy, którą spokojnie może zająć się komputer.
 \end{itemize}
 
@@ -25,13 +28,17 @@ Należy zauważyć, że obrany rozmiar zmiennych, t.j. 8 bitów, został dopasow
 
 Mikrokontroler posiada również drugi, szesnastobitowy timer, którego użycie pozwoliłoby na zwiększenie dokładności, wiązało by się jednak z mankamentem wspomnianym powyżej, zaś precyzja osiągana przez oprogramowanie wykorzystujące timer o wielkości ośmiu bitów, jaka została opisana w sekcji \ref{section:microcontroller_limit}, jest wystarczająca do bardzo dokładnego śledzenia pozycji.
 
-\subsection{Dokładność}\label{section:precision}
+\subsection{Dokładność pozyskanych danych}\label{section:precision}
+Z powodu cyfrowej natury urządzenia, operuje ono na dyskretnych wartościach. Zarówno następująca w tym przypadku dyskretyzacja danych jak i wykorzystane do pomiarów zjawisko fizyczne, wprowadzają pewne ograniczenia dokładności, jaka może zostać uzyskana przez system.
+
+Poniżej przedstawię ograniczenia wynikające z obu tych powodów.
+
 \paragraph{Ograniczenia mikrokontrolera}
 \label{section:microcontroller_limit}
 
 Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracującego w układzie taktowanym zegarem $F_\textrm{cpu} = 8$ MHz wyznacza się w następujący sposób:
 \begin{enumerate}
- \item \index{prescaler}prescaler\graffito{Prescaler omówiony zostanie w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}.} ustawiony jest na $F_\textrm{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
+ \item \index{prescaler}prescaler\graffito{Prescaler omówiony został w paragrafie \nameref{sec:prescaler} sekcji \ref{sec:uc_algorithm}.} ustawiony jest na $F_\textrm{cpu}/8$, należy poznać interwał $i$, co jaki wyzwalane będzie przerwanie timera:
     \begin{equation}
       i = \frac{1}{F_\textrm{cpu}/8} = \frac{1}{1~\textrm{MHz}} = 0,000001~\textrm{s} = 0,001~\textrm{ms} = 1~\mu\textrm{s}
       \label{eq:sampling_frequency}
@@ -39,7 +46,7 @@ Dokładność, jaką można uzyskać za pomocą ośmiobitowego timera pracujące
 
  \item znając interwał $i$ oraz szybkość dźwięku w powietrzu $v$, wyznaczyć należy drogę, jaką przebędzie dźwięk w czasie $i$, wykorzystując w tym celu wzór~\ref{eq:sound_distance}:
     \begin{equation}
-      x = v \cdot i = 340~\frac{\textrm{m}}{\textrm{s}} \cdot 1~\mu\textrm{s} = 0,34~\textrm{mm}
+      x = v \cdot i = 333~\frac{\textrm{m}}{\textrm{s}} \cdot 1~\mu\textrm{s} = 0,333~\textrm{mm}
       \label{eq:microcontroller_limit}
     \end{equation}
 \end{enumerate}
@@ -48,10 +55,8 @@ Jak pokazuje równanie~\ref{eq:microcontroller_limit}, teoretyczna dokładność
 
 Ponieważ \index{timer}timer ma tylko osiem bitów, należy spodziewać się, że nastąpi jego przepełnienie zanim zostanie odczytane wzbudzenie pinu. Przepełnienie wystąpi po dokładnie $2^8 = 256$ aktualizacjach timera. Zajmie to $256 \cdot 1~\mu\textrm{s} = 256~\mu\textrm{s}$, a dźwięk w tym czasie zdąży przebyć odległość 
 \begin{equation}
- 340~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} = 87,04~\textrm{mm}
+ 333~\frac{\textrm{m}}{\textrm{s}} \cdot 256~\mu\textrm{s} \approx 85,25~\textrm{mm}
 \end{equation}
-
-Rozdzielczość\graffito{Zmiana ta musiałaby zostać odwzorowana w aplikacjach wykorzystujących ten interfejs sterowania komputerem.} można dalej zwiększyć zmniejszając dzielnik \index{prescaler}prescalera oraz zwiększając częstotliwość pracy mikrokontrolera.
 
 \paragraph{Ograniczenia markerów}
 \label{section:sound_limit}
@@ -70,13 +75,17 @@ Za zmianę będziemy przyjmować wzbudzenie pinu mikrokontrolera, co spowodowane
     \end{equation}
  \item znając $T$ skorzystajmy ponownie ze wzoru~\ref{eq:sound_distance}:
     \begin{equation}
-      x = v \cdot T = 340~\frac{\textrm{m}}{\textrm{s}} \cdot 25~\mu\textrm{s} = 8,5~\textrm{mm}
+      x = v \cdot T = 333~\frac{\textrm{m}}{\textrm{s}} \cdot 25~\mu\textrm{s} \approx 8,3~\textrm{mm}
       \label{eq:sound_limit}
     \end{equation}
 \end{enumerate}
 
+Równanie \ref{eq:sound_limit} pokazuje ograniczenie wynikające z zastosowania elementów o podanych charakterystykach.
+
 \paragraph{Teoretyczne ograniczenia całego systemu}
 Jak pokazują obliczenia przeprowadzone w paragrafach~\nameref{section:microcontroller_limit} i~\nameref{section:sound_limit}, głównym ograniczeniem dokładności bieżącej wersji systemu jest wykorzystanie ,,powolnych'' nadajników i~odbiorników.
+
+Ograniczenie to pozwala badać odległość markera od odbiornika z dokładnością do co najwyżej 8,3mm.
 
 Zdecydowałem się na wykorzystanie elementów \graffito{Należy spodziewać się, że czujniki stosowane np. w~aparturze USG są odpowiednio drogie, wykorzystują jednak znacznie wyższe częstotliwości.} o takich właśnie charakterystykach, ponieważ są to jedyne dostępne na rynku, których cena pozwala na ukończenie projektu.
 
@@ -86,35 +95,6 @@ Aby zwiększyć dokładność urządzenia należałoby wymienić nadajniki i odb
 \end{equation}
 gdyż jest to częstotliwość próbkowania określona wzorem \ref{eq:sampling_frequency}.
 %\graffito{dodać info o możliwości podkręcenia częstotliwości przez zmniejszenie delay-ów oraz wysyłanie tylko impulsu, zamiast ciągłego sygnału, ponadto używanie w otwrtych przestrzeniach}
-
-\subsection{Algorytm}
-\label{sec:uc_algorithm}
-Oprogramowanie zapisane w pamięci mikrokontrolera steruje markerami i odbiornikami w następujący sposób:
-\begin{enumerate}
- \item \index{prescaler}prescaler urządzenia jest resetowany,\label{enum:prescaler}
- \item uruchamiany jest wewnętrzny licznik urządzenia,
- \item wysyłany jest sygnał, który aktywuje jeden z dwóch markerów, powoduje to rozpoczęcie nadawania sygnału przez ten marker,
- \item następuje aktywne oczekiwanie na ,,wzbudzenie''\graffito{Wzbudzenie pinu to przejście linii z~sygnału niskiego do stanu wysokiego.} pinów wszystkich odbiorników, a czas wzbudzenia każdego z pinów (różnica czasu pomiędzy rozpoczęciem nadawania i odebrania sygnału z~danego odbiornika) jest zapamiętywany,
- \item zatrzymywany jest wewnętrzny timer urządzenia,
- \item dane o odstępach czasowych przekazywane są do komputera,
- \item następuje uśpienie układu, które pozwala na zaniknięcie sygnałów ultradźwiękowych,
- \item cała operacja powtarzana jest dla drugiego markera.
-\end{enumerate}
-Algorytm ten obrazuje diagram przedstawiony na rysunku \ref{fig:firmware_sequence_diagram}.
-
-\begin{figure}
- % fugly hack
- \hspace{-10em}
- \includegraphics[width=45em]{gfx/diagramy/diagram_sekwencji_sprzetu.pdf}
- \caption{Diagram sekwencji oprogramowania mikrokontrolera}
- \label{fig:firmware_sequence_diagram}
-\end{figure}
-
-\paragraph{Prescaler}
-\label{sec:prescaler}
-W mikrokontroler wbudowany jest \index{prescaler}\textsl{prescaler}, czyli dzielnik częstotliwości, o programowanym stopniu podziału. Jego działanie polega na zliczaniu taktów zegara; gdy wewnętrzny licznik prescalera osiągnie zaprogramowaną wcześniej wartość, wyzwalane jest przerwanie timera oraz następuje przepełnienie licznika, w związku z czym zliczana wartość ,,przekręca się'' i liczenie rozpoczyna się ponownie od zera.
-
-Punkt \ref{enum:prescaler} algorytmu jest bardzo istotny, gdyż nie ma możliwości\graffito{Nawet gdyby możliwość odczytania tej wartości istniała, działanie to wprowadzałoby niepożądane opóźnienia.} sprawdzenia aktualnego stanu licznika prescalera, natomiast rozpoczęcie odliczania może nastąpić w dowolnym momencie czasu, przez co może być niekoniecznie zsynchronizowane z wyzwoleniem przerwania przez prescaler, efektem czego byłyby pomiary, które charakteryzowałyby się pewną zmienną niedokładnością.
 
 \paragraph{Przerwania}
 W działaniu programu dużą rolę odgrywają procedury obsługi przerwań (ang. \textsl{ISR \ppauza Interrupt Service Routine}). Są to krótkie fragmenty kodu, które wywoływane są przez mikrokontroler w~momencie zajścia pewnego zdarzenia. Ich użycie pozwala na pewien stopień ,,wielowątkowości'', gdyż (w zależności od ustawienia flag) mogą one przerwać wykonywanie głównego toku programu do momentu, aż przerwania nie zostaną ,,obsłużone'', tzn. instrukcje zawarte w procedurze ISR nie zostaną wykonane.
