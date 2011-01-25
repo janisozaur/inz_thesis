@@ -31,7 +31,7 @@ Dokładność systemu została już określona w sekcji \ref{section:precision},
 
 Istnieją dwa rodzaje ograniczeń: spowodowane stworzonym oprogramowaniem oraz spowodowane wykorzystanym sprzętem. Ominięcie tych pierwszych jest stosunkowo łatwe\graffito{Trzeba liczyć się z~faktem, że można natknąć się na ograniczenia mikrokontrolera.} i~wymaga tylko zmiany pewnych parametrów oraz ponowne zaprogramowanie układu. W przypadku drugiego typu ograniczeń należy spodziewać się konieczności modyfikacji układu, jeśli chciałoby się zwiększać dokładność.
 
-Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,34mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit}~i~\ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
+Mikrokontroler jest w stanie mierzyć pozycję markera z dokładnością do 0,333mm\graffito{Równania odpowiednio \ref{eq:microcontroller_limit}~i~\ref{eq:sound_limit}.}, natomiast wykorzystanie sygnałów ultradźwiękowych o częstotliowści 40kHz nakłada na system ograniczenie dokładności do 8,5mm, a zatem ograniczenie całego systemu wynosi 8,5mm.
 
 Chociaż w wielu przypadkach taka dokładność jest zupełnie wystarczająca, pozostawia jednak trochę do życzenia.
 
@@ -139,7 +139,7 @@ Należy zauważyć, że opisane wcześniej parametry tyczą się tylko pojedyncz
 
 Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za pomocą stworzonego systemu, moja ręka ma przeciętnie długość 68cm.} i wykorzystując przekstałcony wzór \ref{eq:sound_distance} uzyskujemy:
 \begin{equation}
- t = \frac{x}{v} = \frac{70\textrm{cm}}{340\frac{\textrm{m}}{\textrm{s}}} = 0,7\textrm{m} \cdot \frac{1}{340}\frac{s}{m} \approx 0,002\textrm{s} = 2\textrm{ms}
+ t = \frac{x}{v} = \frac{70\textrm{cm}}{333\frac{\textrm{m}}{\textrm{s}}} = 0,7\textrm{m} \cdot \frac{1}{333}\frac{s}{m} \approx 0,002\textrm{s} = 2\textrm{ms}
  \label{eq:reporting_speed}
 \end{equation}
 
