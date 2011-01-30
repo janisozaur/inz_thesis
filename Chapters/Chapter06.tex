@@ -140,7 +140,7 @@ Przyjmując długość ręki 70cm\graffito{Długość ręki można zbadać za po
  \label{eq:reporting_speed}
 \end{equation}
 
-Aby zagwarantować dotarcie sygnału \index{marker}markera do każdego z odbiorników, stworzone oprogramowanie nadaje go dopóty, dopóki nie zostanie odebrane potwierdzenie dotarcia z każdego z odbiorników. W powiązaniu z faktem, że nie można rozpocząć nadawania z innego markera, póki ,,kanał'' nie jest wolny, oznacza to, że sygnał z markera nadawany jest przynajmniej tak długo, jak długo zajmuje mu dotarcie do ostatniego z odbiorników.
+Aby zagwarantować dotarcie sygnału \index{marker}markera do każdego z odbiorników, stworzone oprogramowanie nadaje go dopóty, dopóki nie zostanie odebrane potwierdzenie dotarcia z każdego z odbiorników. W~powiązaniu z faktem, że nie można rozpocząć nadawania z innego markera, póki ,,kanał'' nie jest wolny, oznacza to, że sygnał z markera nadawany jest przynajmniej tak długo, jak długo zajmuje mu dotarcie do ostatniego z odbiorników.
 
 W przyszłej wersji systemu można pokusić się o implementację metody, która niwelowałaby ten efekt. Działanie tej metody może wyglądać następująco:
 \begin{enumerate}
@@ -197,7 +197,7 @@ Opierając się na wspomnianych powyżej testach widać, że czynnikiem powoduj�
 Ze względu na możliwość dostępu do kontrolerów \index{Nintendo!Wiimote}\textsl{Wiimote} oraz \index{Sony!Sixaxis}\textsl{Sixaxis} postanowiłem przeprowadzić porównanie tych urządzeń z moim rozwiązaniem.
 \newline
 
-\textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z 25.04.2007\citep{Br10}.}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
+\textsl{Sixaxis}. W celu wyznaczenia prędkości raportowania statusu tego kontrolera wykorzystałem możliwość podłączenia go poprzez port \index{USB}USB oraz obsługę w systemie \index{Linux}Linux w wersji 2.6.35\graffito{Obsługa kontrolera dostępna jest od wersji 2.6.21 z~25.04.2007\citep{Br10}.}. Znając wielkość raportu, która wynosi 50 bajtów \citep{Br10}, wystarczy zbadać, jak prędko dane pojawiają się na urządzeniu przyporządkowanym kontrolerowi. 
 
 Należy najpierw zbadać, do jakiego pliku został przyporządkowany do podłączonego urządzenia \ppauza należy w tym celu sprawdzić log kernela za pomocą polecenia \texttt{dmesg}, a następnie zbadać czas, w jakim odczytana zostanie określona z góry ilość danych. Eksperyment ten prezentuje listing~\ref{lst:sixaxis}.
 
