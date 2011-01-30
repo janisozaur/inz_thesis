@@ -146,12 +146,12 @@ Centralną właściwością środowiska \textsc{Qt}, a jednocześnie jedną z na
 
 Chociaż na pierwszy rzut oka przypomina ona znane dotychczas metody oparte o wywołania zwrotne (ang. \textsl{callback}) i faktycznie się z~nich wywodzi, to jednak różni się od nich w kilku kluczowych aspektach.
 
-Jest to metoda dynamiczna (działająca w runtime). Metoda wywołań zwrotnych wykorzystywana jest głównie do zamodelowania statycznych (tj. znanych już podczas czasu kompilacji - ang. \textsl{compiletime}) powiązań pomiędzy obiektami jak np:
+Jest to metoda dynamiczna (działająca w czasie rzeczywistym \ppauza ang. \textsl{runtime}). Metoda wywołań zwrotnych wykorzystywana jest głównie do zamodelowania statycznych (tj. znanych już podczas czasu kompilacji \ppauza ang. \textsl{compiletime}) powiązań pomiędzy obiektami jak np:
 \begin{verse}
 użytkownik kliknął przycisk \texttimes~\textrightarrow~wywołaj metodę \texttt{close()}
 \end{verse}
 
-W przypadku tym przypisuje się wskaźnik do funkcji do pewnego pola klasy wywołującej, który w momencie zajścia zdarzenia jest wywoływany. Konsekwencją takiego podejścia jest konieczność znania odbiorników w czasie kompilacji, co uniemożliwia np. ładowanie wtyczek w runtime i powiadamiania ich o zdarzeniach w następujący sposób:
+W przypadku tym przypisuje się wskaźnik do funkcji do pewnego pola klasy wywołującej, który w momencie zajścia zdarzenia jest wywoływany. Konsekwencją takiego podejścia jest konieczność znania odbiorników w czasie kompilacji, co uniemożliwia np. ładowanie wtyczek w czasie rzeczywistym i powiadamiania ich o zdarzeniach w następujący sposób:
 \begin{verse}
 powiadom wszystkie odbiorniki o zajściu zdarzenia $\omega$
 \end{verse}
